@@ -1,8 +1,15 @@
+// .eslintrc.js
 module.exports = {
-  env: { browser: true, es2021: true },
-  extends: ['eslint:recommended','plugin:react/recommended','prettier'],
+  parser: '@typescript-eslint/parser',           // ← parse TS
+  plugins: ['@typescript-eslint', 'prettier'],   // ← lint TS + Prettier
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',     // ← TS rules
+    'plugin:prettier/recommended'                // ← Prettier last
+  ],
   parserOptions: {
-    ecmaVersion: 12,
+    ecmaVersion: 2021,
     sourceType: 'module',
     ecmaFeatures: { jsx: true }
   },
@@ -10,5 +17,5 @@ module.exports = {
   rules: {
     'react/prop-types': 'off',
     'no-console': 'warn'
-  },
+  }
 };

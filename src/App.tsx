@@ -8,6 +8,7 @@ import Home from './pages/Home';
 const App: React.FC = () => (
   <ThemeProvider theme={theme}>
     <Header />
+    <Hero />
     <Home />
   </ThemeProvider>
 );
