@@ -1,7 +1,16 @@
-// src/components/Hero/Hero.tsx
 import React from 'react';
 import * as S from './ProductCard.styles';
 
-const ProductCard: React.FC = () => <S.Wrapper />;
+interface ProductCardProps {
+  image: string;
+  name: string;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ image, name }) => (
+  <S.Card>
+    <S.Image src={image} alt={name} />
+    <S.Info>{name}</S.Info>
+  </S.Card>
+);
 
 export default ProductCard;

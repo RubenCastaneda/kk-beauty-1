@@ -6,11 +6,21 @@ interface SlideProps {
 }
 
 export const Wrapper = styled.section`
-  width: 100%;
-  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80vh; /* not 100vh, so there’s breathing room */
   background: ${(p) => p.theme.colors.background};
   position: relative;
+`;
+
+export const Container = styled.div`
+  position: relative; /* for absolutely-positioned slides & arrows */
+  width: 60%; /* adjust as you like */
+  max-width: 800px;
+  aspect-ratio: 16/9; /* keeps it proportional */
   overflow: hidden;
+  box-shadow: 0 0 0 0px ${(p) => p.theme.colors.accent};
 `;
 
 export const Slide = styled.div<SlideProps>`
@@ -38,10 +48,9 @@ export const Arrow = styled.div`
   &.left {
     left: 1rem;
   }
-
   &.right {
     right: 1rem;
   }
 
-  z-index: 10;
+  z-index: 2;
 `;

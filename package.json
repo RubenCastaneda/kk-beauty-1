@@ -23,8 +23,7 @@
   "build": "react-scripts build",
   "serve": "serve -s build",
   "lint": "eslint 'src/**/*.{ts,tsx}'",
-  "format": "prettier --write 'src/**/*.{ts,tsx,js,jsx,css,md}'"
-
+  "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,md}\""
   },
 
   "eslintConfig": {
