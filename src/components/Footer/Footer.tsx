@@ -14,7 +14,11 @@ const Footer: React.FC = () => (
       <S.IconLink href="https://www.facebook.com/YourPage" target="_blank" aria-label="Facebook">
         <FaFacebookF />
       </S.IconLink>
-      <S.IconLink href="https://www.instagram.com/YourProfile" target="_blank" aria-label="Instagram">
+      <S.IconLink
+        href="https://www.instagram.com/YourProfile"
+        target="_blank"
+        aria-label="Instagram"
+      >
         <FaInstagram />
       </S.IconLink>
     </S.SocialLinks>

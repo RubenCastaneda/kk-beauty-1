@@ -1,50 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import * as S from './Hero.styles';
 
-// either import from src/assets or point to public/images
-import img1 from '../../assets/images/hero1.jpg';
-import img2 from '../../assets/images/hero2.jpg';
-import img3 from '../../assets/images/hero3.jpg';
-
-const images = [img1, img2, img3];
-
-const categories = [
-  'Skincare',
-  'Makeup',
-  'Fragrance',
-  'Tools',
-  'About Us',
-];
+const images = ['/images/hero1.jpg', '/images/hero2.jpg', '/images/hero3.jpg'];
 
 const Hero: React.FC = () => {
   const [current, setCurrent] = useState(0);
-  const length = images.length;
+  const len = images.length;
 
-  const prev = () => setCurrent((c) => (c - 1 + length) % length);
-  const next = () => setCurrent((c) => (c + 1) % length);
+  const next = () => setCurrent((c) => (c + 1) % len);
+  const prev = () => setCurrent((c) => (c - 1 + len) % len);
 
-  const prevIndex = (current - 1 + length) % length;
-  const nextIndex = (current + 1) % length;
+  useEffect(() => {
+    const id = setInterval(next, 5000);
+    return () => clearInterval(id);
+  }, [current]);
+
+  // indexes for side panels
+  const prevIdx = (current - 1 + len) % len;
+  const nextIdx = (current + 1) % len;
 
   return (
     <S.Wrapper>
-      <S.Title>KK Beauty Lab</S.Title>
+      <S.Container>
+        <S.Arrow className="left" onClick={prev}>
+          ‹
+        </S.Arrow>
 
-      <S.SlideContainer>
-        <S.Arrow className="left" onClick={prev}>‹</S.Arrow>
+        <S.Slide image={images[prevIdx]} isActive={false} />
+        <S.Slide image={images[current]} isActive={true} />
+        <S.Slide image={images[nextIdx]} isActive={false} />
 
-        <S.Slide image={images[prevIndex]}  position="prev" />
-        <S.Slide image={images[current]}    position="current" />
-        <S.Slide image={images[nextIndex]}  position="next" />
-
-        <S.Arrow className="right" onClick={next}>›</S.Arrow>
-      </S.SlideContainer>
-
-      <S.Nav>
-        {categories.map(cat => (
-          <a key={cat} href="#">{cat}</a>
-        ))}
-      </S.Nav>
+        <S.Arrow className="right" onClick={next}>
+          ›
+        </S.Arrow>
+      </S.Container>
     </S.Wrapper>
   );
 };

@@ -8,7 +8,8 @@ import Footer from './components/Footer/Footer';
 const GlobalStyle = createGlobalStyle`
   body {
     margin: 0;
-    padding-bottom: 60px;  /* reserve space for footer */
+    padding-top: 80px;
+    padding-bottom: 60px;
   }
 `;
 

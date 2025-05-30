@@ -1,16 +1,19 @@
+// src/components/Header/Header.styles.ts
 import styled from 'styled-components';
 
 export const Wrapper = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 80px;
-  background: ${(p) => p.theme.colors.background};
+  background: rgba(0, 0, 0, 0.5);          /* semi-transparent */
+  backdrop-filter: saturate(180%) blur(10px); /* optional frosted-glass */
   display: flex;
   align-items: center;
   justify-content: center;
   color: ${(p) => p.theme.colors.text};
   font-family: ${(p) => p.theme.fonts.serif};
   font-size: 1.5rem;
-  position: sticky;
-  top: 0;
-  z-index: 100;
+  z-index: 1000;
 `;

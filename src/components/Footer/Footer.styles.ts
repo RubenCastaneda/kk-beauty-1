@@ -13,7 +13,7 @@ export const Wrapper = styled.footer`
   justify-content: space-between;
   font-family: ${(p) => p.theme.fonts.serif};
   z-index: 1000;
-  
+
   @media (max-width: 600px) {
     flex-direction: column;
     gap: 0.5rem;
