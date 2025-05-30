@@ -1,27 +1,53 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as S from './FeaturedProducts.styles';
 import ProductCard from '../ProductCard/ProductCard';
-// image imports (bundled)
-import prod1 from '../../assets/images/prod1.jpg';
-import prod2 from '../../assets/images/prod2.jpg';
-import prod3 from '../../assets/images/prod3.jpg';
+import ProductModal, { Product } from '../ProductModal/ProductModal';
 
-const products = [
-  { id: 1, name: 'Luxury Serum', image: prod1 },
-  { id: 2, name: 'Silk Moisturizer', image: prod2 },
-  { id: 3, name: 'Velvet Lipstick', image: prod3 },
+// sample products with extra details
+const products: Product[] = [
+  {
+    id: 1,
+    name: 'Luxury Serum',
+    image: '/images/prod1.jpg',
+    description: 'A deeply hydrating serum infused with botanical extracts.',
+    price: '$75',
+  },
+  {
+    id: 2,
+    name: 'Silk Moisturizer',
+    image: '/images/prod2.jpg',
+    description: 'Lightweight cream to leave skin smooth and radiant.',
+    price: '$60',
+  },
+  {
+    id: 3,
+    name: 'Velvet Lipstick',
+    image: '/images/prod3.jpg',
+    description: 'Rich, long-lasting color with a velvety finish.',
+    price: '$30',
+  },
 ];
 
-const FeaturedProducts: React.FC = () => (
-  <S.Section>
-    <S.Title>Featured Products</S.Title>
-    <S.Grid>
-      {products.map((p) => (
-        <ProductCard key={p.id} image={p.image} name={p.name} />
-      ))}
-    </S.Grid>
-    <S.ViewAll href="#">View All</S.ViewAll>
-  </S.Section>
-);
+const FeaturedProducts: React.FC = () => {
+  const [selected, setSelected] = useState<Product | null>(null);
+
+  return (
+    <>
+      <S.Section>
+        <S.Title>Featured Products</S.Title>
+        <S.Grid>
+          {products.map((p) => (
+            <div key={p.id} onClick={() => setSelected(p)}>
+              <ProductCard image={p.image} name={p.name} />
+            </div>
+          ))}
+        </S.Grid>
+        <S.ViewAll href="#">View All</S.ViewAll>
+      </S.Section>
+
+      {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}
+    </>
+  );
+};
 
 export default FeaturedProducts;
