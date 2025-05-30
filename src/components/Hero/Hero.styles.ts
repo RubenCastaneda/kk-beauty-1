@@ -9,7 +9,7 @@ export const Wrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh;
+  height: 100vh;
   background: ${(p) => p.theme.colors.background};
 `;
 

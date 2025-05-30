@@ -6,12 +6,15 @@ import Home from './pages/Home';
 import Footer from './components/Footer/Footer';
 
 const GlobalStyle = createGlobalStyle`
-  body {
-    margin: 0;
+   body {
+     margin: 0;
     padding-top: 80px;
     padding-bottom: 60px;
-  }
-`;
+    padding-top: 80px;    /* space for fixed header */
+    padding-bottom: 60px; /* space for footer */
+    background: ${({ theme }) => theme.colors.background}; /* make the page black */
+   }
+ `;
 
 const App: React.FC = () => (
   <ThemeProvider theme={theme}>
