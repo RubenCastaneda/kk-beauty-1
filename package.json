@@ -13,19 +13,19 @@
     "@types/react-dom": "^19.1.5",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
+    "react-icons": "^5.5.0",
     "react-scripts": "5.0.1",
     "styled-components": "^6.1.18",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "serve": "serve -s build",
-  "lint": "eslint 'src/**/*.{ts,tsx}'",
-  "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,md}\""
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "serve": "serve -s build",
+    "lint": "eslint 'src/**/*.{ts,tsx}'",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,jsx,css,md}\""
   },
-
   "eslintConfig": {
     "extends": [
       "react-app",
