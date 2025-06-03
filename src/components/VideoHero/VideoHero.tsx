@@ -9,7 +9,7 @@ const VideoHero: React.FC = () => (
   <S.Wrapper>
     <S.Container>
       <S.Video
-        src="/videos/hero.mp4"    // <-- path under public/videos/
+        src="/videos/hero.mp4" // <-- path under public/videos/
         muted
         loop
         autoPlay
