@@ -2,20 +2,23 @@
 import { useState, useEffect } from 'react';
 
 /**
- * Returns true if the viewport width is below the given breakpoint.
- * Default breakpoint is 768px.
+ * Returns true if the window.innerWidth is strictly less than `breakpointPx`.
+ * Default `breakpointPx` is 576px.
  */
-export function useIsMobile(breakpoint = 768) {
-  const [isMobile, setIsMobile] = useState(window.innerWidth < breakpoint);
+export function useIsMobile(breakpointPx = 576) {
+  const [isMobile, setIsMobile] = useState(
+    typeof window !== 'undefined' ? window.innerWidth < breakpointPx : false,
+  );
 
   useEffect(() => {
-    function onResize() {
-      setIsMobile(window.innerWidth < breakpoint);
+    function handleResize() {
+      setIsMobile(window.innerWidth < breakpointPx);
     }
-    window.addEventListener('resize', onResize);
-    // Cleanup listener on unmount
-    return () => window.removeEventListener('resize', onResize);
-  }, [breakpoint]);
+    window.addEventListener('resize', handleResize);
+    // Also run once on mount in case the initial width changed since hydration
+    handleResize();
+    return () => window.removeEventListener('resize', handleResize);
+  }, [breakpointPx]);
 
   return isMobile;
 }

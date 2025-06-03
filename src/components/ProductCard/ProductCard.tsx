@@ -1,3 +1,4 @@
+// src/components/ProductCard/ProductCard.tsx
 import React from 'react';
 import * as S from './ProductCard.styles';
 

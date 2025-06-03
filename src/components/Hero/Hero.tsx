@@ -1,51 +1,82 @@
 // src/components/Hero/Hero.tsx
 import React, { useState, useEffect } from 'react';
-import * as S from './Hero.styles';
 import { useIsMobile } from '../../hooks/useIsMobile';
+import * as S from './Hero.styles';
 
-// If these images are indeed in public/images/...
+/**
+ * Make sure these paths point to actual files in your public/images folder:
+ *   public/images/hero1.jpg
+ *   public/images/hero2.jpg
+ *   public/images/hero3.jpg
+ *
+ * If your images live under src/assets instead, import them directly:
+ *   import hero1 from '../../assets/images/hero1.jpg';
+ *   ...
+ */
+
 const images = ['/images/hero1.jpg', '/images/hero2.jpg', '/images/hero3.jpg'];
+
+const categories = [
+  'Haute Couture',
+  'Fashion & Fragrance',
+  'Fine Jewelry & Makeup',
+  'Watches & Skincare',
+  'Inside Chanel',
+];
 
 const Hero: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const len = images.length;
-  const isMobile = useIsMobile(768);
+  const isMobile = useIsMobile(576); // true if viewport <576px
 
-  const prev = () => setCurrent((c) => (c - 1 + len) % len);
+  // Next/Prev handlers
   const next = () => setCurrent((c) => (c + 1) % len);
+  const prev = () => setCurrent((c) => (c - 1 + len) % len);
 
-  // Only run this effect once (or if len ever changes)
+  // Auto-advance every 4 seconds (only on mount or if len changes)
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrent((c) => (c + 1) % len);
-    }, 5000);
+    }, 4000);
     return () => clearInterval(timer);
   }, [len]);
 
+  // Compute prev/next indexes
   const prevIdx = (current - 1 + len) % len;
   const nextIdx = (current + 1) % len;
 
   return (
     <S.Wrapper>
+      {/* Left arrow (hidden on mobile) */}
       <S.Arrow className="left" onClick={prev}>
         ‹
       </S.Arrow>
 
-      <S.Container>
+      <S.SlidesContainer>
         {isMobile ? (
-          <S.Slide image={images[current]} isActive={true} />
+          // 🚀 MOBILE LAYOUT: only show the center slide
+          <S.SlideCard image={images[current]} isActive={true} />
         ) : (
+          // 🖥 DESKTOP LAYOUT: show prev, current, next
           <>
-            <S.Slide image={images[prevIdx]} isActive={false} />
-            <S.Slide image={images[current]} isActive={true} />
-            <S.Slide image={images[nextIdx]} isActive={false} />
+            <S.SlideCard image={images[prevIdx]} isActive={false} />
+            <S.SlideCard image={images[current]} isActive={true} />
+            <S.SlideCard image={images[nextIdx]} isActive={false} />
           </>
         )}
-      </S.Container>
+      </S.SlidesContainer>
 
+      {/* Right arrow (hidden on mobile) */}
       <S.Arrow className="right" onClick={next}>
         ›
       </S.Arrow>
+
+      {/* Category labels underneath (always shown) */}
+      <S.LabelsRow>
+        {categories.map((cat) => (
+          <S.LabelItem key={cat}>{cat}</S.LabelItem>
+        ))}
+      </S.LabelsRow>
     </S.Wrapper>
   );
 };

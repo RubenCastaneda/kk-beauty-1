@@ -6,13 +6,13 @@ export const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   background: ${(p) => p.theme.colors.background};
-  padding: 3rem 0;
+  padding: 0rem 0;
 `;
 
 export const Container = styled.div`
   position: relative;
-  width: 50%;
-  max-width: 1000px;
+  width: 75%;
+  max-width: 1200px;
   height: 0;
   padding-top: calc((9 / 16) * 100%); /* 16:9 aspect-ratio */
   overflow: hidden;

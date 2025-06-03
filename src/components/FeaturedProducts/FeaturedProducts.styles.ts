@@ -1,6 +1,10 @@
+// src/components/FeaturedProducts/FeaturedProducts.styles.ts
 import styled from 'styled-components';
 
 export const Section = styled.section`
+  width: 75%;
+  max-width: 1600px; /* optional cap if you don’t want it to grow beyond a certain size */
+  margin: 0 auto; /* center it horizontally */
   padding: 2rem 1rem;
   text-align: center;
 `;
