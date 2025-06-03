@@ -1,3 +1,4 @@
+// src/components/Hero/Hero.styles.ts
 import styled from 'styled-components';
 
 interface SlideProps {
@@ -6,16 +7,21 @@ interface SlideProps {
 }
 
 export const Wrapper = styled.section`
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: ${(p) => p.theme.colors.background};
+
+  /* shrink on mobile */
+  @media (max-width: 768px) {
+    height: 60vh;
+  }
 `;
 
 export const Container = styled.div`
   position: relative;
-  width: 75%;
+  width: 100%; /* changed from 75% → 100% */
   max-width: 900px;
   display: flex;
   justify-content: space-between;
@@ -47,9 +53,9 @@ export const Arrow = styled.div`
   z-index: 1;
 
   &.left {
-    left: -2.5rem;
+    left: 1rem; /* bring it in a bit from the edge */
   }
   &.right {
-    right: -2.5rem;
+    right: 1rem;
   }
 `;
