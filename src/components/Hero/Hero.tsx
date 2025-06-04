@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import * as S from './Hero.styles';
+import { Link } from 'react-router-dom';
 
 /**
  * Make sure these paths point to actual files in your public/images folder:
@@ -73,9 +74,15 @@ const Hero: React.FC = () => {
 
       {/* Category labels underneath (always shown) */}
       <S.LabelsRow>
-        {categories.map((cat) => (
-          <S.LabelItem key={cat.name}>{cat.name}</S.LabelItem>
-        ))}
+        {categories.map((cat) =>
+          cat.link ? (
+            <S.LabelLink as={Link} key={cat.name} to={cat.link}>
+              {cat.name}
+            </S.LabelLink>
+          ) : (
+            <S.LabelItem key={cat.name}>{cat.name}</S.LabelItem>
+          )
+        )}
       </S.LabelsRow>
     </S.Wrapper>
   );
