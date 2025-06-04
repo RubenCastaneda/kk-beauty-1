@@ -8,11 +8,9 @@ import Footer from './components/Footer/Footer';
 const GlobalStyle = createGlobalStyle`
    body {
      margin: 0;
-    padding-top: 80px;
-    padding-bottom: 60px;
-    padding-top: 80px;    /* space for fixed header */
-    padding-bottom: 60px; /* space for footer */
-    background: ${({ theme }) => theme.colors.background}; /* make the page black */
+     padding-top: 80px;    /* space for fixed header */
+     padding-bottom: 60px; /* space for footer */
+     background: ${({ theme }) => theme.colors.background};
    }
  `;
 

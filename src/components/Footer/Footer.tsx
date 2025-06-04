@@ -1,6 +1,10 @@
 import React from 'react';
 import * as S from './Footer.styles';
-import { FaFacebookF, FaInstagram } from 'react-icons/fa';
+import { FaFacebookF as FaFacebookFIcon, FaInstagram as FaInstagramIcon } from 'react-icons/fa';
+import type { IconBaseProps } from 'react-icons';
+
+const FacebookIcon = FaFacebookFIcon as unknown as React.FC<IconBaseProps>;
+const InstagramIcon = FaInstagramIcon as unknown as React.FC<IconBaseProps>;
 
 const Footer: React.FC = () => (
   <S.Wrapper>
@@ -12,14 +16,14 @@ const Footer: React.FC = () => (
 
     <S.SocialLinks>
       <S.IconLink href="https://www.facebook.com/YourPage" target="_blank" aria-label="Facebook">
-        <FaFacebookF />
+        <FacebookIcon />
       </S.IconLink>
       <S.IconLink
         href="https://www.instagram.com/YourProfile"
         target="_blank"
         aria-label="Instagram"
       >
-        <FaInstagram />
+        <InstagramIcon />
       </S.IconLink>
     </S.SocialLinks>
 
