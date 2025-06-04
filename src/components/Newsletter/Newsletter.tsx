@@ -1,4 +1,4 @@
-// src/components/Hero/Hero.tsx
+// src/components/Newsletter/Newsletter.tsx
 import React from 'react';
 import * as S from './Newsletter.styles';
 
