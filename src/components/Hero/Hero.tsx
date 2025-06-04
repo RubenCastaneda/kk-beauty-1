@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useIsMobile } from '../../hooks/useIsMobile';
 import * as S from './Hero.styles';
+import { Link } from 'react-router-dom';
 
 /**
  * Make sure these paths point to actual files in your public/images folder:
@@ -17,11 +18,11 @@ import * as S from './Hero.styles';
 const images = ['/images/hero1.jpg', '/images/hero2.jpg', '/images/hero3.jpg'];
 
 const categories = [
-  'Haute Couture',
-  'Fashion & Fragrance',
-  'Fine Jewelry & Makeup',
-  'Watches & Skincare',
-  'Inside Chanel',
+  { name: 'Haute Couture', link: null },
+  { name: 'About Us', link: '/about-us' },
+  { name: 'Fine Jewelry & Makeup', link: null },
+  { name: 'Newsletter', link: '/newsletter' },
+  { name: 'Inside Chanel', link: null },
 ];
 
 const Hero: React.FC = () => {
@@ -73,9 +74,15 @@ const Hero: React.FC = () => {
 
       {/* Category labels underneath (always shown) */}
       <S.LabelsRow>
-        {categories.map((cat) => (
-          <S.LabelItem key={cat}>{cat}</S.LabelItem>
-        ))}
+        {categories.map((cat) =>
+          cat.link ? (
+            <S.LabelLink as={Link} key={cat.name} to={cat.link}>
+              {cat.name}
+            </S.LabelLink>
+          ) : (
+            <S.LabelItem key={cat.name}>{cat.name}</S.LabelItem>
+          ),
+        )}
       </S.LabelsRow>
     </S.Wrapper>
   );

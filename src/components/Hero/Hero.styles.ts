@@ -124,3 +124,5 @@ export const LabelItem = styled.div`
     letter-spacing: 0.1rem;
   }
 `;
+
+export const LabelLink = styled(LabelItem).attrs({ as: 'a' })``;
