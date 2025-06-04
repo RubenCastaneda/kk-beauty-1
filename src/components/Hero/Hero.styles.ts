@@ -1,5 +1,6 @@
 // src/components/Hero/Hero.styles.ts
 import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
 
 interface SlideProps {
   image: string;
@@ -125,4 +126,21 @@ export const LabelItem = styled.div`
   }
 `;
 
-export const LabelLink = styled(LabelItem).attrs({ as: 'a' })``;
+export const LabelLink = styled(NavLink)`
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 0.15rem;
+  text-transform: uppercase;
+  font-weight: 300;
+  cursor: pointer;
+  text-decoration: none;
+
+  &:hover {
+    opacity: 0.75;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 0.85rem;
+    letter-spacing: 0.1rem;
+  }
+`;
