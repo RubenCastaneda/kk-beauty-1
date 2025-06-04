@@ -81,7 +81,7 @@ const Hero: React.FC = () => {
             </S.LabelLink>
           ) : (
             <S.LabelItem key={cat.name}>{cat.name}</S.LabelItem>
-          )
+          ),
         )}
       </S.LabelsRow>
     </S.Wrapper>
