@@ -1,4 +1,4 @@
-// src/components/Hero/Hero.styles.ts
+// src/components/Newsletter/Newsletter.styles.ts
 import styled from 'styled-components';
 
 export const Wrapper = styled.section`
