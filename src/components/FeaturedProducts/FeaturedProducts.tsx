@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import * as S from './FeaturedProducts.styles';
 import ProductCard from '../ProductCard/ProductCard';
 import ProductModal, { Product } from '../ProductModal/ProductModal';
+import { Link } from 'react-router-dom';
 
 // sample products with extra details
-const products: Product[] = [
+export const products: Product[] = [
   {
     id: 1,
     name: 'Luxury Serum',
@@ -42,7 +43,7 @@ const FeaturedProducts: React.FC = () => {
             </div>
           ))}
         </S.Grid>
-        <S.ViewAll href="#">View All</S.ViewAll>
+        <S.ViewAll as={Link} to="/products">View All</S.ViewAll>
       </S.Section>
 
       {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}

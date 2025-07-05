@@ -18,11 +18,9 @@ import { Link } from 'react-router-dom';
 const images = ['/images/hero1.jpg', '/images/hero2.jpg', '/images/hero3.jpg'];
 
 const categories = [
-  { name: 'Haute Couture', link: null },
   { name: 'About Us', link: '/about-us' },
-  { name: 'Fine Jewelry & Makeup', link: null },
-  { name: 'Newsletter', link: '/newsletter' },
-  { name: 'Inside Chanel', link: null },
+  { name: 'View Our Products', link: '/products' },
+  { name: 'Newsletter', link: '#newsletter' }, // anchor link for scrolling
 ];
 
 const Hero: React.FC = () => {
@@ -45,6 +43,14 @@ const Hero: React.FC = () => {
   // Compute prev/next indexes
   const prevIdx = (current - 1 + len) % len;
   const nextIdx = (current + 1) % len;
+
+  // Scroll to newsletter section if anchor is clicked
+  const handleLabelClick = (link: string) => {
+    if (link === '#newsletter') {
+      const el = document.getElementById('newsletter');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   return (
     <S.Wrapper>
@@ -75,12 +81,14 @@ const Hero: React.FC = () => {
       {/* Category labels underneath (always shown) */}
       <S.LabelsRow>
         {categories.map((cat) =>
-          cat.link ? (
-            <S.LabelLink as={Link} key={cat.name} to={cat.link}>
+          cat.link === '#newsletter' ? (
+            <S.LabelLink as="button" key={cat.name} onClick={() => handleLabelClick(cat.link!)}>
               {cat.name}
             </S.LabelLink>
           ) : (
-            <S.LabelItem key={cat.name}>{cat.name}</S.LabelItem>
+            <S.LabelLink as={Link} key={cat.name} to={cat.link!}>
+              {cat.name}
+            </S.LabelLink>
           ),
         )}
       </S.LabelsRow>

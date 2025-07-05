@@ -5,7 +5,6 @@ export const Wrapper = styled.section`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: ${(p) => p.theme.colors.background};
   padding: 0rem 0;
 `;
 

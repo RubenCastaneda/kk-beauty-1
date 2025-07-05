@@ -21,8 +21,7 @@ interface SlideProps {
 export const Wrapper = styled.section`
   position: relative;
   width: 100%;
-  height: 75vh;
-  background: #000;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -125,4 +124,19 @@ export const LabelItem = styled.div`
   }
 `;
 
-export const LabelLink = styled(LabelItem).attrs({ as: 'a' })``;
+export const LabelLink = styled(LabelItem)`
+  background: none;
+  color: #fff;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: inherit;
+  text-decoration: none;
+  outline: none;
+
+  &:focus {
+    outline: none;
+    box-shadow: none;
+  }
+`;

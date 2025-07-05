@@ -7,7 +7,6 @@ export const Wrapper = styled.header`
   left: 0;
   width: 100%;
   height: 80px;
-  background: rgba(0, 0, 0, 0.5); /* semi-transparent */
   backdrop-filter: saturate(180%) blur(10px); /* optional frosted-glass */
   display: flex;
   align-items: center;
