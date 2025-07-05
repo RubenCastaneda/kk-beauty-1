@@ -43,7 +43,9 @@ const FeaturedProducts: React.FC = () => {
             </div>
           ))}
         </S.Grid>
-        <S.ViewAll as={Link} to="/products">View All</S.ViewAll>
+        <S.ViewAll as={Link} to="/products">
+          View All
+        </S.ViewAll>
       </S.Section>
 
       {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}

@@ -23,7 +23,7 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => (
         <S.Title>{product.name}</S.Title>
         <S.Description>{product.description}</S.Description>
         <S.Actions>
-          <S.Button onClick={() => alert('Added to cart!')}>Add to Cart — {product.price}</S.Button>
+          <S.Button disabled>Coming Soon</S.Button>
         </S.Actions>
       </S.Details>
     </S.Content>

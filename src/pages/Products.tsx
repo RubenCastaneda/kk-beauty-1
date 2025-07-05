@@ -1,7 +1,31 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import ProductCard from '../components/ProductCard/ProductCard';
-import { products } from '../components/FeaturedProducts/FeaturedProducts';
+import { products as featuredProducts } from '../components/FeaturedProducts/FeaturedProducts';
+import ProductModal, { Product } from '../components/ProductModal/ProductModal';
+
+const allProductImages = [
+  '/images/prod1.jpg',
+  '/images/prod2.jpg',
+  '/images/prod3.jpg',
+  '/images/prod_11.jpg',
+  '/images/prod_2.jpg',
+  '/images/prod_3.jpg',
+  '/images/prod_4.jpg',
+  '/images/prod_5.jpg',
+  '/images/prod_7.jpg',
+  '/images/prod_8.jpg',
+  '/images/prod_9.jpg',
+];
+
+// Generate a product list using all images, filling in with sample data if needed
+const products: Product[] = allProductImages.map((img, i) => ({
+  id: i + 1,
+  name: featuredProducts[i]?.name || `Product ${i + 1}`,
+  image: img,
+  description: featuredProducts[i]?.description || 'A wonderful product coming soon.',
+  price: featuredProducts[i]?.price || '',
+}));
 
 const Section = styled.section`
   position: relative;
@@ -29,15 +53,21 @@ const Grid = styled.div`
   width: 100%;
 `;
 
-const Products: React.FC = () => (
-  <Section>
-    <Title>Our Products</Title>
-    <Grid>
-      {products.map((p) => (
-        <ProductCard key={p.id} image={p.image} name={p.name} />
-      ))}
-    </Grid>
-  </Section>
-);
+const Products: React.FC = () => {
+  const [selected, setSelected] = useState<Product | null>(null);
+  return (
+    <Section>
+      <Title>Our Products</Title>
+      <Grid>
+        {products.map((p) => (
+          <div key={p.id} onClick={() => setSelected(p)} style={{ cursor: 'pointer' }}>
+            <ProductCard image={p.image} name={p.name} />
+          </div>
+        ))}
+      </Grid>
+      {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}
+    </Section>
+  );
+};
 
 export default Products;
