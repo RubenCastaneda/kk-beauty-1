@@ -61,7 +61,7 @@ const Products: React.FC = () => {
       <Grid>
         {products.map((p) => (
           <div key={p.id} onClick={() => setSelected(p)} style={{ cursor: 'pointer' }}>
-            <ProductCard image={p.image} name={p.name} />
+            <ProductCard image={p.image} name={p.name} price={p.price} />
           </div>
         ))}
       </Grid>

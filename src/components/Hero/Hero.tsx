@@ -62,13 +62,13 @@ const Hero: React.FC = () => {
       <S.SlidesContainer>
         {isMobile ? (
           // 🚀 MOBILE LAYOUT: only show the center slide
-          <S.SlideCard image={images[current]} isActive={true} />
+          <S.SlideCard image={images[current]} isActive={true} position="center" />
         ) : (
           // 🖥 DESKTOP LAYOUT: show prev, current, next
           <>
-            <S.SlideCard image={images[prevIdx]} isActive={false} />
-            <S.SlideCard image={images[current]} isActive={true} />
-            <S.SlideCard image={images[nextIdx]} isActive={false} />
+            <S.SlideCard image={images[prevIdx]} isActive={false} position="prev" />
+            <S.SlideCard image={images[current]} isActive={true} position="center" />
+            <S.SlideCard image={images[nextIdx]} isActive={false} position="next" />
           </>
         )}
       </S.SlidesContainer>

@@ -26,10 +26,12 @@ export const Wrapper = styled.section`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding-top: 2.5rem;
 
   /* On slightly larger mobile screens, shrink height so hero doesn't become too tall */
   @media (max-width: 576px) {
     height: 50vh;
+    padding-top: 1.5rem;
   }
 `;
 
@@ -38,34 +40,43 @@ export const SlidesContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem; /* space between each card */
+  gap: 0;
   width: 75%;
   max-width: 1200px;
-  overflow: hidden; /* hide off-screen slides on mobile */
+  overflow: visible;
+  height: 420px;
 `;
 
-export const SlideCard = styled.div<SlideProps>`
-  flex: ${({ isActive }) => (isActive ? '0 0 40%' : '0 0 25%')};
+export const SlideCard = styled.div<SlideProps & { position?: 'prev' | 'next' | 'center' }>`
+  flex: ${({ isActive, position }) => (position === 'center' ? '0 0 50%' : '0 0 40%')};
   aspect-ratio: 16 / 9;
   background-image: url(${({ image }) => image});
   background-size: cover;
-  background-position: center;
-  border-radius: 1rem;
+  background-position: ${({ position }) =>
+    position === 'prev' ? 'right center' : position === 'next' ? 'left center' : 'center'};
+  border-radius: 0.4rem;
   opacity: ${({ isActive }) => (isActive ? 1 : 0.6)};
-  transform: scale(${({ isActive }) => (isActive ? 1 : 0.9)});
+  transform: scale(${({ isActive }) => (isActive ? 1 : 0.9)})
+    translateX(
+      ${({ position }) => (position === 'prev' ? '-50%' : position === 'next' ? '50%' : '0')}
+    );
+  margin-left: ${({ position }) => (position === 'next' ? '-7.5%' : '0')};
+  margin-right: ${({ position }) => (position === 'prev' ? '-7.5%' : '0')};
   transition:
     opacity 0.4s ease,
-    transform 0.4s ease,
-    flex 0.4s ease;
+    transform 0.4s cubic-bezier(0.4, 0.2, 0.2, 1),
+    flex 0.4s cubic-bezier(0.4, 0.2, 0.2, 1),
+    margin 0.4s cubic-bezier(0.4, 0.2, 0.2, 1);
+  z-index: ${({ isActive }) => (isActive ? 2 : 1)};
+  box-shadow: ${({ isActive }) =>
+    isActive ? '0 4px 32px rgba(0,0,0,0.25)' : '0 2px 8px rgba(0,0,0,0.10)'};
 
-  /* On narrow screens (<576px), only render a single centered slide:
-     - We force flex: 0 0 70% for whichever card is rendered (we’ll only render the “center” slide in Hero.tsx).
-     - The other two slides are effectively “outside” the container and hidden by overflow: hidden.
-  */
   @media (max-width: 576px) {
-    flex: 0 0 70%;
+    flex: 0 0 90%;
     opacity: 1;
-    transform: scale(1);
+    transform: scale(1) translateX(0);
+    background-position: center;
+    margin: 0;
   }
 `;
 
@@ -97,7 +108,8 @@ export const Arrow = styled.div`
 `;
 
 export const LabelsRow = styled.div`
-  margin-top: 1.5rem;
+  margin-top: 0.5 rem;
+  padding: 1rem 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

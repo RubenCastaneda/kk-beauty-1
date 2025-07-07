@@ -17,48 +17,46 @@ export const Card = styled.div`
   position: relative;
   overflow: hidden;
   cursor: pointer;
-  border-radius: 0.75rem; /* softer corners */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* light base shadow */
+  border-radius: 0; /* sharp corners */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition:
     transform 0.3s ease,
     box-shadow 0.3s ease;
+  background: #181818;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
 
   &:hover {
-    transform: translateY(-4px); /* lift on hover */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15); /* stronger shadow */
+    transform: translateY(-4px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
 `;
 
 export const Image = styled.img`
   width: 100%;
-  height: 100%;
-  object-fit: cover; /* always fill */
+  aspect-ratio: 1/1;
+  object-fit: cover;
   display: block;
   transition: transform 0.4s ease;
 
   ${Card}:hover & {
-    transform: scale(1.05); /* gentle zoom */
+    transform: scale(1.05);
   }
 `;
 
-export const Info = styled.div`
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background: rgba(0, 0, 0, 0.7); /* slightly darker overlay */
-  color: #fff;
+export const Name = styled.div`
   font-family: ${({ theme }) => theme.fonts.serif};
-  font-size: 1rem; /* readable */
+  font-size: 1.1rem;
+  color: ${({ theme }) => theme.colors.text};
   text-align: center;
-  padding: 1rem 0; /* taller overlay */
-  transform: translateY(100%);
-  opacity: 0;
-  transition:
-    transform 0.4s ease,
-    opacity 0.4s ease;
+  margin-top: 0.75rem;
+`;
 
-  ${Card}:hover & {
-    transform: translateY(0);
-    opacity: 1; /* fade in */
-  }
+export const Price = styled.div`
+  font-family: ${({ theme }) => theme.fonts.sans};
+  font-size: 1rem;
+  color: ${({ theme }) => theme.colors.accent};
+  text-align: center;
+  margin-bottom: 1rem;
 `;
