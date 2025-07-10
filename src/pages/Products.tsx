@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import ProductCard from '../components/ProductCard/ProductCard';
 import { products as featuredProducts } from '../components/FeaturedProducts/FeaturedProducts';
 import ProductModal, { Product } from '../components/ProductModal/ProductModal';
+import HeroTextSection from '../components/Hero/HeroTextSection';
 
 const allProductImages = [
   '/images/prod1.jpg',
@@ -56,17 +57,37 @@ const Grid = styled.div`
 const Products: React.FC = () => {
   const [selected, setSelected] = useState<Product | null>(null);
   return (
-    <Section>
-      <Title>Our Products</Title>
-      <Grid>
-        {products.map((p) => (
-          <div key={p.id} onClick={() => setSelected(p)} style={{ cursor: 'pointer' }}>
-            <ProductCard image={p.image} name={p.name} price={p.price} />
-          </div>
-        ))}
-      </Grid>
-      {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}
-    </Section>
+    <>
+      <HeroTextSection
+        title="Shop All Products"
+        subtitle="Find your new favorites and bestsellers."
+      >
+        <span style={{ maxWidth: '700px', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 auto', color: '#eee' }}>
+          Browse our full collection of beauty essentials. Whether you’re looking for skincare, makeup, or self-care treats, we have something for every routine and every style. Click on any product to learn more!
+        </span>
+      </HeroTextSection>
+      <Section>
+        <h2 style={{ fontFamily: 'Playfair Display, serif', fontSize: '2rem', marginBottom: '1.5rem', color: '#fff' }}>Our Products</h2>
+        <Grid>
+          {products.map((p) => (
+            <div key={p.id} onClick={() => setSelected(p)} style={{ cursor: 'pointer' }}>
+              <ProductCard image={p.image} name={p.name} price={p.price} />
+            </div>
+          ))}
+        </Grid>
+        {selected && (
+          <ProductModal product={selected} onClose={() => setSelected(null)} />
+        )}
+      </Section>
+      <HeroTextSection
+        title="Ready to treat yourself?"
+        subtitle="Enjoy fast shipping and exclusive offers."
+      >
+        <span style={{ maxWidth: '700px', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 auto', color: '#eee' }}>
+          Don’t wait—add your favorites to your cart and experience the KK Beauty difference. Your next beauty obsession is just a click away!
+        </span>
+      </HeroTextSection>
+    </>
   );
 };
 

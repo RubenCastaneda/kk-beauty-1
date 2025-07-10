@@ -9,6 +9,8 @@ import Footer from './components/Footer/Footer';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Products from './pages/Products';
+import Cart from './pages/Cart';
+import ContactUs from './pages/ContactUs';
 
 const GlobalStyle = createGlobalStyle`
    body {
@@ -34,10 +36,6 @@ const VintageBackground = styled.div`
       rgba(255, 255, 255, 0.15) 100%
     ),
     #000;
-
-  @media (max-width: 600px) {
-    background: #000;
-  }
 `;
 
 const App: React.FC = () => (
@@ -51,6 +49,8 @@ const App: React.FC = () => (
           <Route path="/about-us" element={<AboutUs />} />
           <Route path="/products" element={<Products />} />
           <Route path="/newsletter" element={<NewsletterPage />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/contact" element={<ContactUs />} />
         </Routes>
         <Footer />
       </VintageBackground>

@@ -21,6 +21,7 @@ const categories = [
   { name: 'About Us', link: '/about-us' },
   { name: 'View Our Products', link: '/products' },
   { name: 'Newsletter', link: '#newsletter' }, // anchor link for scrolling
+  { name: 'Contact Us', link: '/contact' },
 ];
 
 const Hero: React.FC = () => {

@@ -7,11 +7,11 @@ export const Wrapper = styled.header`
   left: 0;
   width: 100%;
   height: 80px;
-  backdrop-filter: saturate(180%) blur(10px); /* optional frosted-glass */
+  backdrop-filter: saturate(180%) blur(10px);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: ${(p) => p.theme.colors.text};
+  color: #fff;
   font-family: ${(p) => p.theme.fonts.serif};
   font-size: 1.5rem;
   z-index: 1000;
