@@ -13,6 +13,12 @@ export const Section = styled.section`
   justify-content: center;
   align-items: center;
   text-align: center;
+
+  @media (max-width: 600px) {
+    width: 98vw;
+    padding: 1.2rem 0.2rem;
+    height: auto;
+  }
 `;
 
 export const Title = styled.h2`
@@ -20,6 +26,11 @@ export const Title = styled.h2`
   font-size: 1.75rem;
   margin-bottom: 1rem;
   color: ${({ theme }) => theme.colors.text};
+
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
+  }
 `;
 
 export const Form = styled.form`
@@ -28,6 +39,12 @@ export const Form = styled.form`
   justify-content: center;
   width: 100%;
   max-width: 500px;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 0.4rem;
+    max-width: 98vw;
+  }
 `;
 
 export const Input = styled.input`
@@ -42,6 +59,11 @@ export const Input = styled.input`
     color: ${({ theme }) => theme.colors.text};
     opacity: 0.7;
   }
+
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    padding: 0.4rem 0.7rem;
+  }
 `;
 
 export const Button = styled.button`
@@ -51,6 +73,12 @@ export const Button = styled.button`
   color: ${({ theme }) => theme.colors.text};
   border: none;
   cursor: pointer;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.7rem;
+  }
 `;
 
 export const Description = styled.p`
@@ -58,4 +86,9 @@ export const Description = styled.p`
   font-size: 1rem;
   color: ${({ theme }) => theme.colors.text};
   opacity: 0.8;
+
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin-top: 0.7rem;
+  }
 `;

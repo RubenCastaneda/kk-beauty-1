@@ -6,6 +6,10 @@ export const Wrapper = styled.section`
   justify-content: center;
   align-items: center;
   padding: 0rem 0;
+
+  @media (max-width: 600px) {
+    padding: 0.5rem 0;
+  }
 `;
 
 export const Container = styled.div`
@@ -17,6 +21,12 @@ export const Container = styled.div`
   overflow: hidden;
   border-radius: 1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+
+  @media (max-width: 600px) {
+    width: 98vw;
+    border-radius: 0.7rem;
+    box-shadow: 0 0 4px rgba(0,0,0,0.18);
+  }
 `;
 
 export const Video = styled.video`
@@ -26,4 +36,8 @@ export const Video = styled.video`
   width: 100%;
   height: 100%;
   object-fit: cover;
+
+  @media (max-width: 600px) {
+    border-radius: 0.7rem;
+  }
 `;

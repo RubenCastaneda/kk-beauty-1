@@ -24,6 +24,15 @@ export const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+    padding: 1rem 0.5rem;
+    width: 98vw;
+    max-width: 98vw;
+    min-height: 60vh;
+    gap: 0.5rem;
+  }
 `;
 
 export const CloseButton = styled.button`
@@ -74,4 +83,10 @@ export const Button = styled.button`
   font-size: 1rem;
   cursor: pointer;
   border-radius: 0.25rem;
+
+  @media (max-width: 600px) {
+    width: 100%;
+    font-size: 0.95rem;
+    padding: 0.7rem 0.5rem;
+  }
 `;

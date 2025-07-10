@@ -31,6 +31,12 @@ export const Card = styled.div`
     transform: translateY(-4px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
   }
+
+  @media (max-width: 600px) {
+    min-width: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.12);
+  }
 `;
 
 export const Image = styled.img`
@@ -43,6 +49,10 @@ export const Image = styled.img`
   ${Card}:hover & {
     transform: scale(1.05);
   }
+
+  @media (max-width: 600px) {
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
 `;
 
 export const Name = styled.div`
@@ -51,6 +61,11 @@ export const Name = styled.div`
   color: ${({ theme }) => theme.colors.text};
   text-align: center;
   margin-top: 0.75rem;
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
 `;
 
 export const Price = styled.div`
@@ -59,4 +74,9 @@ export const Price = styled.div`
   color: ${({ theme }) => theme.colors.accent};
   text-align: center;
   margin-bottom: 1rem;
+
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+  }
 `;

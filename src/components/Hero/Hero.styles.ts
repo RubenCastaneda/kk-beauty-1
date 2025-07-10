@@ -45,6 +45,11 @@ export const SlidesContainer = styled.div`
   max-width: 1200px;
   overflow: visible;
   height: 420px;
+
+  @media (max-width: 576px) {
+    width: 98vw;
+    height: 220px;
+  }
 `;
 
 export const SlideCard = styled.div<SlideProps & { position?: 'prev' | 'next' | 'center' }>`
@@ -73,10 +78,11 @@ export const SlideCard = styled.div<SlideProps & { position?: 'prev' | 'next' | 
 
   @media (max-width: 576px) {
     flex: 0 0 90%;
-    opacity: 1;
+    opacity: 1 !important;
     transform: scale(1) translateX(0);
     background-position: center;
     margin: 0;
+    border-radius: 0.7rem;
   }
 `;
 
@@ -116,6 +122,12 @@ export const LabelsRow = styled.div`
   gap: 2rem; /* space between each label */
   width: 90%;
   max-width: 1200px;
+
+  @media (max-width: 576px) {
+    gap: 1rem;
+    padding: 0.5rem 0;
+    width: 98vw;
+  }
 `;
 
 export const LabelItem = styled.div`

@@ -15,4 +15,10 @@ export const Wrapper = styled.header`
   font-family: ${(p) => p.theme.fonts.serif};
   font-size: 1.5rem;
   z-index: 1000;
+
+  @media (max-width: 600px) {
+    height: 56px;
+    font-size: 1.1rem;
+    padding: 0 0.2rem;
+  }
 `;

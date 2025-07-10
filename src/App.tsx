@@ -34,6 +34,10 @@ const VintageBackground = styled.div`
       rgba(255, 255, 255, 0.15) 100%
     ),
     #000;
+
+  @media (max-width: 600px) {
+    background: #000;
+  }
 `;
 
 const App: React.FC = () => (
