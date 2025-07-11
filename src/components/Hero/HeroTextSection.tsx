@@ -17,7 +17,7 @@ const Section = styled.section<{ backgroundImage?: string }>`
   flex-direction: column;
   align-items: center;
   text-align: center;
-  border-radius: 0.7rem;
+  border-radius: 0.1rem;
   background: ${({ backgroundImage }) =>
     backgroundImage
       ? `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(${backgroundImage}) center/cover no-repeat`

@@ -19,7 +19,7 @@ export const Container = styled.div`
   height: 0;
   padding-top: calc((9 / 16) * 100%); /* 16:9 aspect-ratio */
   overflow: hidden;
-  border-radius: 1rem;
+  border-radius: 0.1rem;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 
   @media (max-width: 600px) {
