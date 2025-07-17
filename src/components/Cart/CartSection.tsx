@@ -9,7 +9,7 @@ const Section = styled.section`
   padding: 2rem 1rem;
   background: #111;
   border-radius: 0.1rem;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,8 @@ const CartTable = styled.table`
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 2rem;
-  th, td {
+  th,
+  td {
     padding: 1rem;
     border-bottom: 1px solid #333;
     text-align: left;
@@ -55,8 +56,10 @@ const Button = styled(Link)`
   cursor: pointer;
   text-decoration: none;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition:
+    background 0.2s,
+    color 0.2s;
   &:hover {
     background: #222;
     color: #fff;
@@ -70,7 +73,10 @@ const cartItems = [
 ];
 
 const CartSection: React.FC = () => {
-  const total = cartItems.reduce((sum, item) => sum + parseFloat(item.price.replace('$','')) * item.quantity, 0);
+  const total = cartItems.reduce(
+    (sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity,
+    0,
+  );
   return (
     <Section>
       {cartItems.length === 0 ? (
@@ -87,17 +93,19 @@ const CartSection: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {cartItems.map(item => (
+              {cartItems.map((item) => (
                 <tr key={item.id}>
                   <td>{item.name}</td>
                   <td>{item.price}</td>
                   <td>{item.quantity}</td>
-                  <td>{`$${(parseFloat(item.price.replace('$','')) * item.quantity).toFixed(2)}`}</td>
+                  <td>{`$${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}`}</td>
                 </tr>
               ))}
             </tbody>
           </CartTable>
-          <h3 style={{ textAlign: 'right', color: '#fff', fontWeight: 600 }}>Total: ${total.toFixed(2)}</h3>
+          <h3 style={{ textAlign: 'right', color: '#fff', fontWeight: 600 }}>
+            Total: ${total.toFixed(2)}
+          </h3>
           <Button to="/products">Continue Shopping</Button>
           <Button to="/checkout">Proceed to Checkout</Button>
         </>

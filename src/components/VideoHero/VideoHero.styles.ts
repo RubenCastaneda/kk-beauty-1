@@ -25,7 +25,7 @@ export const Container = styled.div`
   @media (max-width: 600px) {
     width: 98vw;
     border-radius: 0.7rem;
-    box-shadow: 0 0 4px rgba(0,0,0,0.18);
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.18);
   }
 `;
 

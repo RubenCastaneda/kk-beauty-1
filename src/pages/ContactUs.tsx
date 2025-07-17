@@ -6,8 +6,17 @@ const ContactUs: React.FC = () => {
   return (
     <>
       <HeroTextSection title="Contact Us" subtitle="We’re here to help!">
-        <span style={{ maxWidth: '700px', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 auto', color: '#eee' }}>
-          Reach out to us with any questions, feedback, or business inquiries. We’ll respond as soon as possible!
+        <span
+          style={{
+            maxWidth: '700px',
+            fontSize: '1.1rem',
+            lineHeight: '1.7',
+            margin: '0 auto',
+            color: '#eee',
+          }}
+        >
+          Reach out to us with any questions, feedback, or business inquiries. We’ll respond as soon
+          as possible!
         </span>
       </HeroTextSection>
       <ContactForm />

@@ -8,7 +8,7 @@ const Section = styled.section`
   padding: 2rem 1rem;
   background: #111;
   border-radius: 0.1rem;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
   color: #fff;
   display: flex;
   flex-direction: column;
@@ -63,8 +63,10 @@ const Button = styled.button`
   font-weight: 600;
   cursor: pointer;
   margin-top: 0.5rem;
-  transition: background 0.2s, color 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  transition:
+    background 0.2s,
+    color 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   &:hover {
     background: #222;
     color: #fff;

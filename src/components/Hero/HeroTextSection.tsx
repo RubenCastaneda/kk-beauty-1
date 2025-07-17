@@ -23,7 +23,7 @@ const Section = styled.section<{ backgroundImage?: string }>`
       ? `linear-gradient(rgba(0,0,0,0.45), rgba(0,0,0,0.45)), url(${backgroundImage}) center/cover no-repeat`
       : '#181818'};
   color: #fff;
-  box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
 
   @media (max-width: 768px) {
     width: 98vw;
@@ -54,12 +54,28 @@ const Subtitle = styled.h2`
   }
 `;
 
-const HeroTextSection: React.FC<HeroTextSectionProps> = ({ title, subtitle, backgroundImage, children }) => (
+const HeroTextSection: React.FC<HeroTextSectionProps> = ({
+  title,
+  subtitle,
+  backgroundImage,
+  children,
+}) => (
   <Section backgroundImage={backgroundImage}>
     <Title>{title}</Title>
     {subtitle && <Subtitle>{subtitle}</Subtitle>}
-    <p style={{ maxWidth: '700px', fontSize: '1.1rem', lineHeight: '1.7', margin: '0 auto', color: '#eee' }}>
-      True beauty is found in authenticity. When you embrace your uniqueness and let your confidence shine, you inspire others to do the same. Celebrate yourself and discover the power of being unapologetically you—because every story, every smile, and every moment is beautiful in its own way.
+    <p
+      style={{
+        maxWidth: '700px',
+        fontSize: '1.1rem',
+        lineHeight: '1.7',
+        margin: '0 auto',
+        color: '#eee',
+      }}
+    >
+      True beauty is found in authenticity. When you embrace your uniqueness and let your confidence
+      shine, you inspire others to do the same. Celebrate yourself and discover the power of being
+      unapologetically you—because every story, every smile, and every moment is beautiful in its
+      own way.
     </p>
     {children}
   </Section>
