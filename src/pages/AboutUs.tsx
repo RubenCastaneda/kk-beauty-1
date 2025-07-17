@@ -79,7 +79,7 @@ const AboutUs: React.FC = () => {
           you with expert advice, exclusive offers, and a welcoming community.
           <br />
           <br />
-          Thank you for choosing KK Beauty. We can't wait to be part of your story!
+          Thank you for choosing KK Beauty. We can&apos;t wait to be part of your story!
         </span>
       </HeroTextSection>
       <Gallery>
