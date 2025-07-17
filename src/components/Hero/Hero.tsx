@@ -83,11 +83,11 @@ const Hero: React.FC = () => {
       <S.LabelsRow>
         {categories.map((cat) =>
           cat.link === '#newsletter' ? (
-            <S.LabelLink as="button" key={cat.name} onClick={() => handleLabelClick(cat.link!)}>
+            <S.LabelLink as="button" key={cat.name} onClick={() => handleLabelClick(cat.link)}>
               {cat.name}
             </S.LabelLink>
           ) : (
-            <S.LabelLink as={Link} key={cat.name} to={cat.link!}>
+            <S.LabelLink as={Link} key={cat.name} to={cat.link}>
               {cat.name}
             </S.LabelLink>
           ),

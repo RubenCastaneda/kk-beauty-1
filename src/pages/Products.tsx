@@ -40,13 +40,6 @@ const Section = styled.section`
   text-align: center;
 `;
 
-const Title = styled.h2`
-  font-family: ${({ theme }) => theme.fonts.serif};
-  font-size: 2rem;
-  margin-bottom: 2rem;
-  color: ${({ theme }) => theme.colors.text};
-`;
-
 const Grid = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

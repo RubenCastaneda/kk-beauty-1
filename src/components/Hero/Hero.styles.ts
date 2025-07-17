@@ -3,7 +3,8 @@ import styled from 'styled-components';
 
 interface SlideProps {
   image: string;
-  isActive: boolean;
+  isActive?: boolean;
+  position?: 'prev' | 'next' | 'center';
 }
 
 /**
@@ -52,8 +53,8 @@ export const SlidesContainer = styled.div`
   }
 `;
 
-export const SlideCard = styled.div<SlideProps & { position?: 'prev' | 'next' | 'center' }>`
-  flex: ${({ isActive, position }) => (position === 'center' ? '0 0 50%' : '0 0 40%')};
+export const SlideCard = styled.div<SlideProps>`
+  flex: ${({ position }) => (position === 'center' ? '0 0 50%' : '0 0 40%')};
   aspect-ratio: 16 / 9;
   background-image: url(${({ image }) => image});
   background-size: cover;
