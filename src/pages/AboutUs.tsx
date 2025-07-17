@@ -75,7 +75,7 @@ const AboutUs: React.FC = () => {
           <br />
           Our team is passionate about sourcing high-quality, effective products that deliver real
           results. We value transparency, sustainability, and customer satisfaction above all else.
-          Whether you're a beauty enthusiast or just starting your journey, we're here to support
+          Whether you&apos;re a beauty enthusiast or just starting your journey, we&apos;re here to support
           you with expert advice, exclusive offers, and a welcoming community.
           <br />
           <br />
