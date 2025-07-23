@@ -20,6 +20,11 @@ const ContactUs: React.FC = () => {
         </span>
       </HeroTextSection>
       <ContactForm />
+      <img
+        src="/images/group-models.webp"
+        alt="Group of KK Beauty Lab models"
+        style={{ width: '100%', marginTop: '2rem' }}
+      />
     </>
   );
 };
