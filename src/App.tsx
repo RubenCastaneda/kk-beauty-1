@@ -12,6 +12,23 @@ import Products from './pages/Products';
 import Cart from './pages/Cart';
 import ContactUs from './pages/ContactUs';
 
+const VintageBackground = styled.div`
+  min-height: 100vh;
+  background:
+    linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.15) 0%,
+      rgba(255, 255, 255, 0.1) 2%,
+      rgba(255, 255, 255, 0.05) 4%,
+      rgba(255, 255, 255, 0) 15%,
+      rgba(255, 255, 255, 0) 85%,
+      rgba(255, 255, 255, 0.05) 96%,
+      rgba(255, 255, 255, 0.1) 98%,
+      rgba(255, 255, 255, 0.15) 100%
+    ),
+    #000;
+`;
+
 const GlobalStyle = createGlobalStyle`
    body {
      margin: 0;
@@ -24,20 +41,19 @@ const GlobalStyle = createGlobalStyle`
 
    h1,
    h2,
-   h3 {
-     font-family: ${({ theme }) => theme.fonts.sans};
-=======
+   body {
+     margin: 0;
+     padding-top: 0px;    /* space for fixed header */
+     padding-bottom: 0px; /* space for footer */
+     color: ${({ theme }) => theme.colors.text};
      font-family: ${({ theme }) => theme.fonts.serif};
    }
- `;
 
-const VintageBackground = styled.div`
-  min-height: 100vh;
-  background:
-    linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0.1) 2%,
+   h1,
+   h2,
+   h3 {
+     font-family: ${({ theme }) => theme.fonts.serif};
+   }
       rgba(255, 255, 255, 0.05) 4%,
       rgba(255, 255, 255, 0) 15%,
       rgba(255, 255, 255, 0) 85%,
