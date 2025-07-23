@@ -7,5 +7,8 @@ export const theme = {
   fonts: {
     serif: "'Georgia', serif",
     sans: "'Georgia', serif",
+=======
+    serif: "'Playfair Display', serif",
+    sans: "'Inter', sans-serif",
   },
 };

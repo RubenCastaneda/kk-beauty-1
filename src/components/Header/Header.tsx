@@ -1,6 +1,7 @@
 import React from 'react';
 import * as S from './Header.styles';
 import { Link } from 'react-router-dom';
+import logo from '../../logo.svg';
 
 const Header: React.FC = () => (
   <S.Wrapper>
@@ -16,6 +17,8 @@ const Header: React.FC = () => (
       <Link
         to="/"
         style={{
+          display: 'flex',
+          alignItems: 'center',
           fontWeight: 700,
           fontSize: '1.5rem',
           color: '#fff',
@@ -23,7 +26,8 @@ const Header: React.FC = () => (
           fontFamily: 'Georgia, serif',
         }}
       >
-        KK Beauty
+        <img src={logo} alt="KK Beauty Lab logo" style={{ width: '32px', marginRight: '0.5rem' }} />
+        KK Beauty Lab
       </Link>
       <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
         <Link

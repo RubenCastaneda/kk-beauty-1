@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 /**
  * Make sure these paths point to actual files in your public/images folder:
  *   public/images/hero1.jpg
- *   public/images/hero2.jpg
  *   public/images/hero3.jpg
  *
  * If your images live under src/assets instead, import them directly:
@@ -15,11 +14,11 @@ import { Link } from 'react-router-dom';
  *   ...
  */
 
-const images = ['/images/hero1.jpg', '/images/hero2.jpg', '/images/hero3.jpg'];
+const images = ['/images/hero1.jpg', '/images/hero3.jpg'];
 
 const categories = [
   { name: 'About Us', link: '/about-us' },
-  { name: 'View Our Products', link: '/products' },
+  { name: 'Our Products', link: '/products' },
   { name: 'Newsletter', link: '#newsletter' }, // anchor link for scrolling
   { name: 'Contact Us', link: '/contact' },
 ];

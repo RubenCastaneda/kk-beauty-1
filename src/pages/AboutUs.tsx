@@ -1,6 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
-import HeroTextSection from '../components/Hero/HeroTextSection';
 
 const Gallery = styled.div`
   display: grid;
@@ -51,11 +49,16 @@ const AboutUs: React.FC = () => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 576;
   const images = isMobile
     ? ['/images/hero1.jpg', '/images/prod1.jpg']
-    : ['/images/hero1.jpg', '/images/prod1.jpg', '/images/hero2.jpg', '/images/prod2.jpg'];
+    : ['/images/hero1.jpg', '/images/prod1.jpg', '/images/hero3.jpg', '/images/prod2.jpg'];
   return (
     <>
+      <img
+        src={logo}
+        alt="KK Beauty Lab logo"
+        style={{ width: '80px', margin: '2rem auto', display: 'block' }}
+      />
       <HeroTextSection
-        title="About KK Beauty"
+        title="About KK Beauty Lab"
         subtitle="Our story, our values, and our promise to you."
       >
         <span
@@ -67,7 +70,7 @@ const AboutUs: React.FC = () => {
             color: '#eee',
           }}
         >
-          KK Beauty was founded with a simple mission: to empower everyone to feel confident and
+          KK Beauty Lab was founded with a simple mission: to empower everyone to feel confident and
           beautiful in their own skin. We believe that beauty is about self-expression, self-care,
           and celebrating individuality. Our curated selection of skincare and cosmetics is designed
           to help you look and feel your best, every day.
@@ -79,7 +82,7 @@ const AboutUs: React.FC = () => {
           support you with expert advice, exclusive offers, and a welcoming community.
           <br />
           <br />
-          Thank you for choosing KK Beauty. We can&apos;t wait to be part of your story!
+          Thank you for choosing KK Beauty Lab. We can&apos;t wait to be part of your story!
         </span>
       </HeroTextSection>
       <Gallery>
@@ -87,7 +90,7 @@ const AboutUs: React.FC = () => {
           <GalleryImage key={i} src={src} alt={`Gallery ${i + 1}`} />
         ))}
       </Gallery>
-      <HeroTextSection title="Why Choose Us?" subtitle="Experience the KK Beauty difference.">
+      <HeroTextSection title="Why Choose Us?" subtitle="Experience the KK Beauty Lab difference.">
         <span
           style={{
             maxWidth: '700px',
@@ -108,12 +111,55 @@ const AboutUs: React.FC = () => {
           - Commitment to sustainability and transparency
           <br />
           <br />
-          Join thousands of happy customers who trust KK Beauty for their daily routines. Your
+          Join thousands of happy customers who trust KK Beauty Lab for their daily routines. Your
           satisfaction is our top priority!
         </span>
       </HeroTextSection>
     </>
   );
 };
+=======
+const AboutUs: React.FC = () => (
+  <main
+    style={{
+      width: '90%',
+      maxWidth: 800,
+      margin: '2rem auto',
+      color: '#fff',
+      lineHeight: '1.7',
+    }}
+  >
+    <h1>About KK Beauty Lab</h1>
+    <p>Where your story meets our craft.</p>
+    <p>Every face tells a story. Yours deserves to be unforgettable.</p>
+    <h2>Our Mission</h2>
+    <p>
+      KK Beauty Lab exists to rewrite the rules of skincare. We believe beauty is your birthright,
+      confidence is your superpower, and self-expression is your art form.
+    </p>
+    <p>We don&apos;t create products. We craft transformations.</p>
+    <h2>What We Stand For</h2>
+    <p>
+      Authenticity over everything. Your skin, your story, your way. We formulate for real people
+      living real lives—not filtered fantasies.
+    </p>
+    <p>
+      Results that speak louder than promises. Every serum, every cream, every innovation is tested
+      by our community and proven in the mirror.
+    </p>
+    <p>
+      Transparency in every ingredient. You deserve to know exactly what you&apos;re putting on your
+      skin and why it works.
+    </p>
+    <h2>Your Journey Starts Here</h2>
+    <p>
+      Whether you&apos;re discovering skincare for the first time or you&apos;re a seasoned beauty
+      lover, we&apos;re here to support your story. Expert advice, curated collections, and a
+      community that celebrates every version of you.
+    </p>
+    <p>This is more than skincare. This is your spotlight moment.</p>
+    <p>Thank you for choosing KK Beauty Lab. Your story is just beginning.</p>
+  </main>
+);
 
 export default AboutUs;

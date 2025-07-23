@@ -1,29 +1,28 @@
 import React from 'react';
-import HeroTextSection from '../components/Hero/HeroTextSection';
 import CartSection from '../components/Cart/CartSection';
 
 const Cart: React.FC = () => {
   return (
-    <>
-      <HeroTextSection
-        title="Your Shopping Cart"
-        subtitle="Review your items and checkout with confidence."
-      >
-        <span
-          style={{
-            maxWidth: '700px',
-            fontSize: '1.1rem',
-            lineHeight: '1.7',
-            margin: '0 auto',
-            color: '#eee',
-          }}
-        >
-          All your selected beauty products are listed below. You can adjust quantities or remove
-          items before checkout.
-        </span>
-      </HeroTextSection>
+    <main
+      style={{
+        width: '90%',
+        maxWidth: 800,
+        margin: '2rem auto',
+        color: '#fff',
+        lineHeight: '1.7',
+      }}
+    >
+      <h1>Your Shopping Cart</h1>
+      <p>You&apos;re one step closer to your transformation.</p>
+      <p>
+        Your curated selection of beauty essentials awaits. Review your items below and get ready to
+        step into your spotlight.
+      </p>
+      <p>
+        Adjust quantities or remove items before checkout—your perfect routine is just a click away.
+      </p>
       <CartSection />
-    </>
+    </main>
   );
 };
 
