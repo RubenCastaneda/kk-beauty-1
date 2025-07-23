@@ -18,7 +18,7 @@ const images = ['/images/hero1.jpg', '/images/hero3.jpg'];
 
 const categories = [
   { name: 'About Us', link: '/about-us' },
-  { name: 'View Our Products', link: '/products' },
+  { name: 'Our Products', link: '/products' },
   { name: 'Newsletter', link: '#newsletter' }, // anchor link for scrolling
   { name: 'Contact Us', link: '/contact' },
 ];
