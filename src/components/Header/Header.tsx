@@ -23,7 +23,7 @@ const Header: React.FC = () => (
           fontSize: '1.5rem',
           color: '#fff',
           textDecoration: 'none',
-          fontFamily: 'Playfair Display, serif',
+          fontFamily: 'Georgia, serif',
         }}
       >
         <img src={logo} alt="KK Beauty Lab logo" style={{ width: '32px', marginRight: '0.5rem' }} />

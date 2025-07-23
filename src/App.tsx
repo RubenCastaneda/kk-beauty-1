@@ -25,6 +25,8 @@ const GlobalStyle = createGlobalStyle`
    h1,
    h2,
    h3 {
+     font-family: ${({ theme }) => theme.fonts.sans};
+=======
      font-family: ${({ theme }) => theme.fonts.serif};
    }
  `;
