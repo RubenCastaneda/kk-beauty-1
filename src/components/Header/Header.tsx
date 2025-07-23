@@ -20,7 +20,7 @@ const Header: React.FC = () => (
           fontSize: '1.5rem',
           color: '#fff',
           textDecoration: 'none',
-          fontFamily: 'Playfair Display, serif',
+          fontFamily: 'Georgia, serif',
         }}
       >
         KK Beauty

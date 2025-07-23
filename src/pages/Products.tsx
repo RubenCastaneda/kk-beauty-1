@@ -72,7 +72,7 @@ const Products: React.FC = () => {
       <Section>
         <h2
           style={{
-            fontFamily: 'Playfair Display, serif',
+            fontFamily: 'Georgia, serif',
             fontSize: '2rem',
             marginBottom: '1.5rem',
             color: '#fff',

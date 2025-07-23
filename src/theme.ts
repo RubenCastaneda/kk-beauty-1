@@ -5,7 +5,7 @@ export const theme = {
     accent: '#BBBBBB',
   },
   fonts: {
-    serif: "'Playfair Display', serif",
-    sans: "'Helvetica Neue', sans-serif",
+    serif: "'Georgia', serif",
+    sans: "'Georgia', serif",
   },
 };
