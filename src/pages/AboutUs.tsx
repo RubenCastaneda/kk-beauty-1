@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeroTextSection from '../components/Hero/HeroTextSection';
+import logo from '../logo.svg';
 
 const Gallery = styled.div`
   display: grid;
@@ -54,8 +55,13 @@ const AboutUs: React.FC = () => {
     : ['/images/hero1.jpg', '/images/prod1.jpg', '/images/hero2.jpg', '/images/prod2.jpg'];
   return (
     <>
+      <img
+        src={logo}
+        alt="KK Beauty Lab logo"
+        style={{ width: '80px', margin: '2rem auto', display: 'block' }}
+      />
       <HeroTextSection
-        title="About KK Beauty"
+        title="About KK Beauty Lab"
         subtitle="Our story, our values, and our promise to you."
       >
         <span
@@ -67,7 +73,7 @@ const AboutUs: React.FC = () => {
             color: '#eee',
           }}
         >
-          KK Beauty was founded with a simple mission: to empower everyone to feel confident and
+          KK Beauty Lab was founded with a simple mission: to empower everyone to feel confident and
           beautiful in their own skin. We believe that beauty is about self-expression, self-care,
           and celebrating individuality. Our curated selection of skincare and cosmetics is designed
           to help you look and feel your best, every day.
@@ -79,7 +85,7 @@ const AboutUs: React.FC = () => {
           support you with expert advice, exclusive offers, and a welcoming community.
           <br />
           <br />
-          Thank you for choosing KK Beauty. We can&apos;t wait to be part of your story!
+          Thank you for choosing KK Beauty Lab. We can&apos;t wait to be part of your story!
         </span>
       </HeroTextSection>
       <Gallery>
@@ -87,7 +93,7 @@ const AboutUs: React.FC = () => {
           <GalleryImage key={i} src={src} alt={`Gallery ${i + 1}`} />
         ))}
       </Gallery>
-      <HeroTextSection title="Why Choose Us?" subtitle="Experience the KK Beauty difference.">
+      <HeroTextSection title="Why Choose Us?" subtitle="Experience the KK Beauty Lab difference.">
         <span
           style={{
             maxWidth: '700px',
@@ -108,7 +114,7 @@ const AboutUs: React.FC = () => {
           - Commitment to sustainability and transparency
           <br />
           <br />
-          Join thousands of happy customers who trust KK Beauty for their daily routines. Your
+          Join thousands of happy customers who trust KK Beauty Lab for their daily routines. Your
           satisfaction is our top priority!
         </span>
       </HeroTextSection>

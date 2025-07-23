@@ -4,6 +4,7 @@ import ProductCard from '../components/ProductCard/ProductCard';
 import { products as featuredProducts } from '../components/FeaturedProducts/FeaturedProducts';
 import ProductModal, { Product } from '../components/ProductModal/ProductModal';
 import HeroTextSection from '../components/Hero/HeroTextSection';
+import logo from '../logo.svg';
 
 const allProductImages = [
   '/images/prod1.jpg',
@@ -51,6 +52,11 @@ const Products: React.FC = () => {
   const [selected, setSelected] = useState<Product | null>(null);
   return (
     <>
+      <img
+        src={logo}
+        alt="KK Beauty Lab logo"
+        style={{ width: '80px', margin: '2rem auto', display: 'block' }}
+      />
       <HeroTextSection
         title="Shop All Products"
         subtitle="Find your new favorites and bestsellers."
@@ -102,8 +108,8 @@ const Products: React.FC = () => {
             color: '#eee',
           }}
         >
-          Don’t wait—add your favorites to your cart and experience the KK Beauty difference. Your
-          next beauty obsession is just a click away!
+          Don’t wait—add your favorites to your cart and experience the KK Beauty Lab difference.
+          Your next beauty obsession is just a click away!
         </span>
       </HeroTextSection>
     </>

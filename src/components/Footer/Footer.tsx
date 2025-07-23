@@ -2,6 +2,7 @@ import React from 'react';
 import * as S from './Footer.styles';
 import { FaFacebookF as FaFacebookFIcon, FaInstagram as FaInstagramIcon } from 'react-icons/fa';
 import type { IconBaseProps } from 'react-icons';
+import logo from '../../logo.svg';
 
 const FacebookIcon = FaFacebookFIcon as unknown as React.FC<IconBaseProps>;
 const InstagramIcon = FaInstagramIcon as unknown as React.FC<IconBaseProps>;
@@ -26,7 +27,7 @@ const Footer: React.FC = () => (
         <InstagramIcon />
       </S.IconLink>
     </S.SocialLinks>
-
+    <img src={logo} alt="KK Beauty Lab logo" style={{ width: '40px', marginTop: '1rem' }} />
     <S.Copy>© 2025 KK Beauty Lab. All rights reserved.</S.Copy>
   </S.Wrapper>
 );
