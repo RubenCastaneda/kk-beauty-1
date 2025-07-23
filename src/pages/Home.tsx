@@ -4,10 +4,16 @@ import VideoHero from '../components/VideoHero/VideoHero';
 import HeroTextSection from '../components/Hero/HeroTextSection';
 import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
 import Newsletter from '../components/Newsletter/Newsletter';
+import logo from '../logo.svg';
 
 const Home: React.FC = () => (
   <>
     <Hero />
+    <img
+      src={logo}
+      alt="KK Beauty Lab logo"
+      style={{ width: '80px', margin: '2rem auto', display: 'block' }}
+    />
     <HeroTextSection
       title="Discover Your New Favorites"
       subtitle="Shop our bestsellers and exclusive collections."
@@ -43,7 +49,7 @@ const Home: React.FC = () => (
       >
         We believe beauty should be effortless and enjoyable. Our products are crafted with premium
         ingredients and backed by thousands of happy customers. Enjoy fast shipping, easy returns,
-        and personalized recommendations. Treat yourself today and experience the KK Beauty
+        and personalized recommendations. Treat yourself today and experience the KK Beauty Lab
         difference!
       </span>
     </HeroTextSection>
