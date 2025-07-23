@@ -52,7 +52,7 @@ const AboutUs: React.FC = () => {
   const isMobile = typeof window !== 'undefined' && window.innerWidth <= 576;
   const images = isMobile
     ? ['/images/hero1.jpg', '/images/prod1.jpg']
-    : ['/images/hero1.jpg', '/images/prod1.jpg', '/images/hero2.jpg', '/images/prod2.jpg'];
+    : ['/images/hero1.jpg', '/images/prod1.jpg', '/images/hero3.jpg', '/images/prod2.jpg'];
   return (
     <>
       <img
