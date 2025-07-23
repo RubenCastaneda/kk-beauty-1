@@ -6,6 +6,6 @@ export const theme = {
   },
   fonts: {
     serif: "'Playfair Display', serif",
-    sans: "'Helvetica Neue', sans-serif",
+    sans: "'Inter', sans-serif",
   },
 };

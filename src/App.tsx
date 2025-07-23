@@ -18,6 +18,14 @@ const GlobalStyle = createGlobalStyle`
      padding-top: 0px;    /* space for fixed header */
      padding-bottom: 0px; /* space for footer */
      background: ${({ theme }) => theme.colors.background};
+     color: ${({ theme }) => theme.colors.text};
+     font-family: ${({ theme }) => theme.fonts.sans};
+   }
+
+   h1,
+   h2,
+   h3 {
+     font-family: ${({ theme }) => theme.fonts.serif};
    }
  `;
 
