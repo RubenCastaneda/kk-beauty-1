@@ -2,8 +2,12 @@ import React from 'react';
 import * as S from './Header.styles';
 import { Link } from 'react-router-dom';
 import logo from '../../logo.svg';
+import { useCart } from '../../context/CartContext';
 
-const Header: React.FC = () => (
+const Header: React.FC = () => {
+  const { state } = useCart();
+  const count = state.items.reduce((s, i) => s + i.quantity, 0);
+  return (
   <S.Wrapper>
     <div
       style={{
@@ -44,11 +48,12 @@ const Header: React.FC = () => (
           <span role="img" aria-label="cart" style={{ marginRight: '0.5rem' }}>
             🛒
           </span>{' '}
-          Cart
+          Cart {count > 0 && `(${count})`}
         </Link>
       </div>
     </div>
   </S.Wrapper>
-);
+  );
+};
 
 export default Header;

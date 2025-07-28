@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { useCart } from '../../context/CartContext';
 
 const Section = styled.section`
   width: 75%;
@@ -66,13 +67,17 @@ const Button = styled(Link)`
   }
 `;
 
-// Dummy cart items for demo
-const cartItems = [
-  { id: 1, name: 'Rose Glow Serum', price: '$24.99', quantity: 1 },
-  { id: 2, name: 'Vintage Lip Tint', price: '$14.99', quantity: 2 },
-];
+const QtyButton = styled.button`
+  background: #333;
+  color: #fff;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+`;
 
 const CartSection: React.FC = () => {
+  const { state, dispatch } = useCart();
+  const cartItems = state.items;
   const total = cartItems.reduce(
     (sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity,
     0,
@@ -90,6 +95,7 @@ const CartSection: React.FC = () => {
                 <th>Price</th>
                 <th>Quantity</th>
                 <th>Subtotal</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -97,8 +103,15 @@ const CartSection: React.FC = () => {
                 <tr key={item.id}>
                   <td>{item.name}</td>
                   <td>{item.price}</td>
-                  <td>{item.quantity}</td>
+                  <td>
+                    <QtyButton onClick={() => dispatch({ type: 'decrement', id: item.id })}>-</QtyButton>
+                    <span style={{ margin: '0 0.5rem' }}>{item.quantity}</span>
+                    <QtyButton onClick={() => dispatch({ type: 'increment', id: item.id })}>+</QtyButton>
+                  </td>
                   <td>{`$${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}`}</td>
+                  <td>
+                    <QtyButton onClick={() => dispatch({ type: 'remove', id: item.id })}>x</QtyButton>
+                  </td>
                 </tr>
               ))}
             </tbody>
