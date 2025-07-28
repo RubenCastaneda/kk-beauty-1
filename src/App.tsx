@@ -11,6 +11,7 @@ import styled from 'styled-components';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
 import ContactUs from './pages/ContactUs';
+import { CartProvider } from './context/CartContext';
 
 const VintageBackground = styled.div`
   min-height: 100vh;
@@ -67,20 +68,22 @@ const GlobalStyle = createGlobalStyle`
 const App: React.FC = () => (
   <ThemeProvider theme={theme}>
     <GlobalStyle />
-    <Router>
-      <VintageBackground>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about-us" element={<AboutUs />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/newsletter" element={<NewsletterPage />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/contact" element={<ContactUs />} />
-        </Routes>
-        <Footer />
-      </VintageBackground>
-    </Router>
+    <CartProvider>
+      <Router>
+        <VintageBackground>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about-us" element={<AboutUs />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/newsletter" element={<NewsletterPage />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/contact" element={<ContactUs />} />
+          </Routes>
+          <Footer />
+        </VintageBackground>
+      </Router>
+    </CartProvider>
   </ThemeProvider>
 );
 
