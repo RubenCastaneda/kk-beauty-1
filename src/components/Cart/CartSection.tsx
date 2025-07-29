@@ -1,129 +1,152 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useCart } from '../../context/CartContext';
-
-const Section = styled.section`
-  width: 75%;
-  max-width: 900px;
-  margin: 2.5rem auto;
-  padding: 2rem 1rem;
-  background: #111;
-  border-radius: 0.1rem;
-  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
-  color: #fff;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const CartTable = styled.table`
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 2rem;
-  th,
-  td {
-    padding: 1rem;
-    border-bottom: 1px solid #333;
-    text-align: left;
-    color: #fff;
-    background: #000;
-    border-radius: 0.1rem;
-  }
-  th {
-    background: #111;
-    color: #fff;
-    font-family: ${({ theme }) => theme.fonts.sans};
-    border-radius: 0.1rem;
-  }
-`;
-
-const EmptyCart = styled.div`
-  text-align: center;
-  color: #bbb;
-  font-size: 1.2rem;
-  margin: 2rem 0;
-`;
-
-const Button = styled(Link)`
-  margin-top: 1.2rem;
-  padding: 0.9rem 1.2rem;
-  background: #fff;
-  color: #000;
-  border: none;
-  border-radius: 0.1rem;
-  font-size: 1.1rem;
-  font-weight: 600;
-  cursor: pointer;
-  text-decoration: none;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  transition:
-    background 0.2s,
-    color 0.2s;
-  &:hover {
-    background: #222;
-    color: #fff;
-  }
-`;
-
-const QtyButton = styled.button`
-  background: #333;
-  color: #fff;
-  border: none;
-  padding: 0.25rem 0.5rem;
-  cursor: pointer;
-`;
 
 const CartSection: React.FC = () => {
   const { state, dispatch } = useCart();
   const cartItems = state.items;
+
   const total = cartItems.reduce(
     (sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity,
     0,
   );
+
+  const tableRows = (
+    <div className="hidden sm:block overflow-x-auto">
+      <table className="min-w-full text-left text-sm">
+        <thead className="bg-black/80">
+          <tr>
+            <th className="p-3">Product</th>
+            <th className="p-3">Price</th>
+            <th className="p-3">Quantity</th>
+            <th className="p-3">Subtotal</th>
+            <th className="p-3" />
+          </tr>
+        </thead>
+        <tbody>
+          {cartItems.map((item) => (
+            <tr key={item.id} className="border-b border-gray-700">
+              <td className="p-3 flex items-center gap-2">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  loading="lazy"
+                  className="w-16 h-16 object-cover rounded"
+                />
+                {item.name}
+              </td>
+              <td className="p-3">{item.price}</td>
+              <td className="p-3">
+                <div className="flex items-center gap-2">
+                  <button
+                    aria-label={`Decrease ${item.name}`}
+                    onClick={() => dispatch({ type: 'decrement', id: item.id })}
+                    className="w-11 h-11 bg-gray-700 hover:bg-gray-600 flex items-center justify-center"
+                  >
+                    -
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button
+                    aria-label={`Increase ${item.name}`}
+                    onClick={() => dispatch({ type: 'increment', id: item.id })}
+                    className="w-11 h-11 bg-gray-700 hover:bg-gray-600 flex items-center justify-center"
+                  >
+                    +
+                  </button>
+                </div>
+              </td>
+              <td className="p-3">
+                {`$${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}`}
+              </td>
+              <td className="p-3">
+                <button
+                  aria-label={`Remove ${item.name}`}
+                  onClick={() => dispatch({ type: 'remove', id: item.id })}
+                  className="w-11 h-11 text-red-400 hover:text-red-200"
+                >
+                  ×
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+
+  const cardRows = (
+    <ul className="sm:hidden space-y-4">
+      {cartItems.map((item) => (
+        <li key={item.id} className="bg-black/70 p-4 rounded">
+          <div className="flex items-center gap-4">
+            <img
+              src={item.image}
+              alt={item.name}
+              loading="lazy"
+              className="w-20 h-20 object-cover rounded"
+            />
+            <div className="flex-1">
+              <h3 className="font-semibold">{item.name}</h3>
+              <p className="text-sm mb-2">{item.price}</p>
+              <div className="flex items-center gap-2">
+                <button
+                  aria-label={`Decrease ${item.name}`}
+                  onClick={() => dispatch({ type: 'decrement', id: item.id })}
+                  className="w-11 h-11 bg-gray-700 hover:bg-gray-600 flex items-center justify-center"
+                >
+                  -
+                </button>
+                <span>{item.quantity}</span>
+                <button
+                  aria-label={`Increase ${item.name}`}
+                  onClick={() => dispatch({ type: 'increment', id: item.id })}
+                  className="w-11 h-11 bg-gray-700 hover:bg-gray-600 flex items-center justify-center"
+                >
+                  +
+                </button>
+                <button
+                  aria-label={`Remove ${item.name}`}
+                  onClick={() => dispatch({ type: 'remove', id: item.id })}
+                  className="w-11 h-11 ml-auto text-red-400 hover:text-red-200"
+                >
+                  ×
+                </button>
+              </div>
+              <p className="mt-2">
+                {`Subtotal: $${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(
+                  2,
+                )}`}
+              </p>
+            </div>
+          </div>
+        </li>
+      ))}
+    </ul>
+  );
+
   return (
-    <Section>
+    <section className="relative max-w-5xl mx-auto p-4 sm:p-8 bg-gradient-to-b from-gray-900 to-black text-white">
       {cartItems.length === 0 ? (
-        <EmptyCart>Your cart is empty. Start shopping to add items!</EmptyCart>
+        <div className="text-center text-gray-400 py-8">
+          Your cart is empty. Start shopping to add items!
+        </div>
       ) : (
         <>
-          <CartTable>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Price</th>
-                <th>Quantity</th>
-                <th>Subtotal</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item) => (
-                <tr key={item.id}>
-                  <td>{item.name}</td>
-                  <td>{item.price}</td>
-                  <td>
-                    <QtyButton onClick={() => dispatch({ type: 'decrement', id: item.id })}>-</QtyButton>
-                    <span style={{ margin: '0 0.5rem' }}>{item.quantity}</span>
-                    <QtyButton onClick={() => dispatch({ type: 'increment', id: item.id })}>+</QtyButton>
-                  </td>
-                  <td>{`$${(parseFloat(item.price.replace('$', '')) * item.quantity).toFixed(2)}`}</td>
-                  <td>
-                    <QtyButton onClick={() => dispatch({ type: 'remove', id: item.id })}>x</QtyButton>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </CartTable>
-          <h3 style={{ textAlign: 'right', color: '#fff', fontWeight: 600 }}>
-            Total: ${total.toFixed(2)}
-          </h3>
-          <Button to="/products">Continue Shopping</Button>
-          <Button to="/checkout">Proceed to Checkout</Button>
+          {tableRows}
+          {cardRows}
+          <footer className="fixed bottom-0 left-0 right-0 bg-black/90 backdrop-blur p-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <span className="text-lg font-semibold">Total: ${total.toFixed(2)}</span>
+            <Link
+              to="/checkout"
+              className="bg-pink-600 hover:bg-pink-500 text-white font-bold py-3 px-6 rounded w-full sm:w-auto text-center"
+              style={{ minWidth: 44, minHeight: 44 }}
+            >
+              Proceed to Checkout
+            </Link>
+          </footer>
         </>
       )}
-    </Section>
+    </section>
   );
 };
 

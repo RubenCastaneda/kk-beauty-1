@@ -3,15 +3,7 @@ import CartSection from '../components/Cart/CartSection';
 
 const Cart: React.FC = () => {
   return (
-    <main
-      style={{
-        width: '90%',
-        maxWidth: 800,
-        margin: '2rem auto',
-        color: '#fff',
-        lineHeight: '1.7',
-      }}
-    >
+    <main className="w-11/12 max-w-3xl mx-auto my-8 text-white leading-relaxed">
       <h1>Your Shopping Cart</h1>
       <p>You&apos;re one step closer to your transformation.</p>
       <p>
