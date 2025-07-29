@@ -20,7 +20,13 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
   const handleAdd = () => {
     dispatch({
       type: 'add',
-      item: { id: product.id, name: product.name, price: product.price, image: product.image, quantity: 1 },
+      item: {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+      },
     });
     onClose();
   };
