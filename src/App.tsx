@@ -7,28 +7,11 @@ import AboutUs from './pages/AboutUs';
 import NewsletterPage from './pages/NewsletterPage';
 import Footer from './components/Footer/Footer';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
 import ContactUs from './pages/ContactUs';
 import { CartProvider } from './context/CartContext';
-
-const VintageBackground = styled.div`
-  min-height: 100vh;
-  background:
-    linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0.1) 2%,
-      rgba(255, 255, 255, 0.05) 4%,
-      rgba(255, 255, 255, 0) 15%,
-      rgba(255, 255, 255, 0) 85%,
-      rgba(255, 255, 255, 0.05) 96%,
-      rgba(255, 255, 255, 0.1) 98%,
-      rgba(255, 255, 255, 0.15) 100%
-    ),
-    #000;
-`;
 
 const GlobalStyle = createGlobalStyle`
    body {
@@ -70,7 +53,7 @@ const App: React.FC = () => (
     <GlobalStyle />
     <CartProvider>
       <Router>
-        <VintageBackground>
+        <div style={{ minHeight: '100vh', background: theme.colors.background }}>
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
@@ -81,7 +64,7 @@ const App: React.FC = () => (
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
           <Footer />
-        </VintageBackground>
+        </div>
       </Router>
     </CartProvider>
   </ThemeProvider>
