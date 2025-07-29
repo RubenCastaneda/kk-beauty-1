@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useReducer, ReactNode } from 'react';
+import React, { createContext, useContext, useReducer, ReactNode, useEffect } from 'react';
 
 export interface CartItem {
   id: number;
@@ -18,12 +18,14 @@ type Action =
   | { type: 'increment'; id: number }
   | { type: 'decrement'; id: number };
 
+const STORAGE_KEY = 'cart-items';
+
 const CartContext = createContext<{
   state: CartState;
   dispatch: React.Dispatch<Action>;
 }>({
   state: { items: [] },
-  dispatch: () => {},
+  dispatch: () => undefined,
 });
 
 function cartReducer(state: CartState, action: Action): CartState {
@@ -33,7 +35,7 @@ function cartReducer(state: CartState, action: Action): CartState {
       if (existing) {
         return {
           items: state.items.map((i) =>
-            i.id === action.item.id ? { ...i, quantity: i.quantity + action.item.quantity } : i
+            i.id === action.item.id ? { ...i, quantity: i.quantity + action.item.quantity } : i,
           ),
         };
       }
@@ -44,7 +46,7 @@ function cartReducer(state: CartState, action: Action): CartState {
     case 'increment':
       return {
         items: state.items.map((i) =>
-          i.id === action.id ? { ...i, quantity: i.quantity + 1 } : i
+          i.id === action.id ? { ...i, quantity: i.quantity + 1 } : i,
         ),
       };
     case 'decrement':
@@ -58,11 +60,30 @@ function cartReducer(state: CartState, action: Action): CartState {
   }
 }
 
+const init = (): CartState => {
+  if (typeof window !== 'undefined') {
+    const stored = localStorage.getItem(STORAGE_KEY);
+    if (stored) {
+      try {
+        return { items: JSON.parse(stored) };
+      } catch {
+        return { items: [] };
+      }
+    }
+  }
+  return { items: [] };
+};
+
 export const CartProvider = ({ children }: { children: ReactNode }) => {
-  const [state, dispatch] = useReducer(cartReducer, { items: [] });
+  const [state, dispatch] = useReducer(cartReducer, { items: [] }, init);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state.items));
+    }
+  }, [state.items]);
 
   return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
 };
 
 export const useCart = () => useContext(CartContext);
-
