@@ -188,21 +188,20 @@ const extraDetails: Record<number, Partial<Product>> = {
     ph: '7.5 - 8.5',
   },
   11: {
-    name: 'Ferulic-C 20 Serum',
+    name: 'Ferulic-C 20 Eye Cream',
     description:
-      'Nourishing serum formulated to boost skin tone and texture while offering excellent moisturizing and environmental protection against dry skin. Ferulic Acid fortifies the skin and enhances the conditioning benefits of Vitamin C.',
-    skinTypes: 'Stressed · Mature · Dry/Sensitive Skin',
+      'Targeted eye treatment combining Ferulic Acid and Vitamin C to brighten and smooth the delicate eye area.',
+    skinTypes: 'All Skin Types',
     howToUseClient: [
-      'AM and PM, apply 2 to 3 drops of serum to face and décolleté following thorough cleansing of the skin. Allow to absorb.',
+      'Use morning and night. Gently pat a small amount around the eye area until absorbed.',
     ],
     professionalUse: [
-      'After cleansing and toning, apply a small amount to face, neck and décolleté. Follow with appropriate moisturizer or treatment.',
+      'Apply sparingly around the orbital area as a finishing step in professional treatments.',
     ],
     ingredients:
       'Aqua (Purified Water), Alcohol Denat., Cyclopentasiloxane, Dimethicone, Glycerin, Polyacrylamide, Caprylyl Glycol, 1,2-Hexanediol, C13-14 Isoparaffin, Ferulic Acid, Laureth-7, Ascorbyl Palmitate, Isopropyl Palmitate, Magnesium Ascorbyl Phosphate, Potassium Sorbate, Salicylic Acid, Ferula Assa-Foetida Root Extract, Glycyrrhiza Glabra (Licorice) Root Extract, Camellia Sinensis Leaf Extract, Sodium Hyaluronate, Yeast Extract, Glycine Soja (Soybean) Sterols, Simmondsia Chinensis (Jojoba) Seed Oil.',
     ph: '3.5 - 4.5',
   },
-
 };
 
 // Generate a product list using all images, filling in with sample data if needed

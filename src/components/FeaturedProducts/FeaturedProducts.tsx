@@ -8,23 +8,23 @@ import { Link } from 'react-router-dom';
 export const products: Product[] = [
   {
     id: 1,
-    name: 'Luxury Serum',
+    name: 'AHA Hand Crème',
     image: '/images/product_pictures/AHA Hand Creme (black BG).png',
-    description: 'A deeply hydrating serum infused with botanical extracts.',
+    description: 'Revitalize dry hands with this rich hand crème.',
     price: '$75',
   },
   {
     id: 2,
-    name: 'Silk Moisturizer',
+    name: 'Biomed Retinol 500',
     image: '/images/product_pictures/Biomed Retinol 500 (black BG).png',
-    description: 'Lightweight cream to leave skin smooth and radiant.',
+    description: 'Rich crème offering skin-conditioning benefits of Vitamin A.',
     price: '$60',
   },
   {
     id: 3,
-    name: 'Velvet Lipstick',
+    name: 'Cascading AOX+ Enviro Serum',
     image: '/images/product_pictures/Cascading AOX + Enviro Serum (black BG).png',
-    description: 'Rich, long-lasting color with a velvety finish.',
+    description: 'Peptide enriched antioxidant serum for daily protection.',
     price: '$30',
   },
 ];
