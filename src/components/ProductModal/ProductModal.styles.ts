@@ -24,6 +24,8 @@ export const Content = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.5rem;
+  max-height: 90vh;
+  overflow-y: auto;
 
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
@@ -64,6 +66,24 @@ export const Title = styled.h2`
 export const Description = styled.p`
   flex: 1;
   margin: 1rem 0;
+  font-family: ${(p) => p.theme.fonts.sans};
+  color: #333;
+`;
+
+export const SubTitle = styled.h3`
+  margin: 0.5rem 0 0.25rem 0;
+  font-family: ${(p) => p.theme.fonts.serif};
+`;
+
+export const Text = styled.p`
+  margin: 0 0 0.5rem 0;
+  font-family: ${(p) => p.theme.fonts.sans};
+  color: #333;
+`;
+
+export const List = styled.ul`
+  margin: 0 0 0.5rem 1.2rem;
+  padding: 0;
   font-family: ${(p) => p.theme.fonts.sans};
   color: #333;
 `;
