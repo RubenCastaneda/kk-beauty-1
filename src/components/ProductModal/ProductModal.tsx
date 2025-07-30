@@ -8,6 +8,14 @@ export interface Product {
   image: string;
   description: string;
   price: string;
+  skinTypes?: string;
+  whatItDoes?: string;
+  howToUseClient?: string[];
+  professionalUse?: string[];
+  sunburnAlert?: string;
+  cautions?: string;
+  ingredients?: string;
+  ph?: string;
 }
 
 interface ModalProps {
@@ -38,6 +46,62 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
         <S.Details>
           <S.Title>{product.name}</S.Title>
           <S.Description>{product.description}</S.Description>
+          {product.skinTypes && (
+            <>
+              <S.SubTitle>Skin Types</S.SubTitle>
+              <S.Text>{product.skinTypes}</S.Text>
+            </>
+          )}
+          {product.whatItDoes && (
+            <>
+              <S.SubTitle>What It Does</S.SubTitle>
+              <S.Text>{product.whatItDoes}</S.Text>
+            </>
+          )}
+          {product.howToUseClient && (
+            <>
+              <S.SubTitle>How to Use</S.SubTitle>
+              <S.List>
+                {product.howToUseClient.map((t, i) => (
+                  <li key={i}>{t}</li>
+                ))}
+              </S.List>
+            </>
+          )}
+          {product.professionalUse && (
+            <>
+              <S.SubTitle>Professional Use</S.SubTitle>
+              <S.List>
+                {product.professionalUse.map((t, i) => (
+                  <li key={i}>{t}</li>
+                ))}
+              </S.List>
+            </>
+          )}
+          {product.sunburnAlert && (
+            <>
+              <S.SubTitle>Sunburn Alert</S.SubTitle>
+              <S.Text>{product.sunburnAlert}</S.Text>
+            </>
+          )}
+          {product.cautions && (
+            <>
+              <S.SubTitle>Cautions</S.SubTitle>
+              <S.Text>{product.cautions}</S.Text>
+            </>
+          )}
+          {product.ingredients && (
+            <>
+              <S.SubTitle>Ingredients (INCI)</S.SubTitle>
+              <S.Text>{product.ingredients}</S.Text>
+            </>
+          )}
+          {product.ph && (
+            <>
+              <S.SubTitle>pH</S.SubTitle>
+              <S.Text>{product.ph}</S.Text>
+            </>
+          )}
           <S.Actions>
             <S.Button onClick={handleAdd}>Add to Cart</S.Button>
           </S.Actions>
