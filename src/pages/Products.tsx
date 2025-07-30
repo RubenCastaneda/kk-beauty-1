@@ -7,17 +7,17 @@ import HeroTextSection from '../components/Hero/HeroTextSection';
 import logo from '../logo.svg';
 
 const allProductImages = [
-  '/images/prod1.jpg',
-  '/images/prod2.jpg',
-  '/images/prod3.jpg',
-  '/images/prod_11.jpg',
-  '/images/prod_2.jpg',
-  '/images/prod_3.jpg',
-  '/images/prod_4.jpg',
-  '/images/prod_5.jpg',
-  '/images/prod_7.jpg',
-  '/images/prod_8.jpg',
-  '/images/prod_9.jpg',
+  '/images/product_pictures/AHA Hand Creme (black BG).png',
+  '/images/product_pictures/Biomed Retinol 500 (black BG).png',
+  '/images/product_pictures/Cascading AOX + Enviro Serum (black BG).png',
+  '/images/product_pictures/Glycolic Cleanser (black BG).png',
+  '/images/product_pictures/Glycolic Toner (black BG).png',
+  '/images/product_pictures/Hexapeptide Moisture Creme (black BG).png',
+  '/images/product_pictures/Hyaluronic Toner (black BG).png',
+  '/images/product_pictures/Illuminating Peptide Creme (black BG).png',
+  '/images/product_pictures/Retinol & Lactic Exfoliating Serum (black BG).png',
+  '/images/product_pictures/Tranexamic B3 Serum (black BG).png',
+  '/images/product_pictures/UPDATE BLACK BGpng.png',
 ];
 
 // Generate a product list using all images, filling in with sample data if needed
