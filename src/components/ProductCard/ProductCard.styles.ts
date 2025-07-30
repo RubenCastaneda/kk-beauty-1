@@ -43,7 +43,9 @@ export const Image = styled.img`
   width: 100%;
   aspect-ratio: 1/1;
   object-fit: cover;
+  object-position: center;
   display: block;
+  box-sizing: border-box;
   transition: transform 0.4s ease;
 
   ${Card}:hover & {

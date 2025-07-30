@@ -202,6 +202,7 @@ const extraDetails: Record<number, Partial<Product>> = {
       'Aqua (Purified Water), Alcohol Denat., Cyclopentasiloxane, Dimethicone, Glycerin, Polyacrylamide, Caprylyl Glycol, 1,2-Hexanediol, C13-14 Isoparaffin, Ferulic Acid, Laureth-7, Ascorbyl Palmitate, Isopropyl Palmitate, Magnesium Ascorbyl Phosphate, Potassium Sorbate, Salicylic Acid, Ferula Assa-Foetida Root Extract, Glycyrrhiza Glabra (Licorice) Root Extract, Camellia Sinensis Leaf Extract, Sodium Hyaluronate, Yeast Extract, Glycine Soja (Soybean) Sterols, Simmondsia Chinensis (Jojoba) Seed Oil.',
     ph: '3.5 - 4.5',
   },
+
 };
 
 // Generate a product list using all images, filling in with sample data if needed
