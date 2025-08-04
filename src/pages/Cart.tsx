@@ -1,64 +1,55 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-
-interface CartItem {
-  id: number;
-  imgSrc: string;
-  name: string;
-  price: number;
-  qty: number;
-}
-
-const initialItems: CartItem[] = [
-  {
-    id: 1,
-    imgSrc: '/images/prod1.jpg',
-    name: 'Luxe Lipstick',
-    price: 25,
-    qty: 1,
-  },
-  {
-    id: 2,
-    imgSrc: '/images/prod2.jpg',
-    name: 'Glow Serum',
-    price: 45,
-    qty: 2,
-  },
-];
+import { useCart } from '../context/CartContext';
 
 const Cart: React.FC = () => {
-  const [cartItems, setCartItems] = useState<CartItem[]>(initialItems);
+  const { state, dispatch } = useCart();
+  const cartItems = state.items;
 
   const updateQty = (id: number, delta: number) => {
-    setCartItems((items) =>
-      items.map((item) =>
-        item.id === id ? { ...item, qty: Math.min(99, Math.max(1, item.qty + delta)) } : item,
-      ),
-    );
+    const item = cartItems.find((i) => i.id === id);
+    if (!item) return;
+    if (delta === -1 && item.quantity > 1) {
+      dispatch({ type: 'decrement', id });
+    } else if (delta === 1 && item.quantity < 99) {
+      dispatch({ type: 'increment', id });
+    }
   };
 
   const removeItem = (id: number) => {
-    setCartItems((items) => items.filter((item) => item.id !== id));
+    dispatch({ type: 'remove', id });
   };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.qty, 0);
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity,
+    0,
+  );
+
+  if (cartItems.length === 0) {
+    return (
+      <Container>
+        <Title>Your Cart</Title>
+        <EmptyMessage>Your cart is empty</EmptyMessage>
+      </Container>
+    );
+  }
 
   return (
     <Container>
       <Title>Your Cart</Title>
       {cartItems.map((item) => (
         <Row key={item.id}>
-          <Thumb src={item.imgSrc} alt={item.name} />
+          <Thumb src={item.image} alt={item.name} />
           <Name>{item.name}</Name>
           <PriceQty>
-            <Price>${item.price.toFixed(2)}</Price>
+            <Price>{item.price}</Price>
             <QtyBox>
-              <button onClick={() => updateQty(item.id, -1)} disabled={item.qty === 1}>
+              <button onClick={() => updateQty(item.id, -1)} disabled={item.quantity === 1}>
                 −
               </button>
-              <span>{item.qty}</span>
-              <button onClick={() => updateQty(item.id, 1)} disabled={item.qty === 99}>
+              <span>{item.quantity}</span>
+              <button onClick={() => updateQty(item.id, 1)} disabled={item.quantity === 99}>
                 +
               </button>
             </QtyBox>
@@ -198,4 +189,8 @@ const CheckoutButton = styled(Link)`
   &:hover {
     opacity: 0.85;
   }
+`;
+
+const EmptyMessage = styled.p`
+  text-align: center;
 `;
