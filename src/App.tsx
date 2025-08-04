@@ -10,6 +10,7 @@ import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 // import styled from 'styled-components';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
+import Checkout from './pages/Checkout';
 import ContactUs from './pages/ContactUs';
 import { CartProvider } from './context/CartContext';
 
@@ -61,6 +62,7 @@ const App: React.FC = () => (
             <Route path="/products" element={<Products />} />
             <Route path="/newsletter" element={<NewsletterPage />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/checkout" element={<Checkout />} />
             <Route path="/contact" element={<ContactUs />} />
           </Routes>
           <Footer />
