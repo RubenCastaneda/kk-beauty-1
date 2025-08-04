@@ -82,12 +82,21 @@ const Container = styled.div`
   background: #181818;
   border-radius: 0.5rem;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+  @media (max-width: 600px) {
+    width: 95vw;
+    margin: 20px auto;
+    padding: 1rem 0.5rem;
+  }
 `;
 
 const Title = styled.h2`
   font-weight: 700;
   text-align: center;
   margin-bottom: 24px;
+  @media (max-width: 600px) {
+    font-size: 1.4rem;
+    margin-bottom: 16px;
+  }
 `;
 
 const Row = styled.div`
@@ -97,17 +106,29 @@ const Row = styled.div`
   column-gap: 16px;
   padding: 12px 0;
   border-bottom: 1px solid #e5e5e5;
+  @media (max-width: 600px) {
+    grid-template-columns: 60px 1fr 70px 20px;
+    column-gap: 8px;
+    font-size: 0.9rem;
+  }
 `;
 
 const Thumb = styled.img`
   width: 60px;
   height: 60px;
   object-fit: cover;
+  @media (max-width: 600px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const Name = styled.span`
   font-size: 18px;
   font-weight: 600;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 const PriceQty = styled.div`
@@ -115,10 +136,17 @@ const PriceQty = styled.div`
   flex-direction: column;
   align-items: flex-end;
   gap: 8px;
+  @media (max-width: 600px) {
+    align-items: flex-start;
+    gap: 4px;
+  }
 `;
 
 const Price = styled.span`
   font-weight: 500;
+  @media (max-width: 600px) {
+    font-size: 14px;
+  }
 `;
 
 const QtyBox = styled.div`
@@ -153,6 +181,17 @@ const QtyBox = styled.div`
     padding: 0 8px;
     color: #fff;
   }
+  @media (max-width: 600px) {
+    font-size: 12px;
+    button {
+      width: 20px;
+      height: 20px;
+      font-size: 14px;
+    }
+    span {
+      padding: 0 6px;
+    }
+  }
 `;
 
 const Remove = styled.button`
@@ -165,6 +204,9 @@ const Remove = styled.button`
   &:hover {
     color: #fff;
   }
+  @media (max-width: 600px) {
+    font-size: 16px;
+  }
 `;
 
 const Summary = styled.div`
@@ -173,6 +215,10 @@ const Summary = styled.div`
   flex-direction: column;
   align-items: flex-end;
   gap: 4px;
+  @media (max-width: 600px) {
+    width: 100%;
+    align-items: center;
+  }
 `;
 
 const SummaryRow = styled.div`
@@ -180,6 +226,10 @@ const SummaryRow = styled.div`
   justify-content: space-between;
   width: 200px;
   font-size: 14px;
+  @media (max-width: 600px) {
+    width: 100%;
+    max-width: 260px;
+  }
 `;
 
 const CheckoutButton = styled(Link)`
@@ -197,6 +247,10 @@ const CheckoutButton = styled(Link)`
 
   &:hover {
     background: #444;
+  }
+  @media (max-width: 600px) {
+    font-size: 16px;
+    padding: 10px 0;
   }
 `;
 

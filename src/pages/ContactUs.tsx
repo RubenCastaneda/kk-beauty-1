@@ -1,8 +1,10 @@
 import React from 'react';
 import HeroTextSection from '../components/Hero/HeroTextSection';
 import ContactForm from '../components/ContactForm/ContactForm';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const ContactUs: React.FC = () => {
+  const isMobile = useIsMobile(600);
   return (
     <>
       <HeroTextSection title="Contact Us" subtitle="We’re here to help!">
@@ -23,7 +25,7 @@ const ContactUs: React.FC = () => {
       <img
         src="/images/group-models.webp"
         alt="Group of KK Beauty Lab models"
-        style={{ width: '100%', marginTop: '2rem' }}
+        style={{ width: '100%', marginTop: isMobile ? '1rem' : '2rem' }}
       />
     </>
   );

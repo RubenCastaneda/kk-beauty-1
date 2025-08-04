@@ -9,6 +9,9 @@ const FormContainer = styled.div`
   padding: 2rem;
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
   color: #fff;
+  @media (max-width: 600px) {
+    padding: 1.5rem 1rem;
+  }
 `;
 
 const FormTitle = styled.h2`
@@ -16,6 +19,9 @@ const FormTitle = styled.h2`
   margin-bottom: 1.5rem;
   font-family: ${({ theme }) => theme.fonts.serif};
   color: #fff;
+  @media (max-width: 600px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const Form = styled.form`
@@ -34,6 +40,9 @@ const Label = styled.label`
   font-size: 0.9rem;
   font-weight: 600;
   color: #ccc;
+  @media (max-width: 600px) {
+    font-size: 0.85rem;
+  }
 `;
 
 const Input = styled.input`
@@ -53,6 +62,10 @@ const Input = styled.input`
   &::placeholder {
     color: #666;
   }
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+    padding: 0.65rem;
+  }
 `;
 
 const StripeContainer = styled.div`
@@ -64,6 +77,9 @@ const StripeContainer = styled.div`
 
   &.StripeElement--focus {
     border-color: #fff;
+  }
+  @media (max-width: 600px) {
+    padding: 0.65rem;
   }
 `;
 
@@ -87,6 +103,10 @@ const SubmitButton = styled.button`
   &:disabled {
     opacity: 0.6;
     cursor: not-allowed;
+  }
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding: 0.85rem;
   }
 `;
 

@@ -11,24 +11,38 @@ const CheckoutContainer = styled.div`
   margin: 0 auto;
   padding: 2rem 1rem;
   margin-top: 6.5rem;
+  @media (max-width: 768px) {
+    width: 98vw;
+    padding: 1.5rem 0.5rem;
+    margin-top: 5rem;
+  }
 `;
 
 const CheckoutHeader = styled.div`
   text-align: center;
   margin-bottom: 3rem;
   color: #fff;
+  @media (max-width: 768px) {
+    margin-bottom: 2rem;
+  }
 `;
 
 const Title = styled.h1`
   font-size: 2.5rem;
   margin-bottom: 1rem;
   font-family: ${({ theme }) => theme.fonts.serif};
+  @media (max-width: 768px) {
+    font-size: 1.8rem;
+  }
 `;
 
 const Subtitle = styled.p`
   font-size: 1.1rem;
   color: #ccc;
   margin-bottom: 0;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
 const CheckoutGrid = styled.div`
