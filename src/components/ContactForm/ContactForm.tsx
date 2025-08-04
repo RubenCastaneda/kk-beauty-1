@@ -13,6 +13,12 @@ const Section = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  @media (max-width: 600px) {
+    width: 98vw;
+    margin: 1.5rem auto;
+    padding: 1.5rem 0.5rem;
+    border-radius: 0.5rem;
+  }
 `;
 
 const Form = styled.form`
@@ -35,6 +41,10 @@ const Input = styled.input`
   &:focus {
     border: 1.5px solid #bbb;
   }
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding: 0.75rem 0.9rem;
+  }
 `;
 
 const Textarea = styled.textarea`
@@ -50,6 +60,10 @@ const Textarea = styled.textarea`
   resize: vertical;
   &:focus {
     border: 1.5px solid #bbb;
+  }
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding: 0.75rem 0.9rem;
   }
 `;
 
@@ -70,6 +84,11 @@ const Button = styled.button`
   &:hover {
     background: #222;
     color: #fff;
+  }
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.75rem 0.9rem;
   }
 `;
 

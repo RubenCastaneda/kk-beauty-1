@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import HeroTextSection from '../components/Hero/HeroTextSection';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const Gallery = styled.div`
   display: grid;
@@ -48,7 +49,7 @@ const GalleryImage = styled.img`
 `;
 
 const AboutUs: React.FC = () => {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth <= 576;
+  const isMobile = useIsMobile(576);
   const images = isMobile
     ? ['/images/hero1.jpg', '/images/prod1.jpg']
     : ['/images/hero1.jpg', '/images/prod1.jpg', '/images/hero3.jpg', '/images/prod2.jpg'];
@@ -57,7 +58,7 @@ const AboutUs: React.FC = () => {
       <img
         src={`${process.env.PUBLIC_URL}/logo_wht.png`}
         alt="KK Beauty Lab logo"
-        style={{ width: '80px', margin: '2rem auto', display: 'block' }}
+        style={{ width: isMobile ? '60px' : '80px', margin: '2rem auto', display: 'block' }}
       />
       <HeroTextSection
         title="About KK Beauty Lab"

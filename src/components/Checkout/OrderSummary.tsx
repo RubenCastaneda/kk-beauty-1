@@ -8,6 +8,9 @@ const SummaryContainer = styled.div`
   box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
   color: #fff;
   height: fit-content;
+  @media (max-width: 600px) {
+    padding: 1.5rem 1rem;
+  }
 `;
 
 const SummaryTitle = styled.h2`
@@ -15,6 +18,9 @@ const SummaryTitle = styled.h2`
   margin-bottom: 1.5rem;
   font-family: ${({ theme }) => theme.fonts.serif};
   color: #fff;
+  @media (max-width: 600px) {
+    font-size: 1.3rem;
+  }
 `;
 
 const ItemsList = styled.div`
@@ -32,6 +38,12 @@ const ItemCard = styled.div`
   background: rgba(255, 255, 255, 0.05);
   border-radius: 0.25rem;
   border: 1px solid rgba(255, 255, 255, 0.1);
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
 `;
 
 const ItemImage = styled.img`
@@ -40,6 +52,10 @@ const ItemImage = styled.img`
   object-fit: cover;
   border-radius: 0.25rem;
   border: 1px solid rgba(255, 255, 255, 0.2);
+  @media (max-width: 600px) {
+    width: 50px;
+    height: 50px;
+  }
 `;
 
 const ItemDetails = styled.div`
@@ -75,6 +91,9 @@ const ItemSubtotal = styled.div`
   font-weight: 600;
   color: #fff;
   font-size: 1rem;
+  @media (max-width: 600px) {
+    align-self: flex-end;
+  }
 `;
 
 const Divider = styled.hr`
@@ -95,6 +114,9 @@ const TotalRow = styled.div`
   justify-content: space-between;
   align-items: center;
   font-size: 1rem;
+  @media (max-width: 600px) {
+    font-size: 0.95rem;
+  }
 `;
 
 const TotalLabel = styled.span`
@@ -105,6 +127,9 @@ const TotalAmount = styled.span`
   font-weight: 600;
   color: #fff;
   font-size: 1.2rem;
+  @media (max-width: 600px) {
+    font-size: 1.1rem;
+  }
 `;
 
 const GrandTotal = styled(TotalRow)`
@@ -113,6 +138,9 @@ const GrandTotal = styled(TotalRow)`
   color: #fff;
   padding-top: 1rem;
   border-top: 1px solid rgba(255, 255, 255, 0.2);
+  @media (max-width: 600px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const SecurityInfo = styled.div`

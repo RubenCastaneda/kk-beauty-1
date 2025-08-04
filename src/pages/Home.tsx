@@ -5,6 +5,7 @@ import VideoHero from '../components/VideoHero/VideoHero';
 import HeroTextSection from '../components/Hero/HeroTextSection';
 import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
 import Newsletter from '../components/Newsletter/Newsletter';
+import { useIsMobile } from '../hooks/useIsMobile';
 
 const Section = styled.section`
   width: 75%;
@@ -44,60 +45,66 @@ const Paragraph = styled.p`
   line-height: 1.7;
   margin: 0 auto;
   color: #eee;
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
 `;
 
-const Home: React.FC = () => (
-  <>
-    <Hero />
-    <img
-      src={`${process.env.PUBLIC_URL}/logo_wht.png`}
-      alt="KK Beauty Lab logo"
-      style={{ width: '80px', margin: '2rem auto', display: 'block' }}
-    />
-    <Section className="bio">
-      <Heading>Discover Your New Favorites</Heading>
-      <Paragraph>Every face tells a story. Every story deserves to be seen.</Paragraph>
-    </Section>
-    <VideoHero />
-    <Section className="why-shop">
-      <Heading>Why shop with us:</Heading>
-      <Paragraph>
-        In a world of filters and facades, true beauty breaks through the noise. Your skin is your
-        canvas. Your confidence, the masterpiece.
-      </Paragraph>
-      <Paragraph>
-        This is your moment to step into the spotlight—unapologetically, authentically, brilliantly
-        you.
-      </Paragraph>
-      <Paragraph>
-        Our curated collection of luxury skincare transforms your daily ritual into something
-        extraordinary. From breakthrough serums that rewrite your skin&apos;s story to bold
-        statements that command attention, each product is designed for those who refuse to fade
-        into the background.
-      </Paragraph>
-      <Paragraph>
-        Because when you embrace your authentic self, you don&apos;t just change how you look—you
-        change how the world sees possibility.
-      </Paragraph>
-      <Paragraph>Your next scene starts now.</Paragraph>
-    </Section>
-    <FeaturedProducts />
-    <HeroTextSection title="Ready to Glow?" subtitle="Sign up for exclusive deals and updates.">
-      <span
-        style={{
-          maxWidth: '700px',
-          fontSize: '1.1rem',
-          lineHeight: '1.7',
-          margin: '0 auto',
-          color: '#eee',
-        }}
-      >
-        Join our newsletter and be the first to know about new products, special promotions, and
-        beauty tips. Your journey to radiant skin and confidence starts here—don’t miss out!
-      </span>
-    </HeroTextSection>
-    <Newsletter />
-  </>
-);
+const Home: React.FC = () => {
+  const isMobile = useIsMobile(768);
+  return (
+    <>
+      <Hero />
+      <img
+        src={`${process.env.PUBLIC_URL}/logo_wht.png`}
+        alt="KK Beauty Lab logo"
+        style={{ width: isMobile ? '60px' : '80px', margin: '2rem auto', display: 'block' }}
+      />
+      <Section className="bio">
+        <Heading>Discover Your New Favorites</Heading>
+        <Paragraph>Every face tells a story. Every story deserves to be seen.</Paragraph>
+      </Section>
+      <VideoHero />
+      <Section className="why-shop">
+        <Heading>Why shop with us:</Heading>
+        <Paragraph>
+          In a world of filters and facades, true beauty breaks through the noise. Your skin is your
+          canvas. Your confidence, the masterpiece.
+        </Paragraph>
+        <Paragraph>
+          This is your moment to step into the spotlight—unapologetically, authentically,
+          brilliantly you.
+        </Paragraph>
+        <Paragraph>
+          Our curated collection of luxury skincare transforms your daily ritual into something
+          extraordinary. From breakthrough serums that rewrite your skin&apos;s story to bold
+          statements that command attention, each product is designed for those who refuse to fade
+          into the background.
+        </Paragraph>
+        <Paragraph>
+          Because when you embrace your authentic self, you don&apos;t just change how you look—you
+          change how the world sees possibility.
+        </Paragraph>
+        <Paragraph>Your next scene starts now.</Paragraph>
+      </Section>
+      <FeaturedProducts />
+      <HeroTextSection title="Ready to Glow?" subtitle="Sign up for exclusive deals and updates.">
+        <span
+          style={{
+            maxWidth: '700px',
+            fontSize: '1.1rem',
+            lineHeight: '1.7',
+            margin: '0 auto',
+            color: '#eee',
+          }}
+        >
+          Join our newsletter and be the first to know about new products, special promotions, and
+          beauty tips. Your journey to radiant skin and confidence starts here—don’t miss out!
+        </span>
+      </HeroTextSection>
+      <Newsletter />
+    </>
+  );
+};
 
 export default Home;

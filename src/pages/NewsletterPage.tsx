@@ -8,6 +8,10 @@ const Section = styled.section`
   padding: 2rem 1rem;
   text-align: center;
   color: ${({ theme }) => theme.colors.text};
+  @media (max-width: 600px) {
+    width: 98vw;
+    padding: 1.5rem 0.5rem;
+  }
 `;
 
 const Title = styled.h1`
@@ -25,6 +29,11 @@ const Form = styled.form`
   display: flex;
   gap: 0.5rem;
   justify-content: center;
+  @media (max-width: 600px) {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+  }
 `;
 
 const Input = styled.input`
@@ -39,6 +48,9 @@ const Input = styled.input`
     color: ${({ theme }) => theme.colors.text};
     opacity: 0.7;
   }
+  @media (max-width: 600px) {
+    width: 100%;
+  }
 `;
 
 const Button = styled.button`
@@ -48,6 +60,10 @@ const Button = styled.button`
   color: ${({ theme }) => theme.colors.background};
   border: none;
   cursor: pointer;
+  @media (max-width: 600px) {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
 `;
 
 const NewsletterPage: React.FC = () => (

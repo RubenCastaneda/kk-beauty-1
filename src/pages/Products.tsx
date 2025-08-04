@@ -225,6 +225,11 @@ const Section = styled.section`
   flex-direction: column;
   align-items: center;
   text-align: center;
+  @media (max-width: 600px) {
+    width: 98vw;
+    margin: 2rem auto 1rem auto;
+    padding: 1rem 0.5rem;
+  }
 `;
 
 const Grid = styled.div`
@@ -232,6 +237,10 @@ const Grid = styled.div`
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 2rem;
   width: 100%;
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 1rem;
+  }
 `;
 
 const Products: React.FC = () => {
