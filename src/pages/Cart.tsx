@@ -77,8 +77,11 @@ export default Cart;
 const Container = styled.div`
   max-width: 800px;
   margin: 40px auto;
-  padding: 0 16px;
-  color: #000;
+  padding: 2rem;
+  color: #fff;
+  background: #181818;
+  border-radius: 0.5rem;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
 `;
 
 const Title = styled.h2`
@@ -121,7 +124,7 @@ const Price = styled.span`
 const QtyBox = styled.div`
   display: flex;
   align-items: center;
-  border: 1px solid #ccc;
+  border: 1px solid #555;
   border-radius: 20px;
   overflow: hidden;
   font-size: 14px;
@@ -130,10 +133,15 @@ const QtyBox = styled.div`
     width: 24px;
     height: 24px;
     border: none;
-    background: none;
+    background: #444;
+    color: #fff;
     cursor: pointer;
     font-size: 16px;
     line-height: 1;
+
+    &:hover {
+      background: #555;
+    }
 
     &:disabled {
       opacity: 0.4;
@@ -143,18 +151,19 @@ const QtyBox = styled.div`
 
   span {
     padding: 0 8px;
+    color: #fff;
   }
 `;
 
 const Remove = styled.button`
   border: none;
   background: none;
-  color: #888;
+  color: #ccc;
   font-size: 20px;
   cursor: pointer;
 
   &:hover {
-    color: #000;
+    color: #fff;
   }
 `;
 
@@ -177,17 +186,17 @@ const CheckoutButton = styled(Link)`
   display: block;
   width: 100%;
   margin-top: 16px;
-  background: #000;
+  background: #333;
   color: #fff;
   text-align: center;
   padding: 12px 0;
   font-size: 14px;
   border-radius: 6px;
   text-decoration: none;
-  transition: opacity 0.2s;
+  transition: background 0.2s;
 
   &:hover {
-    opacity: 0.85;
+    background: #444;
   }
 `;
 
