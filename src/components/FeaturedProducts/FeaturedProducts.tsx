@@ -10,21 +10,24 @@ export const products: Product[] = [
     id: 1,
     name: 'AHA Hand Crème',
     image: '/images/product_pictures/AHA Hand Creme (black BG).jpg',
-    description: 'Revitalize dry hands with this rich hand crème.',
+    description:
+      'Revitalize dry hands with this rich hand crème. Multi-source fruit acids gently exfoliate distressed skin leaving hands smooth and soft as the rich formula melts in.',
     price: '$75',
   },
   {
     id: 2,
     name: 'Biomed Retinol 500',
     image: '/images/product_pictures/Biomed Retinol 500 (black BG).jpg',
-    description: 'Rich crème offering skin-conditioning benefits of Vitamin A.',
+    description:
+      'Rich crème offering skin-conditioning benefits of Vitamin A. Contains Retinol and Cariciline® SB to refine and support mature or combination skin while Bisabolol defends against daily stresses.',
     price: '$60',
   },
   {
     id: 3,
     name: 'Cascading AOX+ Enviro Serum',
     image: '/images/product_pictures/Cascading AOX + Enviro Serum (black BG).jpg',
-    description: 'Peptide enriched antioxidant serum for daily protection.',
+    description:
+      'Peptide enriched antioxidant serum fortified with Ameliox™ Complex to protect against environmental aggression while enhancing natural radiance.',
     price: '$30',
   },
 ];
