@@ -17,7 +17,7 @@ const allProductImages = [
   '/images/product_pictures/Illuminating Peptide Creme (black BG).png',
   '/images/product_pictures/Retinol & Lactic Exfoliating Serum (black BG).jpg',
   '/images/product_pictures/Tranexamic B3 Serum (black BG).jpg',
-  '/images/product_pictures/UPDATE BLACK BGpng.jpg',
+  '/images/product_pictures/Ferulic-C 20 Eye Cream (black BG).jpg',
 ];
 
 const extraDetails: Record<number, Partial<Product>> = {
