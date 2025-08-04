@@ -7,17 +7,17 @@ import HeroTextSection from '../components/Hero/HeroTextSection';
 import logo from '../logo.svg';
 
 const allProductImages = [
-  '/images/product_pictures/AHA Hand Creme (black BG).png',
-  '/images/product_pictures/Biomed Retinol 500 (black BG).png',
-  '/images/product_pictures/Cascading AOX + Enviro Serum (black BG).png',
-  '/images/product_pictures/Glycolic Cleanser (black BG).png',
-  '/images/product_pictures/Glycolic Toner (black BG).png',
-  '/images/product_pictures/Hexapeptide Moisture Creme (black BG).png',
-  '/images/product_pictures/Hyaluronic Toner (black BG).png',
+  '/images/product_pictures/AHA Hand Creme (black BG).jpg',
+  '/images/product_pictures/Biomed Retinol 500 (black BG).jpg',
+  '/images/product_pictures/Cascading AOX + Enviro Serum (black BG).jpg',
+  '/images/product_pictures/Glycolic Cleanser (black BG).jpg',
+  '/images/product_pictures/Glycolic Toner (black BG).jpg',
+  '/images/product_pictures/Hexapeptide Moisture Creme (black BG).jpg',
+  '/images/product_pictures/Hyaluronic Toner (black BG).jpg',
   '/images/product_pictures/Illuminating Peptide Creme (black BG).png',
-  '/images/product_pictures/Retinol & Lactic Exfoliating Serum (black BG).png',
-  '/images/product_pictures/Tranexamic B3 Serum (black BG).png',
-  '/images/product_pictures/UPDATE BLACK BGpng.png',
+  '/images/product_pictures/Retinol & Lactic Exfoliating Serum (black BG).jpg',
+  '/images/product_pictures/Tranexamic B3 Serum (black BG).jpg',
+  '/images/product_pictures/UPDATE BLACK BGpng.jpg',
 ];
 
 const extraDetails: Record<number, Partial<Product>> = {
