@@ -1,7 +1,6 @@
 import React from 'react';
 import * as S from './Header.styles';
 import { Link } from 'react-router-dom';
-import logo from '../../logo.svg';
 import { useCart } from '../../context/CartContext';
 
 const Header: React.FC = () => {
@@ -31,7 +30,7 @@ const Header: React.FC = () => {
           }}
         >
           <img
-            src={logo}
+            src={`${process.env.PUBLIC_URL}/logo_wht.png`}
             alt="KK Beauty Lab logo"
             style={{ width: '32px', marginRight: '0.5rem' }}
           />

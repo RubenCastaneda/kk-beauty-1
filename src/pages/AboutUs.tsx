@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components';
-import logo from '../logo.svg';
 import HeroTextSection from '../components/Hero/HeroTextSection';
 
 const Gallery = styled.div`
@@ -56,7 +55,7 @@ const AboutUs: React.FC = () => {
   return (
     <>
       <img
-        src={logo}
+        src={`${process.env.PUBLIC_URL}/logo_wht.png`}
         alt="KK Beauty Lab logo"
         style={{ width: '80px', margin: '2rem auto', display: 'block' }}
       />

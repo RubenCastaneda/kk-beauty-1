@@ -4,7 +4,6 @@ import ProductCard from '../components/ProductCard/ProductCard';
 import { products as featuredProducts } from '../components/FeaturedProducts/FeaturedProducts';
 import ProductModal, { Product } from '../components/ProductModal/ProductModal';
 import HeroTextSection from '../components/Hero/HeroTextSection';
-import logo from '../logo.svg';
 
 const allProductImages = [
   '/images/product_pictures/AHA Hand Creme (black BG).jpg',
@@ -240,7 +239,7 @@ const Products: React.FC = () => {
   return (
     <>
       <img
-        src={logo}
+        src={`${process.env.PUBLIC_URL}/logo_wht.png`}
         alt="KK Beauty Lab logo"
         style={{ width: '80px', margin: '2rem auto', display: 'block' }}
       />

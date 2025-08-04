@@ -5,7 +5,6 @@ import VideoHero from '../components/VideoHero/VideoHero';
 import HeroTextSection from '../components/Hero/HeroTextSection';
 import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
 import Newsletter from '../components/Newsletter/Newsletter';
-import logo from '../logo.svg';
 
 const Section = styled.section`
   width: 75%;
@@ -51,7 +50,7 @@ const Home: React.FC = () => (
   <>
     <Hero />
     <img
-      src={logo}
+      src={`${process.env.PUBLIC_URL}/logo_wht.png`}
       alt="KK Beauty Lab logo"
       style={{ width: '80px', margin: '2rem auto', display: 'block' }}
     />
