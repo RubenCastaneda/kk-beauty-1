@@ -20,8 +20,6 @@ const Header: React.FC = () => {
         <Link
           to="/"
           style={{
-            display: 'flex',
-            alignItems: 'center',
             fontWeight: 700,
             fontSize: '1.5rem',
             color: '#fff',
@@ -29,11 +27,6 @@ const Header: React.FC = () => {
             fontFamily: 'Georgia, serif',
           }}
         >
-          <img
-            src={`${process.env.PUBLIC_URL}/logo_wht.png`}
-            alt="KK Beauty Lab logo"
-            style={{ width: '32px', marginRight: '0.5rem' }}
-          />
           KK Beauty Lab
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.5rem' }}>
