@@ -225,7 +225,6 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
       }
     } catch (err) {
       setError('An unexpected error occurred');
-      console.error('Payment error:', err);
     } finally {
       setLoading(false);
     }
