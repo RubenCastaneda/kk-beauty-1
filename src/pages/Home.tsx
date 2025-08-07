@@ -6,6 +6,7 @@ import HeroTextSection from '../components/Hero/HeroTextSection';
 import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
 import Newsletter from '../components/Newsletter/Newsletter';
 import { useIsMobile } from '../hooks/useIsMobile';
+import ImageHero from '../components/ImageHero/ImageHero';
 
 const Section = styled.section`
   width: 75%;
@@ -87,11 +88,7 @@ const Home: React.FC = () => {
         </Paragraph>
         <Paragraph>Your next scene starts now.</Paragraph>
       </Section>
-      <img
-        src={`${process.env.PUBLIC_URL}/images/Product_Group.jpg`}
-        alt="Product group"
-        style={{ width: isMobile ? '60px' : '80px', margin: '2rem auto', display: 'block' }}
-      />
+      <ImageHero src={`${process.env.PUBLIC_URL}/images/Product_Group.jpg`} alt="Product group" />
       <FeaturedProducts />
       <HeroTextSection title="Ready to Glow?" subtitle="Sign up for exclusive deals and updates.">
         <span
