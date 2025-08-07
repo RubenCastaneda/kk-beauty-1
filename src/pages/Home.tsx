@@ -87,6 +87,11 @@ const Home: React.FC = () => {
         </Paragraph>
         <Paragraph>Your next scene starts now.</Paragraph>
       </Section>
+      <img
+        src={`${process.env.PUBLIC_URL}/images/Product_Group.jpg`}
+        alt="Product group"
+        style={{ width: isMobile ? '60px' : '80px', margin: '2rem auto', display: 'block' }}
+      />
       <FeaturedProducts />
       <HeroTextSection title="Ready to Glow?" subtitle="Sign up for exclusive deals and updates.">
         <span
