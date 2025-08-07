@@ -17,8 +17,8 @@ export const Wrapper = styled.header`
   z-index: 1000;
 
   @media (max-width: 600px) {
-    height: 56px;
-    font-size: 1.1rem;
+    height: 48px;
+    font-size: 1rem;
     padding: 0 0.2rem;
   }
 `;

@@ -65,7 +65,7 @@ export const Name = styled.div`
   margin-top: 0.75rem;
 
   @media (max-width: 600px) {
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-top: 0.5rem;
   }
 `;
@@ -78,7 +78,7 @@ export const Price = styled.div`
   margin-bottom: 1rem;
 
   @media (max-width: 600px) {
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     margin-bottom: 0.5rem;
   }
 `;
