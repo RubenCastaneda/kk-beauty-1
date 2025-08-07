@@ -1,6 +1,5 @@
 // src/components/Hero/Hero.tsx
 import React, { useState, useEffect } from 'react';
-import { useIsMobile } from '../../hooks/useIsMobile';
 import * as S from './Hero.styles';
 import { Link } from 'react-router-dom';
 
@@ -26,7 +25,6 @@ const categories = [
 const Hero: React.FC = () => {
   const [current, setCurrent] = useState(0);
   const len = images.length;
-  const isMobile = useIsMobile(576); // true if viewport <576px
 
   // Next/Prev handlers
   const next = () => setCurrent((c) => (c + 1) % len);
@@ -60,17 +58,9 @@ const Hero: React.FC = () => {
       </S.Arrow>
 
       <S.SlidesContainer>
-        {isMobile ? (
-          // 🚀 MOBILE LAYOUT: only show the center slide
-          <S.SlideCard image={images[current]} isActive={true} position="center" />
-        ) : (
-          // 🖥 DESKTOP LAYOUT: show prev, current, next
-          <>
-            <S.SlideCard image={images[prevIdx]} isActive={false} position="prev" />
-            <S.SlideCard image={images[current]} isActive={true} position="center" />
-            <S.SlideCard image={images[nextIdx]} isActive={false} position="next" />
-          </>
-        )}
+        <S.SlideCard image={images[prevIdx]} isActive={false} position="prev" />
+        <S.SlideCard image={images[current]} isActive={true} position="center" />
+        <S.SlideCard image={images[nextIdx]} isActive={false} position="next" />
       </S.SlidesContainer>
 
       {/* Right arrow (hidden on mobile) */}

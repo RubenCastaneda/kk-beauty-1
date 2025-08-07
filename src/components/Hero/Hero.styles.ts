@@ -12,7 +12,7 @@ interface SlideProps {
  * 2) SlidesContainer: flex container that holds up to three slides.
  * 3) SlideCard: individual slide (prev/center/next). Rounded corners, background-image, etc.
  *    - On desktop: prev and next are smaller + translucent; center is larger + fully opaque.
- *    - On mobile (<576px): ONLY the center slide gets flex: 0 0 70%; the two side cards are effectively hidden (overflow: hidden).
+ *    - On mobile (<576px): all three slides are shown with equal spacing and slightly reduced scale.
  * 4) Arrow: left/right arrow, absolutely positioned at mid-height.
  *    - Hidden on mobile (<576px).
  * 5) LabelsRow: row of category labels beneath the slides.
@@ -48,8 +48,9 @@ export const SlidesContainer = styled.div`
   height: 420px;
 
   @media (max-width: 576px) {
-    width: 98vw;
+    width: 100%;
     height: 220px;
+    gap: 0.5rem;
   }
 `;
 
@@ -78,12 +79,12 @@ export const SlideCard = styled.div<SlideProps>`
     isActive ? '0 4px 32px rgba(0,0,0,0.25)' : '0 2px 8px rgba(0,0,0,0.10)'};
 
   @media (max-width: 576px) {
-    flex: 0 0 90%;
+    flex: 0 0 32%;
     opacity: 1 !important;
-    transform: scale(1) translateX(0);
+    transform: scale(${({ isActive }) => (isActive ? 1 : 0.9)}) translateX(0);
     background-position: center;
     margin: 0;
-    border-radius: 0.7rem;
+    border-radius: 0.5rem;
   }
 `;
 

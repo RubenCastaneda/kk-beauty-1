@@ -238,8 +238,8 @@ const Grid = styled.div`
   gap: 2rem;
   width: 100%;
   @media (max-width: 600px) {
-    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
   }
 `;
 

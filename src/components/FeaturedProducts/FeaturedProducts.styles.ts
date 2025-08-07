@@ -32,7 +32,7 @@ export const Grid = styled.div`
   margin-bottom: 2rem;
 
   @media (max-width: 600px) {
-    grid-template-columns: repeat(2, minmax(120px, 1fr));
+    grid-template-columns: repeat(3, 1fr);
     gap: 0.4rem;
     margin-bottom: 0.7rem;
   }

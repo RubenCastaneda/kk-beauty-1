@@ -14,14 +14,14 @@ const Header: React.FC = () => {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          padding: '0 2rem',
+          padding: '0 1rem',
         }}
       >
         <Link
           to="/"
           style={{
             fontWeight: 700,
-            fontSize: '1.5rem',
+            fontSize: 'clamp(1.2rem, 6vw, 1.5rem)',
             color: '#fff',
             textDecoration: 'none',
             fontFamily: 'Georgia, serif',
@@ -36,7 +36,7 @@ const Header: React.FC = () => {
               color: '#fff',
               textDecoration: 'none',
               fontWeight: 500,
-              fontSize: '1.2rem',
+              fontSize: 'clamp(0.9rem, 4.5vw, 1.2rem)',
               display: 'flex',
               alignItems: 'center',
             }}
