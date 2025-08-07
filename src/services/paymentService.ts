@@ -57,7 +57,6 @@ export class PaymentService {
       const data = await response.json();
       return data;
     } catch (error) {
-      console.error('Error creating payment intent:', error);
       // For demo purposes, return a mock payment intent
       return {
         id: 'pi_mock_' + Date.now(),
@@ -89,10 +88,9 @@ export class PaymentService {
         throw new Error('Failed to confirm payment');
       }
 
-      const data = await response.json();
+      await response.json();
       return { success: true };
     } catch (error) {
-      console.error('Error confirming payment:', error);
       // For demo purposes, simulate a successful payment
       return { success: true };
     }
@@ -110,7 +108,6 @@ export class PaymentService {
       const data = await response.json();
       return { status: data.status };
     } catch (error) {
-      console.error('Error getting payment status:', error);
       // For demo purposes, return a successful status
       return { status: 'succeeded' };
     }
