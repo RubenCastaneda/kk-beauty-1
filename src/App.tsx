@@ -7,7 +7,6 @@ import AboutUs from './pages/AboutUs';
 import NewsletterPage from './pages/NewsletterPage';
 import Footer from './components/Footer/Footer';
 import { HashRouter as Router, Routes, Route } from 'react-router-dom';
-// import styled from 'styled-components';
 import Products from './pages/Products';
 import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
@@ -15,38 +14,28 @@ import ContactUs from './pages/ContactUs';
 import { CartProvider } from './context/CartContext';
 
 const GlobalStyle = createGlobalStyle`
-   body {
-     margin: 0;
-     padding-top: 0px;    /* space for fixed header */
-     padding-bottom: 0px; /* space for footer */
-     background: ${({ theme }) => theme.colors.background};
-     color: ${({ theme }) => theme.colors.text};
-     font-family: ${({ theme }) => theme.fonts.sans};
-   }
+  body {
+    margin: 0;
+    background: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.text};
+    font-family: ${({ theme }) => theme.fonts.sans};
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.1px;
+  }
 
-   h1,
-   h2,
-   body {
-     margin: 0;
-     padding-top: 0px;    /* space for fixed header */
-     padding-bottom: 0px; /* space for footer */
-     color: ${({ theme }) => theme.colors.text};
-     font-family: ${({ theme }) => theme.fonts.serif};
-   }
+  h1,
+  h2,
+  h3 {
+    margin: 0 0 8px;
+    font-family: ${({ theme }) => theme.fonts.serif};
+    font-weight: 700;
+    line-height: 1.25;
+  }
 
-   h1,
-   h2,
-   h3 {
-     font-family: ${({ theme }) => theme.fonts.serif};
-   }
-      rgba(255, 255, 255, 0.05) 4%,
-      rgba(255, 255, 255, 0) 15%,
-      rgba(255, 255, 255, 0) 85%,
-      rgba(255, 255, 255, 0.05) 96%,
-      rgba(255, 255, 255, 0.1) 98%,
-      rgba(255, 255, 255, 0.15) 100%
-    ),
-    #000;
+  h1 { font-size: 22px; }
+  h2 { font-size: 18px; }
+  h3 { font-size: 16px; }
 `;
 
 const App: React.FC = () => (
@@ -58,6 +47,8 @@ const App: React.FC = () => (
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Products />} />
+            <Route path="/collections" element={<Products />} />
             <Route path="/about-us" element={<AboutUs />} />
             <Route path="/products" element={<Products />} />
             <Route path="/newsletter" element={<NewsletterPage />} />

@@ -1,7 +1,7 @@
 export const theme = {
   colors: {
-    background: '#000000',
-    text: '#FFFFFF',
+    background: '#0f0f0f',
+    text: '#eaeaea',
     accent: '#BBBBBB',
   },
   fonts: {
