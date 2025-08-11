@@ -16,14 +16,6 @@ const Page = styled.main`
     width: 100%;
     padding: 0 12px;
   }
-import { products } from '../components/FeaturedProducts/FeaturedProducts';
-
-const Page = styled.main`
-  max-width: 420px;
-  margin: 0 auto;
-  padding: 0 16px;
-  background: #0f0f0f;
-  color: #eaeaea;
 `;
 
 const BrandRow = styled.div`
@@ -41,7 +33,9 @@ const MediaStrip = styled.div`
   scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  &::-webkit-scrollbar { display: none; }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const MediaItem = styled.img`
@@ -55,57 +49,9 @@ const MediaItem = styled.img`
 
 const Card = styled.section`
   background: #161616;
-  border: 1px solid rgba(255,255,255,.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.4);
-  padding: 16px;
-  margin: 20px 0;
-`;
-
-const VideoContainer = styled.div`
-  aspect-ratio: 16/9;
-  width: 100%;
-  border-radius: 16px;
-  overflow: hidden;
-  margin-top: 12px;
-`;
-
-const Banner = styled.img`
-  width: 100%;
-  border-radius: 16px;
-  object-fit: cover;
-  aspect-ratio: 16/9;
-  margin: 12px 0;
-`;
-
-const ProductsStrip = styled.div`
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  padding: 8px;
-  scroll-snap-type: x mandatory;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar { display: none; }
-`;
-
-const MediaItem = styled.img`
-  flex: 0 0 auto;
-  width: 96px;
-  height: 96px;
-  border-radius: 12px;
-  object-fit: cover;
-  scroll-snap-align: center;
-`;
-
-const Card = styled.section`
-  background: #161616;
-  border: 1px solid rgba(255,255,255,.08);
-  border-radius: 16px;
-  box-shadow: 0 6px 18px rgba(0,0,0,.4);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
   padding: 16px;
   margin: 20px 0;
 `;
@@ -134,7 +80,9 @@ const ProductsStrip = styled.div`
   scroll-snap-type: x mandatory;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  &::-webkit-scrollbar { display: none; }
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
 
 const ProductCard = styled.div`
@@ -142,7 +90,7 @@ const ProductCard = styled.div`
   width: 112px;
   border-radius: 14px;
   background: #121212;
-  border: 1px solid rgba(255,255,255,.06);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   padding: 10px;
   text-align: center;
   scroll-snap-align: center;
@@ -164,22 +112,22 @@ const ProductName = styled.div`
 
 const ProductPrice = styled.div`
   font-size: 12px;
-  opacity: .85;
+  opacity: 0.85;
 `;
 
 const ViewAll = styled(Link)`
-const ViewAll = styled.a`
   display: block;
   height: 44px;
   line-height: 44px;
   padding: 0 16px;
   border-radius: 999px;
-  border: 1px solid rgba(255,255,255,.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   background: #1d1d1d;
   text-align: center;
   text-decoration: none;
   color: #eaeaea;
-  margin: 0 auto;
+  margin: 16px auto 0 auto;
+  max-width: 160px;
 `;
 
 const NewsletterForm = styled.form`
@@ -194,7 +142,7 @@ const NewsletterInput = styled.input`
   border-radius: 999px;
   padding: 0 14px;
   background: #111;
-  border: 1px solid rgba(255,255,255,.12);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   color: #eaeaea;
 `;
 
@@ -211,7 +159,7 @@ const NewsletterButton = styled.button`
 const FooterLinks = styled.footer`
   text-align: center;
   font-size: 12px;
-  opacity: .85;
+  opacity: 0.85;
   padding: 16px 0;
   display: flex;
   justify-content: center;
@@ -223,13 +171,15 @@ const Home: React.FC = () => (
     <HeroCarousel />
     <BrandRow>KK Beauty Lab</BrandRow>
     <MediaStrip>
-      {products.slice(0,4).map(p => (
+      {products.slice(0, 4).map((p) => (
         <MediaItem key={p.id} src={p.image} alt={p.name} />
       ))}
     </MediaStrip>
     <Card style={{ padding: '16px 16px 0 16px' }}>
       <h1>Discover Your New Favorites</h1>
-      <h2 style={{ fontSize: '16px', fontWeight: 700 }}>Every face tells a story. Every story deserves to be seen.</h2>
+      <h2 style={{ fontSize: '16px', fontWeight: 700 }}>
+        Every face tells a story. Every story deserves to be seen.
+      </h2>
     </Card>
     <VideoContainer>
       <video controls poster="/images/Product_Group.jpg" style={{ width: '100%', height: '100%' }}>
@@ -238,17 +188,31 @@ const Home: React.FC = () => (
     </VideoContainer>
     <Card>
       <h2>Why shop with us:</h2>
-      <p>In a world of filters and facades, true beauty breaks through the noise. Your skin is your canvas. Your confidence, the masterpiece.</p>
-      <p style={{ marginTop: 8 }}>This is your moment to step into the spotlight—unapologetically, authentically, brilliantly you.</p>
-      <p style={{ marginTop: 8 }}>Our curated collection of luxury skincare transforms your daily ritual into something extraordinary. From breakthrough serums that rewrite your skin's story to bold statements that command attention, each product is designed for those who refuse to fade into the background.</p>
-      <p style={{ marginTop: 8 }}>Because when you embrace your authentic self, you don't just change how you look—you change how the world sees possibility.</p>
+      <p>
+        In a world of filters and facades, true beauty breaks through the noise. Your skin is your
+        canvas. Your confidence, the masterpiece.
+      </p>
+      <p style={{ marginTop: 8 }}>
+        This is your moment to step into the spotlight—unapologetically, authentically, brilliantly
+        you.
+      </p>
+      <p style={{ marginTop: 8 }}>
+        Our curated collection of luxury skincare transforms your daily ritual into something
+        extraordinary. From breakthrough serums that rewrite your skin's story to bold statements
+        that command attention, each product is designed for those who refuse to fade into the
+        background.
+      </p>
+      <p style={{ marginTop: 8 }}>
+        Because when you embrace your authentic self, you don't just change how you look—you change
+        how the world sees possibility.
+      </p>
       <p style={{ marginTop: 8 }}>Your next scene starts now.</p>
     </Card>
     <Banner src="/images/Product_Group.jpg" alt="Product group" />
     <Card style={{ textAlign: 'center' }}>
       <h2>Featured Products</h2>
       <ProductsStrip>
-        {products.map(p => (
+        {products.map((p) => (
           <ProductCard key={p.id}>
             <ProductImage src={p.image} alt={p.name} />
             <ProductName>{p.name}</ProductName>
@@ -257,11 +221,13 @@ const Home: React.FC = () => (
         ))}
       </ProductsStrip>
       <ViewAll to="/shop">View All</ViewAll>
-      <ViewAll href="/products">View All</ViewAll>
     </Card>
     <Card style={{ textAlign: 'center' }}>
       <h2 style={{ fontSize: 18 }}>Ready to Glow?</h2>
-      <p>Join our newsletter and be the first to know about new products, special promotions, and beauty tips.</p>
+      <p>
+        Join our newsletter and be the first to know about new products, special promotions, and
+        beauty tips.
+      </p>
       <NewsletterForm>
         <NewsletterInput type="email" placeholder="Email address" />
         <NewsletterButton type="submit">Subscribe</NewsletterButton>
