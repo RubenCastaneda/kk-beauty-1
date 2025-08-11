@@ -16,6 +16,14 @@ const Page = styled.main`
     width: 100%;
     padding: 0 12px;
   }
+import { products } from '../components/FeaturedProducts/FeaturedProducts';
+
+const Page = styled.main`
+  max-width: 420px;
+  margin: 0 auto;
+  padding: 0 16px;
+  background: #0f0f0f;
+  color: #eaeaea;
 `;
 
 const BrandRow = styled.div`
@@ -26,6 +34,54 @@ const BrandRow = styled.div`
 `;
 
 const MediaStrip = styled.div`
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 8px;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+`;
+
+const MediaItem = styled.img`
+  flex: 0 0 auto;
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+  scroll-snap-align: center;
+`;
+
+const Card = styled.section`
+  background: #161616;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 16px;
+  box-shadow: 0 6px 18px rgba(0,0,0,.4);
+  padding: 16px;
+  margin: 20px 0;
+`;
+
+const VideoContainer = styled.div`
+  aspect-ratio: 16/9;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  margin-top: 12px;
+`;
+
+const Banner = styled.img`
+  width: 100%;
+  border-radius: 16px;
+  object-fit: cover;
+  aspect-ratio: 16/9;
+  margin: 12px 0;
+`;
+
+const ProductsStrip = styled.div`
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
   display: flex;
   overflow-x: auto;
   gap: 8px;
@@ -112,6 +168,7 @@ const ProductPrice = styled.div`
 `;
 
 const ViewAll = styled(Link)`
+const ViewAll = styled.a`
   display: block;
   height: 44px;
   line-height: 44px;
@@ -200,6 +257,7 @@ const Home: React.FC = () => (
         ))}
       </ProductsStrip>
       <ViewAll to="/shop">View All</ViewAll>
+      <ViewAll href="/products">View All</ViewAll>
     </Card>
     <Card style={{ textAlign: 'center' }}>
       <h2 style={{ fontSize: 18 }}>Ready to Glow?</h2>
