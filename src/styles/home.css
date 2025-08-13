@@ -1,5 +1,5 @@
 :root {
-  --heroMax: 75vw;
+  --heroMax: 100%;
   --radius: 14px;
 }
 .hero {
@@ -84,7 +84,7 @@
 /* desktop ≥ 992px */
 @media (min-width: 992px) {
   .hero__container {
-    max-width: min(1200px, 75%);
+    max-width: 100%;
   }
   .carousel {
     padding: 0;

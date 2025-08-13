@@ -165,14 +165,12 @@ const FooterLinks = styled.footer`
   gap: 10px;
 `;
 
-import '../styles/home.css';
-
 const hero1 = '/images/hero1.jpg';
 const hero2 = '/images/hero3.jpg';
 const hero3 = '/images/Product_Group.jpg';
 
 const Home: React.FC = () => (
-  <Page>
+  <>
     <section className="hero">
       <div className="hero__container">
         <div className="carousel" aria-label="Featured products">
@@ -203,72 +201,74 @@ const Home: React.FC = () => (
       </div>
     </section>
 
-    <Card style={{ padding: '16px 16px 0 16px' }}>
-      <h1>Discover Your New Favorites</h1>
-      <h2 style={{ fontSize: '16px', fontWeight: 700 }}>
-        Every face tells a story. Every story deserves to be seen.
-      </h2>
-    </Card>
-    <VideoContainer>
-      <video autoPlay loop playsInline style={{ width: '100%', height: '100%' }}>
-        <source src="/videos/hero.mp4" type="video/mp4" />
-      </video>
-    </VideoContainer>
-    <Card>
-      <h2>Why shop with us:</h2>
-      <p>
-        In a world of filters and facades, true beauty breaks through the noise. Your skin is your
-        canvas. Your confidence, the masterpiece.
-      </p>
-      <p style={{ marginTop: 8 }}>
-        This is your moment to step into the spotlight—unapologetically, authentically, brilliantly
-        you.
-      </p>
-      <p style={{ marginTop: 8 }}>
-        Our curated collection of luxury skincare transforms your daily ritual into something
-        extraordinary. From breakthrough serums that rewrite your skin&apos;s story to bold
-        statements that command attention, each product is designed for those who refuse to fade
-        into the background.
-      </p>
-      <p style={{ marginTop: 8 }}>
-        Because when you embrace your authentic self, you don&apos;t just change how you look—you
-        change how the world sees possibility.
-      </p>
-      <p style={{ marginTop: 8 }}>Your next scene starts now.</p>
-    </Card>
-    <Banner src="/images/Product_Group.jpg" alt="Product group" />
-    <Card style={{ textAlign: 'center' }}>
-      <h2>Featured Products</h2>
-      <ProductsStrip>
-        {products.map((p) => (
-          <ProductCard key={p.id}>
-            <ProductImage src={p.image} alt={p.name} />
-            <ProductName>{p.name}</ProductName>
-            <ProductPrice>{p.price}</ProductPrice>
-          </ProductCard>
-        ))}
-      </ProductsStrip>
-      <ViewAll to="/shop">View All</ViewAll>
-    </Card>
-    <Card style={{ textAlign: 'center' }}>
-      <h2 style={{ fontSize: 18 }}>Ready to Glow?</h2>
-      <p>
-        Join our newsletter and be the first to know about new products, special promotions, and
-        beauty tips.
-      </p>
-      <NewsletterForm>
-        <NewsletterInput type="email" placeholder="Email address" />
-        <NewsletterButton type="submit">Subscribe</NewsletterButton>
-      </NewsletterForm>
-    </Card>
-    <FooterLinks>
-      <span>Contact</span>
-      <span>|</span>
-      <span>Privacy</span>
-      <span>|</span>
-      <span>Terms</span>
-    </FooterLinks>
-  </Page>
+    <Page>
+      <Card style={{ padding: '16px 16px 0 16px' }}>
+        <h1>Discover Your New Favorites</h1>
+        <h2 style={{ fontSize: '16px', fontWeight: 700 }}>
+          Every face tells a story. Every story deserves to be seen.
+        </h2>
+      </Card>
+      <VideoContainer>
+        <video autoPlay loop playsInline style={{ width: '100%', height: '100%' }}>
+          <source src="/videos/hero.mp4" type="video/mp4" />
+        </video>
+      </VideoContainer>
+      <Card>
+        <h2>Why shop with us:</h2>
+        <p>
+          In a world of filters and facades, true beauty breaks through the noise. Your skin is your
+          canvas. Your confidence, the masterpiece.
+        </p>
+        <p style={{ marginTop: 8 }}>
+          This is your moment to step into the spotlight—unapologetically, authentically,
+          brilliantly you.
+        </p>
+        <p style={{ marginTop: 8 }}>
+          Our curated collection of luxury skincare transforms your daily ritual into something
+          extraordinary. From breakthrough serums that rewrite your skin&apos;s story to bold
+          statements that command attention, each product is designed for those who refuse to fade
+          into the background.
+        </p>
+        <p style={{ marginTop: 8 }}>
+          Because when you embrace your authentic self, you don&apos;t just change how you look—you
+          change how the world sees possibility.
+        </p>
+        <p style={{ marginTop: 8 }}>Your next scene starts now.</p>
+      </Card>
+      <Banner src="/images/Product_Group.jpg" alt="Product group" />
+      <Card style={{ textAlign: 'center' }}>
+        <h2>Featured Products</h2>
+        <ProductsStrip>
+          {products.map((p) => (
+            <ProductCard key={p.id}>
+              <ProductImage src={p.image} alt={p.name} />
+              <ProductName>{p.name}</ProductName>
+              <ProductPrice>{p.price}</ProductPrice>
+            </ProductCard>
+          ))}
+        </ProductsStrip>
+        <ViewAll to="/shop">View All</ViewAll>
+      </Card>
+      <Card style={{ textAlign: 'center' }}>
+        <h2 style={{ fontSize: 18 }}>Ready to Glow?</h2>
+        <p>
+          Join our newsletter and be the first to know about new products, special promotions, and
+          beauty tips.
+        </p>
+        <NewsletterForm>
+          <NewsletterInput type="email" placeholder="Email address" />
+          <NewsletterButton type="submit">Subscribe</NewsletterButton>
+        </NewsletterForm>
+      </Card>
+      <FooterLinks>
+        <span>Contact</span>
+        <span>|</span>
+        <span>Privacy</span>
+        <span>|</span>
+        <span>Terms</span>
+      </FooterLinks>
+    </Page>
+  </>
 );
 
 export default Home;
