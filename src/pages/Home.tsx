@@ -5,8 +5,8 @@ import '../styles/home.css';
 import styled from 'styled-components';
 
 const Page = styled.main`
-  width: 75vw;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 100%;
   margin: 0 auto;
   padding: 0;
   background: #0f0f0f;
