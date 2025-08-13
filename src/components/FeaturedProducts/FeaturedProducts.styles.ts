@@ -8,9 +8,13 @@ export const Section = styled.section`
   padding: 2rem 1rem;
   text-align: center;
 
+  /* Give mobile and tablet layouts a little more width */
+  @media (max-width: 1024px) {
+    width: 90%;
+  }
+
   @media (max-width: 600px) {
-    width: 98%;
-    padding: 1.2rem 0.2rem;
+    padding: 1.2rem 0.5rem;
   }
 `;
 
@@ -27,14 +31,18 @@ export const Title = styled.h2`
 
 export const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: 1fr;
+  gap: 1rem;
   margin-bottom: 2rem;
 
-  @media (max-width: 600px) {
+  @media (min-width: 600px) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 900px) {
     grid-template-columns: repeat(3, 1fr);
-    gap: 0.4rem;
-    margin-bottom: 0.7rem;
+    gap: 2rem;
   }
 `;
 
