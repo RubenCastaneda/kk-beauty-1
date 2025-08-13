@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { products } from '../components/FeaturedProducts/FeaturedProducts';
 import '../styles/home.css';
+import styled from 'styled-components';
 
 const Page = styled.main`
   width: 75vw;
@@ -172,8 +173,6 @@ const hero3 = '/images/Product_Group.jpg';
 
 const Home: React.FC = () => (
   <Page>
-export default function Home() {
-  return (
     <section className="hero">
       <div className="hero__container">
         <div className="carousel" aria-label="Featured products">
@@ -204,12 +203,6 @@ export default function Home() {
       </div>
     </section>
 
-    <BrandRow>KK Beauty Lab</BrandRow>
-    <MediaStrip>
-      {products.slice(0, 4).map((p) => (
-        <MediaItem key={p.id} src={p.image} alt={p.name} />
-      ))}
-    </MediaStrip>
     <Card style={{ padding: '16px 16px 0 16px' }}>
       <h1>Discover Your New Favorites</h1>
       <h2 style={{ fontSize: '16px', fontWeight: 700 }}>
@@ -279,5 +272,3 @@ export default function Home() {
 );
 
 export default Home;
-  );
-}
