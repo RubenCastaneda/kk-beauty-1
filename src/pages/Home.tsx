@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { products } from '../components/FeaturedProducts/FeaturedProducts';
 import '../styles/home.css';
@@ -165,12 +164,16 @@ const FooterLinks = styled.footer`
   gap: 10px;
 `;
 
+import '../styles/home.css';
+
 const hero1 = '/images/hero1.jpg';
 const hero2 = '/images/hero3.jpg';
 const hero3 = '/images/Product_Group.jpg';
 
 const Home: React.FC = () => (
   <Page>
+export default function Home() {
+  return (
     <section className="hero">
       <div className="hero__container">
         <div className="carousel" aria-label="Featured products">
@@ -276,3 +279,5 @@ const Home: React.FC = () => (
 );
 
 export default Home;
+  );
+}
