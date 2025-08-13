@@ -210,7 +210,7 @@ const Home: React.FC = () => (
       </h2>
     </Card>
     <VideoContainer>
-      <video controls poster="/images/Product_Group.jpg" style={{ width: '100%', height: '100%' }}>
+      <video autoPlay loop playsInline style={{ width: '100%', height: '100%' }}>
         <source src="/videos/hero.mp4" type="video/mp4" />
       </video>
     </VideoContainer>
