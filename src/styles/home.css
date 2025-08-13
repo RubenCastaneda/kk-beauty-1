@@ -6,6 +6,8 @@
   background: transparent;
   color: #ddd;
   padding: 56px 0 40px;
+  text-align: center;
+  font-size: 18px;
 }
 .hero__container {
   margin: 0 auto;
@@ -43,11 +45,13 @@
   align-items: center;
   margin: 28px 0 18px;
   letter-spacing: 0.12em;
-  font-size: 12px;
+  font-size: 18px;
+  text-align: center;
 }
 .hero__nav a {
   color: #d7d5d5;
   text-decoration: none;
+  text-align: center;
 }
 .hero__nav a:hover {
   text-decoration: underline;
@@ -68,6 +72,8 @@
   display: flex;
   gap: 12px;
   justify-content: center;
+  font-size: 18px;
+  text-align: center;
 }
 .btn {
   padding: 10px 18px;
@@ -97,7 +103,7 @@
   }
   .hero__nav {
     gap: 36px;
-    font-size: 13px;
+    font-size: 18px;
   }
   .hero__logo {
     font-size: 40px;

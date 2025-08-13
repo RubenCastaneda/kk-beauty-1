@@ -11,6 +11,8 @@ const Page = styled.main`
   padding: 0;
   background: #0f0f0f;
   color: #eaeaea;
+  text-align: center;
+  font-size: 18px;
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 12px;
@@ -104,13 +106,13 @@ const ProductImage = styled.img`
 `;
 
 const ProductName = styled.div`
-  font-size: 12px;
+  font-size: 18px;
   line-height: 1.3;
   min-height: 32px;
 `;
 
 const ProductPrice = styled.div`
-  font-size: 12px;
+  font-size: 18px;
   opacity: 0.85;
 `;
 
@@ -143,6 +145,8 @@ const NewsletterInput = styled.input`
   background: #111;
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #eaeaea;
+  font-size: 18px;
+  text-align: center;
 `;
 
 const NewsletterButton = styled.button`
@@ -157,7 +161,7 @@ const NewsletterButton = styled.button`
 
 const FooterLinks = styled.footer`
   text-align: center;
-  font-size: 12px;
+  font-size: 18px;
   opacity: 0.85;
   padding: 16px 0;
   display: flex;
