@@ -8,7 +8,7 @@ export const Section = styled.section`
   padding: 2rem 1rem;
   text-align: center;
 
-  /* Allow a bit of breathing room on smaller screens */
+
   @media (max-width: 1024px) {
     width: 90%;
   }
