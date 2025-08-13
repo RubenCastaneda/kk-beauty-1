@@ -17,6 +17,35 @@ const Page = styled.main`
   }
 `;
 
+const BrandRow = styled.div`
+  text-align: center;
+  font-size: 18px;
+  font-weight: 700;
+  padding: 12px 0;
+`;
+
+const MediaStrip = styled.div`
+  display: flex;
+  overflow-x: auto;
+  gap: 8px;
+  padding: 8px;
+  scroll-snap-type: x mandatory;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+const MediaItem = styled.img`
+  flex: 0 0 auto;
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  object-fit: cover;
+  scroll-snap-align: center;
+`;
+
 const Card = styled.section`
   background: #161616;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -137,13 +166,22 @@ const FooterLinks = styled.footer`
 `;
 
 import '../styles/home.css';
-import HeroCarousel from '../components/HeroCarousel/HeroCarousel';
+
+const hero1 = '/images/hero1.jpg';
+const hero2 = '/images/hero3.jpg';
+const hero3 = '/images/Product_Group.jpg';
 
 const Home: React.FC = () => (
   <Page>
     <section className="hero">
       <div className="hero__container">
-        <HeroCarousel />
+        <div className="carousel" aria-label="Featured products">
+          <div className="carousel__track">
+            <img src={hero1} alt="KK Beauty Lab product 1" className="slide slide--left" />
+            <img src={hero2} alt="KK Beauty Lab product 2" className="slide slide--center" />
+            <img src={hero3} alt="KK Beauty Lab product 3" className="slide slide--right" />
+          </div>
+        </div>
 
         <nav className="hero__nav">
           <Link to="/about">ABOUT US</Link>
