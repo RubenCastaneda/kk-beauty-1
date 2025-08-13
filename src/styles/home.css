@@ -3,7 +3,7 @@
   --radius: 14px;
 }
 .hero {
-  background: #000;
+  background: transparent;
   color: #ddd;
   padding: 56px 0 40px;
 }
