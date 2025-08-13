@@ -2,13 +2,13 @@
 import styled from 'styled-components';
 
 export const Section = styled.section`
-  width: 75%;
-  max-width: 1600px; /* optional cap if you don’t want it to grow beyond a certain size */
-  margin: 0 auto; /* center it horizontally */
+  width: 100%;
+  max-width: 1600px; /* cap to prevent overly wide layouts */
+  margin: 0 auto; /* center horizontally */
   padding: 2rem 1rem;
   text-align: center;
 
-  /* Give mobile and tablet layouts a little more width */
+
   @media (max-width: 1024px) {
     width: 90%;
   }
