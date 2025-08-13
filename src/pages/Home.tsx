@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { products } from '../components/FeaturedProducts/FeaturedProducts';
-import HeroCarousel from '../components/HeroCarousel/HeroCarousel';
 import '../styles/home.css';
 
 const Page = styled.main`
@@ -166,9 +165,42 @@ const FooterLinks = styled.footer`
   gap: 10px;
 `;
 
+const hero1 = '/images/hero1.jpg';
+const hero2 = '/images/hero3.jpg';
+const hero3 = '/images/Product_Group.jpg';
+
 const Home: React.FC = () => (
   <Page>
-    <HeroCarousel />
+    <section className="hero">
+      <div className="hero__container">
+        <div className="carousel" aria-label="Featured products">
+          <div className="carousel__track">
+            <img src={hero1} alt="KK Beauty Lab product 1" className="slide slide--left" />
+            <img src={hero2} alt="KK Beauty Lab product 2" className="slide slide--center" />
+            <img src={hero3} alt="KK Beauty Lab product 3" className="slide slide--right" />
+          </div>
+        </div>
+
+        <nav className="hero__nav">
+          <Link to="/about">ABOUT US</Link>
+          <Link to="/products">OUR PRODUCTS</Link>
+          <Link to="/newsletter">NEWSLETTER</Link>
+          <Link to="/contact">CONTACT US</Link>
+        </nav>
+
+        <h1 className="hero__logo">KK</h1>
+
+        <div className="hero__cta">
+          <Link to="/shop" className="btn">
+            Shop Now
+          </Link>
+          <Link to="/collections" className="btn btn--ghost">
+            Explore Collections
+          </Link>
+        </div>
+      </div>
+    </section>
+
     <BrandRow>KK Beauty Lab</BrandRow>
     <MediaStrip>
       {products.slice(0, 4).map((p) => (
@@ -198,13 +230,13 @@ const Home: React.FC = () => (
       </p>
       <p style={{ marginTop: 8 }}>
         Our curated collection of luxury skincare transforms your daily ritual into something
-        extraordinary. From breakthrough serums that rewrite your skin's story to bold statements
-        that command attention, each product is designed for those who refuse to fade into the
-        background.
+        extraordinary. From breakthrough serums that rewrite your skin&apos;s story to bold
+        statements that command attention, each product is designed for those who refuse to fade
+        into the background.
       </p>
       <p style={{ marginTop: 8 }}>
-        Because when you embrace your authentic self, you don't just change how you look—you change
-        how the world sees possibility.
+        Because when you embrace your authentic self, you don&apos;t just change how you look—you
+        change how the world sees possibility.
       </p>
       <p style={{ marginTop: 8 }}>Your next scene starts now.</p>
     </Card>
