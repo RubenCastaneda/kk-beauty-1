@@ -1,5 +1,6 @@
 // src/components/ProductCard/ProductCard.styles.ts
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 /**
  * Card:
@@ -13,20 +14,22 @@ import styled from 'styled-components';
  *  - fades in while sliding up on hover
  */
 
-export const Card = styled.div`
-  position: relative;
-  overflow: hidden;
+export const Card = styled(motion.div)`
+  background: #161616;
+  border-radius: 16px;
+  padding: 24px;
   cursor: pointer;
   width: 100%;
-  border-radius: 0; /* sharp corners */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease;
-  background: #181818;
+  height: 100%;
+  min-height: 300px; // Add a minimum height
+  position: relative;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   align-items: stretch;
+  transition:
+    transform 0.6s cubic-bezier(0.2, 0, 0.2, 1),
+    box-shadow 0.6s cubic-bezier(0.2, 0, 0.2, 1);
 
   &:hover {
     transform: translateY(-4px);
@@ -42,12 +45,15 @@ export const Card = styled.div`
 
 export const Image = styled.img`
   width: 100%;
+  height: auto;
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;
   display: block;
   box-sizing: border-box;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
+  border-radius: 8px;
+  padding: 1rem;
 
   ${Card}:hover & {
     transform: scale(1.05);
@@ -58,9 +64,10 @@ export const Image = styled.img`
   }
 `;
 
-export const Name = styled.div`
+export const Name = styled.h3`
+  margin: 8px 0;
+  font-size: 16px;
   font-family: ${({ theme }) => theme.fonts.serif};
-  font-size: 1.1rem;
   color: ${({ theme }) => theme.colors.text};
   text-align: center;
   margin-top: 0.75rem;
@@ -71,8 +78,8 @@ export const Name = styled.div`
   }
 `;
 
-export const Price = styled.div`
-  font-family: ${({ theme }) => theme.fonts.sans};
+export const Price = styled.p`
+  margin: 4px 0;
   font-size: 1rem;
   color: ${({ theme }) => theme.colors.accent};
   text-align: center;

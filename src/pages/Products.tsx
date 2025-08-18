@@ -245,6 +245,7 @@ const Grid = styled.div`
 
 const Products: React.FC = () => {
   const [selected, setSelected] = useState<Product | null>(null);
+
   return (
     <>
       <img
@@ -276,12 +277,12 @@ const Products: React.FC = () => {
         </h2>
         <Grid>
           {products.map((p) => (
-            <div key={p.id} onClick={() => setSelected(p)} style={{ cursor: 'pointer' }}>
-              <ProductCard image={p.image} name={p.name} price={p.price} />
-            </div>
+            <ProductCard key={p.id} product={p} onClick={() => setSelected(p)} />
           ))}
         </Grid>
-        {selected && <ProductModal product={selected} onClose={() => setSelected(null)} />}
+        {selected && (
+          <ProductModal product={selected} onClose={() => setSelected(null)} isOpen={true} />
+        )}
       </Section>
       <HeroTextSection
         title="Ready to treat yourself?"

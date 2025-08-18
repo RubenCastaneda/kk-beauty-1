@@ -1,6 +1,6 @@
 import React from 'react';
-import * as S from './ProductModal.styles';
-import { useCart } from '../../context/CartContext';
+import { motion, AnimatePresence } from 'framer-motion';
+import styled from 'styled-components';
 
 export interface Product {
   id: number;
@@ -18,96 +18,178 @@ export interface Product {
   ph?: string;
 }
 
-interface ModalProps {
+export interface ModalProps {
   product: Product;
   onClose: () => void;
+  isOpen: boolean;
 }
 
-const ProductModal: React.FC<ModalProps> = ({ product, onClose }) => {
-  const { dispatch } = useCart();
-  const handleAdd = () => {
-    dispatch({
-      type: 'add',
-      item: {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        quantity: 1,
-      },
-    });
-    onClose();
-  };
+const ModalOverlay = styled(motion.div)`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+`;
+
+const ModalContent = styled(motion.div)`
+  background: #161616;
+  border-radius: 16px;
+  padding: 24px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+  overflow: hidden;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: #eaeaea;
+  font-size: 24px;
+  cursor: pointer;
+`;
+
+const ProductImage = styled.img`
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 16px;
+`;
+
+const ProductName = styled.h2`
+  font-size: 24px;
+  margin: 16px 0;
+`;
+
+const ProductPrice = styled.div`
+  font-size: 20px;
+  color: #eaeaea;
+  margin: 12px 0;
+`;
+
+const ProductDescription = styled.p`
+  color: #eaeaea;
+  line-height: 1.6;
+  margin: 16px 0;
+`;
+
+const BuyButton = styled.button`
+  width: 100%;
+  padding: 12px;
+  background: #eaeaea;
+  color: #161616;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 16px;
+
+  &:hover {
+    background: #ffffff;
+  }
+`;
+
+const ProductDetails = styled.div`
+  margin: 16px 0;
+`;
+
+const DetailSection = styled.div`
+  margin: 12px 0;
+`;
+
+const DetailTitle = styled.h3`
+  font-size: 16px;
+  color: #eaeaea;
+  margin-bottom: 8px;
+`;
+
+const DetailText = styled.p`
+  color: #eaeaea;
+  line-height: 1.6;
+`;
+
+const ProductModal: React.FC<ModalProps> = ({ product, onClose, isOpen }) => {
   return (
-    <S.Overlay onClick={onClose}>
-      <S.Content onClick={(e) => e.stopPropagation()}>
-        <S.CloseButton onClick={onClose}>×</S.CloseButton>
-        <S.Image src={product.image} alt={product.name} />
-        <S.Details>
-          <S.Title>{product.name}</S.Title>
-          <S.Description>{product.description}</S.Description>
-          {product.skinTypes && (
-            <>
-              <S.SubTitle>Skin Types</S.SubTitle>
-              <S.Text>{product.skinTypes}</S.Text>
-            </>
-          )}
-          {product.whatItDoes && (
-            <>
-              <S.SubTitle>What It Does</S.SubTitle>
-              <S.Text>{product.whatItDoes}</S.Text>
-            </>
-          )}
-          {product.howToUseClient && (
-            <>
-              <S.SubTitle>How to Use</S.SubTitle>
-              <S.List>
-                {product.howToUseClient.map((t, i) => (
-                  <li key={i}>{t}</li>
-                ))}
-              </S.List>
-            </>
-          )}
-          {product.professionalUse && (
-            <>
-              <S.SubTitle>Professional Use</S.SubTitle>
-              <S.List>
-                {product.professionalUse.map((t, i) => (
-                  <li key={i}>{t}</li>
-                ))}
-              </S.List>
-            </>
-          )}
-          {product.sunburnAlert && (
-            <>
-              <S.SubTitle>Sunburn Alert</S.SubTitle>
-              <S.Text>{product.sunburnAlert}</S.Text>
-            </>
-          )}
-          {product.cautions && (
-            <>
-              <S.SubTitle>Cautions</S.SubTitle>
-              <S.Text>{product.cautions}</S.Text>
-            </>
-          )}
-          {product.ingredients && (
-            <>
-              <S.SubTitle>Ingredients (INCI)</S.SubTitle>
-              <S.Text>{product.ingredients}</S.Text>
-            </>
-          )}
-          {product.ph && (
-            <>
-              <S.SubTitle>pH</S.SubTitle>
-              <S.Text>{product.ph}</S.Text>
-            </>
-          )}
-          <S.Actions>
-            <S.Button onClick={handleAdd}>Add to Cart</S.Button>
-          </S.Actions>
-        </S.Details>
-      </S.Content>
-    </S.Overlay>
+    <AnimatePresence>
+      {isOpen && (
+        <ModalOverlay
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.3 }}
+          onClick={onClose}
+        >
+          <ModalContent
+            onClick={(e) => e.stopPropagation()}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 20 }}
+            transition={{ duration: 0.3 }}
+          >
+            <CloseButton onClick={onClose}>×</CloseButton>
+            <ProductImage src={product.image} alt={product.name} />
+            <ProductName>{product.name}</ProductName>
+            <ProductPrice>{product.price}</ProductPrice>
+            <ProductDescription>{product.description}</ProductDescription>
+
+            <ProductDetails>
+              {product.skinTypes && (
+                <DetailSection>
+                  <DetailTitle>Skin Types</DetailTitle>
+                  <DetailText>{product.skinTypes}</DetailText>
+                </DetailSection>
+              )}
+
+              {product.whatItDoes && (
+                <DetailSection>
+                  <DetailTitle>What It Does</DetailTitle>
+                  <DetailText>{product.whatItDoes}</DetailText>
+                </DetailSection>
+              )}
+
+              {product.howToUseClient && (
+                <DetailSection>
+                  <DetailTitle>How to Use</DetailTitle>
+                  <ul>
+                    {product.howToUseClient.map((step, index) => (
+                      <li key={index}>{step}</li>
+                    ))}
+                  </ul>
+                </DetailSection>
+              )}
+
+              {product.ingredients && (
+                <DetailSection>
+                  <DetailTitle>Ingredients</DetailTitle>
+                  <DetailText>{product.ingredients}</DetailText>
+                </DetailSection>
+              )}
+
+              {product.ph && (
+                <DetailSection>
+                  <DetailTitle>pH</DetailTitle>
+                  <DetailText>{product.ph}</DetailText>
+                </DetailSection>
+              )}
+            </ProductDetails>
+
+            <BuyButton onClick={() => alert('Coming soon!')}>Add to Cart</BuyButton>
+          </ModalContent>
+        </ModalOverlay>
+      )}
+    </AnimatePresence>
   );
 };
 

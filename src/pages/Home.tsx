@@ -13,6 +13,10 @@ const Page = styled.main`
   color: #eaeaea;
   text-align: center;
   font-size: 18px;
+  @media (min-width: 992px) {
+    width: 70%;
+    max-width: 1200px;
+  }
   @media (max-width: 768px) {
     width: 100%;
     padding: 0 12px;

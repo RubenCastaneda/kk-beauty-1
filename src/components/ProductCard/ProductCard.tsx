@@ -1,18 +1,25 @@
 // src/components/ProductCard/ProductCard.tsx
 import React from 'react';
 import * as S from './ProductCard.styles';
+import { Product } from '../ProductModal/ProductModal';
 
 interface ProductCardProps {
-  image: string;
-  name: string;
-  price?: string;
+  product: Product;
+  onClick: () => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ image, name, price }) => (
-  <S.Card>
-    <S.Image src={image} alt={name} style={{ borderRadius: '8px', padding: '1rem' }} />
-    <S.Name>{name}</S.Name>
-    {price && <S.Price>{price}</S.Price>}
+const ProductCard: React.FC<ProductCardProps> = ({ product, onClick }) => (
+  <S.Card
+    data-product-id={product.id}
+    onClick={onClick}
+    initial={{ opacity: 1 }}
+    whileHover={{ scale: 1.02 }}
+    whileTap={{ scale: 0.98 }}
+    transition={{ duration: 0.2 }}
+  >
+    <S.Image src={product.image} alt={product.name} />
+    <S.Name>{product.name}</S.Name>
+    <S.Price>{product.price}</S.Price>
   </S.Card>
 );
 
