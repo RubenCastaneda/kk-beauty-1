@@ -1,6 +1,7 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import styled from 'styled-components';
+import { useCart } from '../../context/CartContext';
 
 export interface Product {
   id: number;
@@ -121,6 +122,21 @@ const DetailText = styled.p`
 `;
 
 const ProductModal: React.FC<ModalProps> = ({ product, onClose, isOpen }) => {
+  const { dispatch } = useCart();
+
+  const handlePurchase = () => {
+    dispatch({
+      type: 'add',
+      item: {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+      },
+    });
+  };
+
   return (
     <AnimatePresence>
       {isOpen && (
@@ -185,7 +201,7 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose, isOpen }) => {
               )}
             </ProductDetails>
 
-            <BuyButton onClick={() => alert('Coming soon!')}>Add to Cart</BuyButton>
+            <BuyButton onClick={handlePurchase}>Purchase</BuyButton>
           </ModalContent>
         </ModalOverlay>
       )}
