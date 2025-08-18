@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { products } from '../components/FeaturedProducts/FeaturedProducts';
+import FeaturedProducts from '../components/FeaturedProducts/FeaturedProducts';
 import '../styles/home.css';
 import styled from 'styled-components';
 
@@ -72,65 +72,6 @@ const Banner = styled.img`
   aspect-ratio: 16/9;
   margin: 12px 0;
 `;
-
-const ProductsStrip = styled.div`
-  display: flex;
-  overflow-x: auto;
-  gap: 8px;
-  padding: 8px 0;
-  scroll-snap-type: x mandatory;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-`;
-
-const ProductCard = styled.div`
-  flex: 0 0 auto;
-  width: 112px;
-  border-radius: 14px;
-  background: #121212;
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  padding: 10px;
-  text-align: center;
-  scroll-snap-align: center;
-`;
-
-const ProductImage = styled.img`
-  width: 100%;
-  aspect-ratio: 1/1;
-  border-radius: 10px;
-  object-fit: cover;
-  margin-bottom: 8px;
-`;
-
-const ProductName = styled.div`
-  font-size: 18px;
-  line-height: 1.3;
-  min-height: 32px;
-`;
-
-const ProductPrice = styled.div`
-  font-size: 18px;
-  opacity: 0.85;
-`;
-
-const ViewAll = styled(Link)`
-  display: block;
-  height: 44px;
-  line-height: 44px;
-  padding: 0 16px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: #1d1d1d;
-  text-align: center;
-  text-decoration: none;
-  color: #eaeaea;
-  margin: 16px auto 0 auto;
-  max-width: 160px;
-`;
-
 const NewsletterForm = styled.form`
   display: flex;
   width: 100%;
@@ -240,19 +181,7 @@ const Home: React.FC = () => (
         <p style={{ marginTop: 8 }}>Your next scene starts now.</p>
       </Card>
       <Banner src="/images/Product_Group.jpg" alt="Product group" />
-      <Card style={{ textAlign: 'center' }}>
-        <h2>Featured Products</h2>
-        <ProductsStrip>
-          {products.map((p) => (
-            <ProductCard key={p.id}>
-              <ProductImage src={p.image} alt={p.name} />
-              <ProductName>{p.name}</ProductName>
-              <ProductPrice>{p.price}</ProductPrice>
-            </ProductCard>
-          ))}
-        </ProductsStrip>
-        <ViewAll to="/shop">View All</ViewAll>
-      </Card>
+      <FeaturedProducts />
       <Card style={{ textAlign: 'center' }}>
         <h2 style={{ fontSize: 18 }}>Ready to Glow?</h2>
         <p>
