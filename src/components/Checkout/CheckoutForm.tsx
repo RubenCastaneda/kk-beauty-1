@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import styled from 'styled-components';
+import { useCart } from '../../context/CartContext';
 import paymentService from '../../services/paymentService';
 
 const FormContainer = styled.div`
@@ -144,6 +145,7 @@ interface CheckoutFormProps {
 }
 
 const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
+  const { state, getCartTotal, clearCart } = useCart();
   const stripe = useStripe();
   const elements = useElements();
   const [loading, setLoading] = useState(false);
@@ -157,6 +159,9 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
     postalCode: '',
     country: '',
   });
+
+  const { total: cartTotal } = getCartTotal();
+  const items = state.items;
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -184,46 +189,63 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
     }
 
     try {
-      // Create payment intent
-      const paymentIntent = await paymentService.createPaymentIntent(total);
-
-      // Create payment method
-      const { error: paymentMethodError, paymentMethod } = await stripe.createPaymentMethod({
-        type: 'card',
-        card: cardElement,
-        billing_details: {
+      // Step 1: Create payment intent on backend
+      const { client_secret } = await paymentService.createPaymentIntent(
+        parseFloat(cartTotal),
+        'usd',
+        items,
+        {
           name: formData.name,
           email: formData.email,
-          address: {
-            line1: formData.address,
-            city: formData.city,
-            postal_code: formData.postalCode,
-            country: formData.country,
+          address: formData.address,
+        },
+      );
+
+      // Step 2: Confirm payment with Stripe
+      const { error, paymentIntent } = await stripe.confirmCardPayment(client_secret, {
+        payment_method: {
+          card: cardElement,
+          billing_details: {
+            name: formData.name,
+            email: formData.email,
+            address: {
+              line1: formData.address,
+              city: formData.city,
+              postal_code: formData.postalCode,
+              country: formData.country,
+            },
           },
         },
       });
 
-      if (paymentMethodError) {
-        setError(paymentMethodError.message || 'Payment failed');
-        setLoading(false);
-        return;
-      }
+      if (error) {
+        // console.error('Payment failed:', error);
+        setError(error.message || 'Payment failed');
+      } else if (paymentIntent.status === 'succeeded') {
+        // console.log('Payment succeeded:', paymentIntent);
 
-      if (!paymentMethod) {
-        setError('Failed to create payment method');
-        setLoading(false);
-        return;
-      }
+        // Optional: Send confirmation to backend
+        try {
+          await paymentService.paymentSuccess(
+            paymentIntent.id,
+            items,
+            {
+              name: formData.name,
+              email: formData.email,
+              address: formData.address,
+            },
+            cartTotal,
+          );
+        } catch (confirmError) {
+          // console.error('Failed to send payment confirmation:', confirmError);
+          // Don't fail the whole process if confirmation fails
+        }
 
-      // Confirm payment with backend
-      const result = await paymentService.confirmPayment(paymentIntent.id, paymentMethod.id);
-
-      if (result.success) {
+        clearCart();
         setSuccess(true);
-      } else {
-        setError(result.error || 'Payment failed');
       }
     } catch (err) {
+      // console.error('Error:', err);
       setError('An unexpected error occurred');
     } finally {
       setLoading(false);

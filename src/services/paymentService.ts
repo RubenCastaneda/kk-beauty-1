@@ -20,13 +20,27 @@ export interface PaymentMethod {
   };
 }
 
+export interface CartItem {
+  id: number;
+  name: string;
+  price: string;
+  image: string;
+  quantity: number;
+}
+
+export interface CustomerInfo {
+  name: string;
+  email: string;
+  address: string;
+}
+
 export class PaymentService {
   private static instance: PaymentService;
   private baseUrl: string;
 
   private constructor() {
     // In production, this would be your backend API URL
-    this.baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3000/api';
+    this.baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
   }
 
   public static getInstance(): PaymentService {
@@ -37,63 +51,52 @@ export class PaymentService {
   }
 
   // Create a payment intent on the backend
-  async createPaymentIntent(amount: number, currency = 'usd'): Promise<PaymentIntent> {
-    try {
-      const response = await fetch(`${this.baseUrl}/create-payment-intent`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          amount: Math.round(amount * 100), // Convert to cents
-          currency,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to create payment intent');
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      // For demo purposes, return a mock payment intent
-      return {
-        id: 'pi_mock_' + Date.now(),
-        amount: Math.round(amount * 100),
+  async createPaymentIntent(
+    amount: number,
+    currency = 'usd',
+    items?: CartItem[],
+    customer?: CustomerInfo,
+  ): Promise<{ client_secret: string }> {
+    const response = await fetch(`${this.baseUrl}/create-payment-intent`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        amount: Math.round(amount * 100), // Convert to cents
         currency,
-        status: 'requires_payment_method',
-      };
+        items,
+        customer,
+      }),
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to create payment intent');
     }
+
+    const data = await response.json();
+    return data;
   }
 
-  // Confirm payment with payment method
-  async confirmPayment(
+  // Send payment success confirmation to backend
+  async paymentSuccess(
     paymentIntentId: string,
-    paymentMethodId: string,
-  ): Promise<{ success: boolean; error?: string }> {
-    try {
-      const response = await fetch(`${this.baseUrl}/confirm-payment`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          paymentIntentId,
-          paymentMethodId,
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to confirm payment');
-      }
-
-      await response.json();
-      return { success: true };
-    } catch (error) {
-      // For demo purposes, simulate a successful payment
-      return { success: true };
-    }
+    items: CartItem[],
+    customer: CustomerInfo,
+    total: string,
+  ): Promise<void> {
+    await fetch(`${this.baseUrl}/payment-success`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        paymentIntentId,
+        items,
+        customer,
+        total,
+      }),
+    });
   }
 
   // Get payment status
