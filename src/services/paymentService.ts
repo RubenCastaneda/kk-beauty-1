@@ -57,6 +57,11 @@ export class PaymentService {
     items?: CartItem[],
     customer?: CustomerInfo,
   ): Promise<{ client_secret: string }> {
+    console.log('🔄 PaymentService: Creating payment intent...');
+    console.log('📍 URL:', `${this.baseUrl}/create-payment-intent`);
+    console.log('💰 Amount:', amount, '→', Math.round(amount * 100), 'cents');
+    console.log('📦 Payload:', { amount: Math.round(amount * 100), currency, items, customer });
+
     const response = await fetch(`${this.baseUrl}/create-payment-intent`, {
       method: 'POST',
       headers: {
@@ -70,11 +75,18 @@ export class PaymentService {
       }),
     });
 
+    console.log('📨 Response status:', response.status, response.statusText);
+    console.log('📨 Response ok:', response.ok);
+
     if (!response.ok) {
-      throw new Error('Failed to create payment intent');
+      const errorText = await response.text();
+      console.error('❌ Backend error:', errorText);
+      throw new Error(`Failed to create payment intent: ${response.status} ${errorText}`);
     }
 
     const data = await response.json();
+    console.log('✅ Payment intent response:', data);
+    console.log('🔑 Client secret received:', data.client_secret ? 'YES' : 'NO');
     return data;
   }
 
@@ -84,8 +96,12 @@ export class PaymentService {
     items: CartItem[],
     customer: CustomerInfo,
     total: string,
-  ): Promise<void> {
-    await fetch(`${this.baseUrl}/payment-success`, {
+  ): Promise<{ success: boolean; orderId: string; message: string }> {
+    console.log('🔄 PaymentService: Sending request to backend...');
+    console.log('URL:', `${this.baseUrl}/payment-success`);
+    console.log('Payload:', { paymentIntentId, items, customer, total });
+
+    const response = await fetch(`${this.baseUrl}/payment-success`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -97,6 +113,19 @@ export class PaymentService {
         total,
       }),
     });
+
+    console.log('📨 Backend response status:', response.status);
+    console.log('📨 Backend response ok:', response.ok);
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('❌ Backend error response:', errorText);
+      throw new Error(`Failed to confirm payment with backend: ${response.status} ${errorText}`);
+    }
+
+    const data = await response.json();
+    console.log('✅ Backend response data:', data);
+    return data;
   }
 
   // Get payment status

@@ -60,10 +60,15 @@ const Checkout: React.FC = () => {
   const { state } = useCart();
   const cartItems = state.items;
 
-  const total = cartItems.reduce(
+  const subtotal = cartItems.reduce(
     (sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity,
     0,
   );
+
+  // Calculate totals (matching OrderSummary logic)
+  const shipping = 0; // Free shipping
+  const tax = subtotal * 0.08; // 8% tax
+  const grandTotal = subtotal + shipping + tax;
 
   if (cartItems.length === 0) {
     return (
@@ -85,8 +90,8 @@ const Checkout: React.FC = () => {
 
       <StripeProvider>
         <CheckoutGrid>
-          <CheckoutForm total={total} />
-          <OrderSummary items={cartItems} total={total} />
+          <CheckoutForm total={grandTotal} />
+          <OrderSummary items={cartItems} total={subtotal} />
         </CheckoutGrid>
       </StripeProvider>
     </CheckoutContainer>
