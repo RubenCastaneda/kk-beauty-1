@@ -1,0 +1,6 @@
+src/components/FeaturedProducts/FeaturedProducts.tsx
+src/components/Newsletter/Newsletter.tsx
+src/components/ProductCard/ProductCard.styles.ts
+src/pages/Home.tsx
+src/pages/Products.tsx
+src/styles/home.css

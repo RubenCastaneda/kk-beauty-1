@@ -58,7 +58,7 @@ const extraDetails: Record<number, Partial<Product>> = {
       'Excellent for use prior to exfoliation treatments.',
     ],
     sunburnAlert:
-      'This product contains an Alpha Hydroxy Acid (AHA) that may increase your skin’s sensitivity to the sun and particularly the possibility of sunburn. Use a sunscreen, wear protective clothing, and limit sun exposure while using this product and for a week afterwards.',
+      "This product contains an Alpha Hydroxy Acid (AHA) that may increase your skin's sensitivity to the sun and particularly the possibility of sunburn. Use a sunscreen, wear protective clothing, and limit sun exposure while using this product and for a week afterwards.",
     cautions:
       'Use only as directed. Avoid contact with the eyes. If irritation persists, discontinue use and consult a physician. Daily use of sunscreen recommended with any glycolic product. Use caution when combining with other exfoliating products.',
     ingredients:
@@ -74,7 +74,7 @@ const extraDetails: Record<number, Partial<Product>> = {
       'AM and PM. Apply 2 to 3 drops of serum to face and décolleté following thorough cleansing of the skin. Allow to absorb.',
     ],
     sunburnAlert:
-      'This product contains an Alpha Hydroxy Acid (AHA) that may increase your skin’s sensitivity to the sun and particularly the possibility of sunburn. Use a sunscreen, wear protective clothing, and limit sun exposure while using this product and for a week afterwards.',
+      "This product contains an Alpha Hydroxy Acid (AHA) that may increase your skin's sensitivity to the sun and particularly the possibility of sunburn. Use a sunscreen, wear protective clothing, and limit sun exposure while using this product and for a week afterwards.",
     cautions:
       'Use only as directed. Avoid contact with the eyes. If irritation persists, discontinue use and consult a physician. Daily use of sunscreen recommended with any glycolic product. Use caution when combining with other exfoliating products.',
     ingredients:
@@ -92,7 +92,7 @@ const extraDetails: Record<number, Partial<Product>> = {
     ],
     professionalUse: ['May be used as a professional exfoliant following standard peel protocol.'],
     sunburnAlert:
-      'This product contains an Alpha Hydroxy Acid (AHA) that may increase your skin’s sensitivity to the sun and particularly the possibility of sunburn. Use a sunscreen, wear protective clothing, and limit sun exposure while using this product and for a week afterwards.',
+      "This product contains an Alpha Hydroxy Acid (AHA) that may increase your skin's sensitivity to the sun and particularly the possibility of sunburn. Use a sunscreen, wear protective clothing, and limit sun exposure while using this product and for a week afterwards.",
     cautions:
       'Use only as directed. Avoid contact with eyes. Sensitivity to AHAs or retinols should be determined prior to use.',
     ingredients:
@@ -217,29 +217,33 @@ const products: Product[] = allProductImages.map((img, i) => {
 
 const Section = styled.section`
   position: relative;
-  width: 90%;
+  width: 100%;
   max-width: 1200px;
-  margin: 3rem auto 2rem auto;
-  padding: 2rem 1rem;
+  margin: 0 auto;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
   @media (max-width: 600px) {
-    width: 98vw;
-    margin: 2rem auto 1rem auto;
-    padding: 1rem 0.5rem;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
   }
 `;
 
 const Grid = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 32px;
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
   width: 100%;
   @media (max-width: 600px) {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.5rem;
+    grid-template-columns: repeat(3, minmax(120px, 1fr));
+    gap: 12px;
+    padding: 12px;
   }
 `;
 
@@ -297,8 +301,8 @@ const Products: React.FC = () => {
             color: '#eee',
           }}
         >
-          Don’t wait—add your favorites to your cart and experience the KK Beauty Lab difference.
-          Your next beauty obsession is just a click away!
+          Don&apos;t wait—add your favorites to your cart and experience the KK Beauty Lab
+          difference. Your next beauty obsession is just a click away!
         </span>
       </HeroTextSection>
     </>

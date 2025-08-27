@@ -38,6 +38,12 @@ const ProductsGrid = styled.div`
   padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
+
+  @media (max-width: 600px) {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    padding: 8px;
+  }
 `;
 
 const ProductCard = styled.div`
@@ -58,6 +64,11 @@ const ProductCard = styled.div`
     transform: translateY(-2px);
     box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
   }
+
+  @media (max-width: 600px) {
+    padding: 8px;
+    border-radius: 8px;
+  }
 `;
 
 const ProductImage = styled.img`
@@ -66,17 +77,33 @@ const ProductImage = styled.img`
   object-fit: cover;
   border-radius: 12px;
   margin-bottom: 16px;
+
+  @media (max-width: 600px) {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 6px;
+  }
 `;
 
 const ProductName = styled.h3`
   font-size: 18px;
   margin: 12px 0;
+
+  @media (max-width: 600px) {
+    font-size: 12px;
+    margin: 6px 0;
+  }
 `;
 
 const ProductPrice = styled.div`
   font-size: 16px;
   color: #eaeaea;
   margin-top: 8px;
+
+  @media (max-width: 600px) {
+    font-size: 10px;
+    margin-top: 4px;
+  }
 `;
 
 // Then in your component:

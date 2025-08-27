@@ -17,11 +17,11 @@ import { motion } from 'framer-motion';
 export const Card = styled(motion.div)`
   background: #161616;
   border-radius: 16px;
-  padding: 24px;
+  padding: 12px;
   cursor: pointer;
   width: 100%;
   height: 100%;
-  min-height: 300px; // Add a minimum height
+  min-height: 220px;
   position: relative;
   overflow: hidden;
   display: flex;
@@ -40,6 +40,8 @@ export const Card = styled(motion.div)`
     min-width: 0;
     border-radius: 0.5rem;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12);
+    padding: 6px;
+    min-height: 140px;
   }
 `;
 
@@ -53,7 +55,7 @@ export const Image = styled.img`
   box-sizing: border-box;
   transition: transform 0.6s cubic-bezier(0.2, 0, 0.2, 1);
   border-radius: 8px;
-  padding: 1rem;
+  padding: 0.5rem;
 
   ${Card}:hover & {
     transform: scale(1.05);
@@ -61,6 +63,7 @@ export const Image = styled.img`
 
   @media (max-width: 600px) {
     border-radius: 0.5rem 0.5rem 0 0;
+    padding: 0.15rem;
   }
 `;
 
@@ -73,8 +76,8 @@ export const Name = styled.h3`
   margin-top: 0.75rem;
 
   @media (max-width: 600px) {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+    font-size: 0.75rem;
+    margin-top: 0.4rem;
   }
 `;
 
@@ -86,7 +89,7 @@ export const Price = styled.p`
   margin-bottom: 1rem;
 
   @media (max-width: 600px) {
-    font-size: 0.85rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.7rem;
+    margin-bottom: 0.4rem;
   }
 `;
