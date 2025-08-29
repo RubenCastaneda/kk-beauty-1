@@ -43,29 +43,74 @@ const ModalContent = styled(motion.div)`
   background: #161616;
   border-radius: 16px;
   padding: 24px;
-  width: 90%;
-  max-width: 500px;
+  width: 95%;
+  max-width: 700px;
+  max-height: 85vh;
   position: relative;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
+  margin-bottom: 40px;
+
+  /* Custom scrollbar styling */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: #2a2a2a;
+    border-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 4px;
+
+    &:hover {
+      background: #777;
+    }
+  }
+
+  /* Firefox scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #555 #2a2a2a;
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
-  top: 16px;
+  position: sticky;
+  top: 0;
   right: 16px;
-  background: none;
+  background: #161616;
   border: none;
   color: #eaeaea;
   font-size: 24px;
   cursor: pointer;
+  float: right;
+  margin-bottom: 16px;
+  z-index: 10;
+  padding: 8px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &:hover {
+    background: #2a2a2a;
+  }
 `;
 
 const ProductImage = styled.img`
   width: 100%;
-  height: 300px;
-  object-fit: cover;
+  max-width: 400px;
+  height: auto;
+  max-height: 400px;
+  object-fit: contain;
   border-radius: 12px;
   margin-bottom: 16px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 `;
 
 const ProductName = styled.h2`
@@ -104,6 +149,7 @@ const BuyButton = styled.button`
 
 const ProductDetails = styled.div`
   margin: 16px 0;
+  padding-bottom: 40px;
 `;
 
 const DetailSection = styled.div`
@@ -123,6 +169,20 @@ const DetailText = styled.p`
 
 const ProductModal: React.FC<ModalProps> = ({ product, onClose, isOpen }) => {
   const { dispatch } = useCart();
+
+  // Disable body scroll when modal is open
+  React.useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'unset';
+    }
+
+    // Cleanup function to restore scroll when component unmounts
+    return () => {
+      document.body.style.overflow = 'unset';
+    };
+  }, [isOpen]);
 
   const handlePurchase = () => {
     dispatch({

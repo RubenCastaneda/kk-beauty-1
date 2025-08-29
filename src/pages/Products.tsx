@@ -13,7 +13,7 @@ const allProductImages = [
   '/images/product_pictures/Glycolic Toner (black BG).jpg',
   '/images/product_pictures/Hexapeptide Moisture Creme (black BG).jpg',
   '/images/product_pictures/Hyaluronic Toner (black BG).jpg',
-  '/images/product_pictures/Illuminating Peptide Creme (black BG).png',
+  '/images/product_pictures/Illuminating Peptide Creme (black BG).jpeg',
   '/images/product_pictures/Retinol & Lactic Exfoliating Serum (black BG).jpg',
   '/images/product_pictures/Tranexamic B3 Serum (black BG).jpg',
   '/images/product_pictures/Ferulic-C 20 Eye Cream (black BG).jpg',
@@ -22,6 +22,7 @@ const allProductImages = [
 const extraDetails: Record<number, Partial<Product>> = {
   4: {
     name: 'Glycolic Cleanser',
+    price: '$39',
     description:
       'Gently lifts away impurities and dull surface cells while preserving the skin\u2019s natural radiance.',
     skinTypes: 'Mature \u00b7 Oily/Combination \u00b7 Hyperpigmented',
@@ -49,6 +50,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   5: {
     name: 'Glycolic Toner',
+    price: '$44',
     description:
       'Enhance topical clarity with this citrus-based Alpha Hydroxy Acid toner that sweeps away excess oils and debris that can obstruct natural radiance. This potent glycolic formula supports a luminous complexion.',
     skinTypes: 'Mature · Oily/Combination Skin · Hyperpigmented',
@@ -67,6 +69,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   10: {
     name: 'Tranexamic B3 Serum',
+    price: '$115',
     description:
       'Achieve a more radiant complexion with this concentrated serum offering a revitalizing complex of natural fruit acids, Niacinamide and biometric Nonapeptide-1. Tranexamic and alpha hydroxy acids further elevate skin radiance and clarity.',
     skinTypes: 'Hyperpigmented · Oily/Combination Skin',
@@ -83,6 +86,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   9: {
     name: 'Retinol & Lactic Exfoliating Serum',
+    price: '$150',
     description:
       'An effective conditioning exfoliant offering Retinol, Lactic Acid and Seaweed Extract. Ideal for those seeking a deeper exfoliation with nourishing hydration.',
     skinTypes: 'Mature · All Skin Types Except Extremely Sensitive',
@@ -101,6 +105,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   8: {
     name: 'Illuminating Peptide Crème',
+    price: '$140',
     description:
       'Lightweight daily crème that supports natural radiance with Azelaic and Kojic Acid, Vitamin C, Niacinamide and peptides. Protects against environmental stressors that can lead to dull skin.',
     skinTypes: 'Hyperpigmented · Mature · All Skin Types',
@@ -116,6 +121,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   2: {
     name: 'Biomed Retinol 500',
+    price: '$165',
     description:
       'Rich crème offering skin-conditioning benefits of Vitamin A. Contains Retinol and Cariciline® SB to refine and support mature or combination skin while Bisabolol defends against daily stresses.',
     skinTypes: 'Mature · Oily/Combination',
@@ -132,6 +138,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   7: {
     name: 'Hyaluronic Toner',
+    price: '$44',
     description:
       'Hydrate, restore and nourish with this marine and Hyaluronic Acid-rich toner that boosts the effectiveness of your skin care regimen.',
     skinTypes: 'Mature · Dry/Sensitive · All Skin Types',
@@ -145,6 +152,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   6: {
     name: 'Hexapeptide Moisture Crème',
+    price: '$130',
     description:
       'Luxurious crème with Hexa and Tetrapeptides that help renew the look of skin. Moisture-rich Sodium Hyaluronate and Aloe Vera encourage glowing, hydrated skin.',
     skinTypes: 'Mature · Dry/Sensitive · Stressed Skin',
@@ -160,6 +168,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   1: {
     name: 'AHA Hand Crème',
+    price: '$75',
     description:
       'Revitalize dry hands with this rich hand crème. Multi-source fruit acids gently exfoliate distressed skin leaving hands smooth and soft as the rich formula melts in.',
     howToUseClient: ['Apply to hands and massage until fully absorbed.'],
@@ -172,6 +181,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   3: {
     name: 'Cascading AOX+ Enviro Serum',
+    price: '$150',
     description:
       'Peptide enriched antioxidant serum fortified with Ameliox™ Complex to protect against environmental aggression while enhancing natural radiance.',
     skinTypes: 'Mature · Hyperpigmented · All Skin Types',
@@ -188,6 +198,7 @@ const extraDetails: Record<number, Partial<Product>> = {
   },
   11: {
     name: 'Ferulic-C 20 Eye Cream',
+    price: '$125',
     description:
       'Targeted eye treatment combining Ferulic Acid and Vitamin C to brighten and smooth the delicate eye area.',
     skinTypes: 'All Skin Types',
@@ -205,14 +216,20 @@ const extraDetails: Record<number, Partial<Product>> = {
 
 // Generate a product list using all images, filling in with sample data if needed
 const products: Product[] = allProductImages.map((img, i) => {
+  const productId = i + 1;
+  const extraDetail = extraDetails[productId];
+
   const base = {
-    id: i + 1,
-    name: featuredProducts[i]?.name || `Product ${i + 1}`,
+    id: productId,
+    name: extraDetail?.name || featuredProducts[i]?.name || `Product ${productId}`,
     image: img,
-    description: featuredProducts[i]?.description || 'A wonderful product coming soon.',
-    price: featuredProducts[i]?.price || '',
+    description:
+      extraDetail?.description ||
+      featuredProducts[i]?.description ||
+      'A wonderful product coming soon.',
+    price: extraDetail?.price || featuredProducts[i]?.price || '',
   };
-  return { ...base, ...extraDetails[i + 1] } as Product;
+  return { ...base, ...extraDetail } as Product;
 });
 
 const Section = styled.section`
@@ -220,7 +237,7 @@ const Section = styled.section`
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0;
+  padding: 60px 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -228,7 +245,7 @@ const Section = styled.section`
   @media (max-width: 600px) {
     width: 100%;
     margin: 0 auto;
-    padding: 0;
+    padding: 40px 0;
   }
 `;
 
@@ -251,7 +268,7 @@ const Products: React.FC = () => {
   const [selected, setSelected] = useState<Product | null>(null);
 
   return (
-    <>
+    <div style={{ padding: '40px 0' }}>
       <img
         src={`${process.env.PUBLIC_URL}/logo_wht.png`}
         alt="KK Beauty Lab logo"
@@ -305,7 +322,7 @@ const Products: React.FC = () => {
           difference. Your next beauty obsession is just a click away!
         </span>
       </HeroTextSection>
-    </>
+    </div>
   );
 };
 

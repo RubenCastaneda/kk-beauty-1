@@ -75,9 +75,9 @@ const VideoContainer = styled.div`
 const Banner = styled.img`
   width: 100%;
   border-radius: 16px;
-  object-fit: cover;
-  aspect-ratio: 16/9;
-  margin: 12px 0;
+  object-fit: contain;
+  margin: 12px auto;
+  display: block;
 `;
 const NewsletterForm = styled.form`
   display: flex;
@@ -122,9 +122,9 @@ const FooterLinks = styled.footer`
   gap: 10px;
 `;
 
-const hero1 = '/images/hero1.jpg';
-const hero2 = '/images/hero3.jpg';
-const hero3 = '/images/Product_Group.jpg';
+const hero1 = '/images/hero2.jpg';
+const hero2 = '/images/hero5.jpg';
+const hero3 = '/images/hero3.jpg';
 
 const Home: React.FC = () => {
   // Scroll to newsletter section
