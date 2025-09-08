@@ -16,16 +16,21 @@ type Action =
   | { type: 'add'; item: CartItem }
   | { type: 'remove'; id: number }
   | { type: 'increment'; id: number }
-  | { type: 'decrement'; id: number };
+  | { type: 'decrement'; id: number }
+  | { type: 'clear' };
 
 const STORAGE_KEY = 'cart-items';
 
 const CartContext = createContext<{
   state: CartState;
   dispatch: React.Dispatch<Action>;
+  getCartTotal: () => { total: string; subtotal: number };
+  clearCart: () => void;
 }>({
   state: { items: [] },
   dispatch: () => undefined,
+  getCartTotal: () => ({ total: '0.00', subtotal: 0 }),
+  clearCart: () => undefined,
 });
 
 function cartReducer(state: CartState, action: Action): CartState {
@@ -55,6 +60,8 @@ function cartReducer(state: CartState, action: Action): CartState {
           .map((i) => (i.id === action.id ? { ...i, quantity: i.quantity - 1 } : i))
           .filter((i) => i.quantity > 0),
       };
+    case 'clear':
+      return { items: [] };
     default:
       return state;
   }
@@ -83,7 +90,26 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     }
   }, [state.items]);
 
-  return <CartContext.Provider value={{ state, dispatch }}>{children}</CartContext.Provider>;
+  const getCartTotal = () => {
+    const subtotal = state.items.reduce(
+      (sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity,
+      0,
+    );
+    return {
+      total: subtotal.toFixed(2),
+      subtotal,
+    };
+  };
+
+  const clearCart = () => {
+    dispatch({ type: 'clear' });
+  };
+
+  return (
+    <CartContext.Provider value={{ state, dispatch, getCartTotal, clearCart }}>
+      {children}
+    </CartContext.Provider>
+  );
 };
 
 export const useCart = () => useContext(CartContext);
