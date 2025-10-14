@@ -1,6 +1,8 @@
-﻿// This is a mock payment service
+// This is a mock payment service
 // In a real application, this would communicate with your backend server
 // which would then communicate with Stripe's API
+
+import logger from '../utils/logger';
 
 export interface PaymentIntent {
   id: string;
@@ -44,8 +46,8 @@ export class PaymentService {
   private constructor() {
     // In production, this would be your backend API URL
     const apiUrl = process.env.REACT_APP_BACKEND_API_URL || 'http://localhost:3001/api';
-    console.log('API URL from env:', process.env.REACT_APP_BACKEND_API_URL);
-    console.log('Final API URL:', apiUrl);
+    logger.debug('API URL from env:', process.env.REACT_APP_BACKEND_API_URL);
+    logger.debug('Final API URL:', apiUrl);
     this.baseUrl = apiUrl;
   }
 
@@ -63,10 +65,10 @@ export class PaymentService {
     items?: CartItem[],
     customer?: CustomerInfo,
   ): Promise<{ client_secret: string }> {
-    console.log('🔄 PaymentService: Creating payment intent...');
-    console.log('📍 URL:', `${this.baseUrl}/create-payment-intent`);
-    console.log('💰 Amount:', amount, '→', Math.round(amount * 100), 'cents');
-    console.log('📦 Payload:', { amount: Math.round(amount * 100), currency, items, customer });
+    logger.debug('🔄 PaymentService: Creating payment intent...');
+    logger.debug('📍 URL:', `${this.baseUrl}/create-payment-intent`);
+    logger.debug('💰 Amount:', amount, '→', Math.round(amount * 100), 'cents');
+    logger.debug('📦 Payload:', { amount: Math.round(amount * 100), currency, items, customer });
 
     const response = await fetch(`${this.baseUrl}/create-payment-intent`, {
       method: 'POST',
@@ -81,18 +83,18 @@ export class PaymentService {
       }),
     });
 
-    console.log('📨 Response status:', response.status, response.statusText);
-    console.log('📨 Response ok:', response.ok);
+    logger.debug('📨 Response status:', response.status, response.statusText);
+    logger.debug('📨 Response ok:', response.ok);
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('❌ Backend error:', errorText);
+      logger.error('❌ Backend error:', errorText);
       throw new Error(`Failed to create payment intent: ${response.status} ${errorText}`);
     }
 
     const data = await response.json();
-    console.log('✅ Payment intent response:', data);
-    console.log('🔑 Client secret received:', data.client_secret ? 'YES' : 'NO');
+    logger.debug('✅ Payment intent response:', data);
+    logger.debug('🔑 Client secret received:', data.client_secret ? 'YES' : 'NO');
     return data;
   }
 
@@ -103,9 +105,9 @@ export class PaymentService {
     customer: CustomerInfo,
     total: string,
   ): Promise<{ success: boolean; orderId: string; message: string }> {
-    console.log('🔄 PaymentService: Sending request to backend...');
-    console.log('URL:', `${this.baseUrl}/payment-success`);
-    console.log('Payload:', { paymentIntentId, items, customer, total });
+    logger.debug('🔄 PaymentService: Sending request to backend...');
+    logger.debug('URL:', `${this.baseUrl}/payment-success`);
+    logger.debug('Payload:', { paymentIntentId, items, customer, total });
 
     const response = await fetch(`${this.baseUrl}/payment-success`, {
       method: 'POST',
@@ -120,17 +122,17 @@ export class PaymentService {
       }),
     });
 
-    console.log('📨 Backend response status:', response.status);
-    console.log('📨 Backend response ok:', response.ok);
+    logger.debug('📨 Backend response status:', response.status);
+    logger.debug('📨 Backend response ok:', response.ok);
 
     if (!response.ok) {
       const errorText = await response.text();
-      console.error('❌ Backend error response:', errorText);
+      logger.error('❌ Backend error response:', errorText);
       throw new Error(`Failed to confirm payment with backend: ${response.status} ${errorText}`);
     }
 
     const data = await response.json();
-    console.log('✅ Backend response data:', data);
+    logger.debug('✅ Backend response data:', data);
     return data;
   }
 

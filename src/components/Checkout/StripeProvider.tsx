@@ -1,13 +1,14 @@
 import React from 'react';
 import { Elements } from '@stripe/react-stripe-js';
 import { loadStripe } from '@stripe/stripe-js';
+import logger from '../../utils/logger';
 // Load Stripe with publishable key from environment variables
 const publishableKey = process.env.REACT_APP_STRIPE_PUBLISHABLE_KEY;
 
 // Debug logging for environment variables
 
 if (!publishableKey) {
-  console.error('REACT_APP_STRIPE_PUBLISHABLE_KEY is not defined in environment variables');
+  logger.error('REACT_APP_STRIPE_PUBLISHABLE_KEY is not defined in environment variables');
   throw new Error('Stripe publishable key is required but not found in environment variables');
 }
 

@@ -3,6 +3,7 @@ import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import styled from 'styled-components';
 import { useCart } from '../../context/CartContext';
 import paymentService from '../../services/paymentService';
+import logger from '../../utils/logger';
 
 const FormContainer = styled.div`
   background: rgba(24, 24, 24, 0.98);
@@ -331,15 +332,15 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    console.log('🚀 Form submitted - starting payment process');
+    logger.debug('🚀 Form submitted - starting payment process');
     e.preventDefault();
 
     if (!stripe || !elements) {
-      console.log('❌ Stripe or elements not loaded');
+      logger.debug('❌ Stripe or elements not loaded');
       return;
     }
 
-    console.log('✅ Stripe and elements loaded, proceeding...');
+    logger.debug('✅ Stripe and elements loaded, proceeding...');
     setLoading(true);
     setError(null);
 
@@ -352,7 +353,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
 
     try {
       // Step 1: Create payment intent on backend
-      console.log('Creating payment intent with:', {
+      logger.debug('Creating payment intent with:', {
         amount: parseFloat(cartTotal),
         items: items.length,
         customer: formData.name,
@@ -372,13 +373,13 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
         },
       );
 
-      console.log('Payment intent created successfully, client_secret received');
+      logger.debug('Payment intent created successfully, client_secret received');
 
       // Step 2: Confirm payment with Stripe
-      console.log('🔄 Confirming payment with Stripe...');
-      console.log('🔑 Using client_secret:', client_secret);
-      console.log('💳 Card element:', cardElement);
-      console.log('📋 Billing details:', {
+      logger.debug('🔄 Confirming payment with Stripe...');
+      logger.debug('🔑 Using client_secret:', client_secret);
+      logger.debug('💳 Card element:', cardElement);
+      logger.debug('📋 Billing details:', {
         name: formData.name,
         email: formData.email,
         address: formData.address,
@@ -403,24 +404,24 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
         },
       });
 
-      console.log('🎯 Stripe confirmCardPayment completed!');
-      console.log('📨 Full Stripe response:', { error, paymentIntent });
-      console.log('✅ Payment intent object:', paymentIntent);
-      console.log('📊 Payment intent status:', paymentIntent?.status);
-      console.log('❌ Error object:', error);
-      console.log('🔍 Error type:', typeof error);
-      console.log('🔍 PaymentIntent type:', typeof paymentIntent);
+      logger.debug('🎯 Stripe confirmCardPayment completed!');
+      logger.debug('📨 Full Stripe response:', { error, paymentIntent });
+      logger.debug('✅ Payment intent object:', paymentIntent);
+      logger.debug('📊 Payment intent status:', paymentIntent?.status);
+      logger.debug('❌ Error object:', error);
+      logger.debug('🔍 Error type:', typeof error);
+      logger.debug('🔍 PaymentIntent type:', typeof paymentIntent);
 
       if (error) {
-        console.error('Payment failed:', error);
+        logger.error('Payment failed:', error);
         showErrorPopup('Payment Failed', error.message || 'Payment failed. Please try again.');
-        console.log('Error popup should show now');
+        logger.debug('Error popup should show now');
       } else if (paymentIntent && paymentIntent.status === 'succeeded') {
-        console.log('✅ Payment succeeded! Processing success flow...');
-        console.log('Payment intent details:', paymentIntent);
+        logger.debug('✅ Payment succeeded! Processing success flow...');
+        logger.debug('Payment intent details:', paymentIntent);
 
         // Send confirmation to backend and wait for response
-        console.log('📡 Sending confirmation to backend...');
+        logger.debug('📡 Sending confirmation to backend...');
         try {
           const backendResponse = await paymentService.paymentSuccess(
             paymentIntent.id,
@@ -435,12 +436,12 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
             },
             total.toString(),
           );
-          console.log('✅ Backend confirmation successful:', backendResponse);
+          logger.debug('✅ Backend confirmation successful:', backendResponse);
 
           // Only show success popup AFTER backend confirms
           showSuccessPopup(backendResponse, total.toString());
         } catch (confirmError) {
-          console.error('❌ Backend confirmation failed:', confirmError);
+          logger.error('❌ Backend confirmation failed:', confirmError);
           // Show error popup if backend fails
           showErrorPopup(
             'Order Confirmation Failed',
@@ -449,10 +450,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
         }
       } else {
         // Handle cases where payment intent exists but status is not 'succeeded'
-        console.log('⚠️ Unexpected payment state:');
-        console.log('Payment Intent:', paymentIntent);
-        console.log('Status:', paymentIntent?.status);
-        console.log('Error:', error);
+        logger.debug('⚠️ Unexpected payment state:');
+        logger.debug('Payment Intent:', paymentIntent);
+        logger.debug('Status:', paymentIntent?.status);
+        logger.debug('Error:', error);
 
         // Show error popup for unexpected states
         showErrorPopup(
@@ -461,10 +462,10 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
         );
       }
     } catch (err) {
-      console.error('Error:', err);
+      logger.error('Error:', err);
       showErrorPopup('Unexpected Error', 'An unexpected error occurred. Please try again.');
     } finally {
-      console.log('🏁 Payment process completed, setting loading to false');
+      logger.debug('🏁 Payment process completed, setting loading to false');
       setLoading(false);
     }
   };
@@ -474,7 +475,7 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
     backendResponse: { success: boolean; orderId: string; message: string },
     amount: string,
   ) => {
-    console.log('🎉 Showing success popup with backend data:', backendResponse);
+    logger.debug('🎉 Showing success popup with backend data:', backendResponse);
     const popupDataToSet = {
       type: 'success' as const,
       title: 'Payment Successful!',
@@ -484,17 +485,17 @@ const CheckoutForm: React.FC<CheckoutFormProps> = ({ total }) => {
       orderId: backendResponse.orderId,
       amount: amount,
     };
-    console.log('📋 Setting popup data:', popupDataToSet);
+    logger.debug('📋 Setting popup data:', popupDataToSet);
     setPopupData(popupDataToSet);
-    console.log('🔄 Setting showPopup to true...');
+    logger.debug('🔄 Setting showPopup to true...');
     setShowPopup(true);
     setSuccess(true);
-    console.log('✅ Popup state should now be visible');
+    logger.debug('✅ Popup state should now be visible');
   };
 
   // Helper function to show error popup
   const showErrorPopup = (title: string, message: string) => {
-    console.log('❌ Showing error popup:', { title, message });
+    logger.debug('❌ Showing error popup:', { title, message });
     setPopupData({
       type: 'error',
       title,
