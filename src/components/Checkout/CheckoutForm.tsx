@@ -143,11 +143,6 @@ const ErrorMessage = styled.div`
   margin-top: 0.5rem;
 `;
 
-const SuccessMessage = styled.div`
-  color: #51cf66;
-  font-size: 0.9rem;
-  margin-top: 0.5rem;
-`;
 
 const LoadingSpinner = styled.div`
   display: inline-block;
