@@ -143,7 +143,6 @@ const ErrorMessage = styled.div`
   margin-top: 0.5rem;
 `;
 
-
 const LoadingSpinner = styled.div`
   display: inline-block;
   width: 1rem;
