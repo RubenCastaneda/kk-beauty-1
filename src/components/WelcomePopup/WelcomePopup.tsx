@@ -108,6 +108,7 @@ const WelcomePopup: React.FC = () => {
   const [error, setError] = useState('');
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [showPopup, setShowPopup] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     // Check if user has seen the popup before
@@ -122,23 +123,72 @@ const WelcomePopup: React.FC = () => {
     return re.test(email);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError('');
+    setIsLoading(true);
+
+    console.log('WelcomePopup - Attempting to subscribe with:', {
+      email,
+      apiUrl: process.env.REACT_APP_API_URL
+    });
 
     if (!email) {
       setError('Please enter your email address');
+      setIsLoading(false);
       return;
     }
 
     if (!validateEmail(email)) {
       setError('Please enter a valid email address');
+      setIsLoading(false);
       return;
     }
 
-    // Store that user has seen the popup
-    localStorage.setItem('hasSeenWelcomePopup', 'true');
-    setIsSubmitted(true);
+    try {
+      // First, check if we have the API URL
+      const apiUrl = process.env.REACT_APP_API_URL;
+      if (!apiUrl) {
+        throw new Error('API URL is not configured. Please check your environment variables.');
+      }
+
+      console.log('WelcomePopup - Making API request to:', `${apiUrl}/newsletter/subscribe`);
+      
+      const response = await fetch(`${apiUrl}/newsletter/subscribe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ 
+          email,
+          source: 'welcome_popup',
+          discount_code: 'WELCOME15'
+        }),
+      });
+
+      let data;
+      try {
+        data = await response.json();
+        console.log('WelcomePopup - Response data:', data);
+      } catch {
+        throw new Error('Invalid response from server. Please try again later.');
+      }
+
+      if (!response.ok) {
+        throw new Error(data?.error || 'Failed to subscribe');
+      }
+
+      // Store that user has seen the popup
+      localStorage.setItem('hasSeenWelcomePopup', 'true');
+      setIsSubmitted(true);
+    } catch (error) {
+      console.error('WelcomePopup - Error:', error);
+      setError(error instanceof Error ? error.message : 'Failed to subscribe. Please try again.');
+      setIsLoading(false);
+      return;
+    }
+
+    setIsLoading(false);
   };
 
   if (!showPopup) {
@@ -163,7 +213,9 @@ const WelcomePopup: React.FC = () => {
                 required
               />
               {error && <ErrorMessage>{error}</ErrorMessage>}
-              <Button type="submit">Get My Discount</Button>
+              <Button type="submit" disabled={isLoading}>
+                {isLoading ? 'Subscribing...' : 'Get My Discount'}
+              </Button>
             </Form>
           </>
         ) : (
