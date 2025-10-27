@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { logger } from '../../utils/logger';
 
 const Overlay = styled.div`
   position: fixed;
@@ -128,7 +129,7 @@ const WelcomePopup: React.FC = () => {
     setError('');
     setIsLoading(true);
 
-    console.log('WelcomePopup - Attempting to subscribe with:', {
+    logger.debug('WelcomePopup - Attempting to subscribe with:', {
       email,
       apiUrl: process.env.REACT_APP_API_URL,
     });
@@ -152,7 +153,7 @@ const WelcomePopup: React.FC = () => {
         throw new Error('API URL is not configured. Please check your environment variables.');
       }
 
-      console.log('WelcomePopup - Making API request to:', `${apiUrl}/newsletter/subscribe`);
+      logger.debug('WelcomePopup - Making API request to:', `${apiUrl}/newsletter/subscribe`);
 
       const response = await fetch(`${apiUrl}/newsletter/subscribe`, {
         method: 'POST',
@@ -169,7 +170,7 @@ const WelcomePopup: React.FC = () => {
       let data;
       try {
         data = await response.json();
-        console.log('WelcomePopup - Response data:', data);
+        logger.debug('WelcomePopup - Response data:', data);
       } catch {
         throw new Error('Invalid response from server. Please try again later.');
       }
@@ -182,7 +183,7 @@ const WelcomePopup: React.FC = () => {
       localStorage.setItem('hasSeenWelcomePopup', 'true');
       setIsSubmitted(true);
     } catch (error) {
-      console.error('WelcomePopup - Error:', error);
+      logger.error('WelcomePopup - Error:', error);
       setError(error instanceof Error ? error.message : 'Failed to subscribe. Please try again.');
       setIsLoading(false);
       return;

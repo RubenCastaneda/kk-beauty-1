@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as S from './Newsletter.styles';
+import { logger } from '../../utils/logger';
 
 const NewsletterCard = styled.div`
   background: #161616;
@@ -65,7 +66,7 @@ const Newsletter: React.FC = () => {
     setIsError(false);
 
     try {
-      console.log('Newsletter - Attempting to subscribe with:', {
+      logger.debug('Newsletter - Attempting to subscribe with:', {
         email,
         apiUrl: process.env.REACT_APP_API_URL,
       });
@@ -76,7 +77,7 @@ const Newsletter: React.FC = () => {
         throw new Error('API URL is not configured. Please check your environment variables.');
       }
 
-      console.log('Newsletter - Making API request to:', `${apiUrl}/newsletter/subscribe`);
+      logger.debug('Newsletter - Making API request to:', `${apiUrl}/newsletter/subscribe`);
 
       const response = await fetch(`${apiUrl}/newsletter/subscribe`, {
         method: 'POST',
@@ -97,7 +98,7 @@ const Newsletter: React.FC = () => {
       let data;
       try {
         data = await response.json();
-        console.log('Newsletter - Response data:', data);
+        logger.debug('Newsletter - Response data:', data);
       } catch {
         // Removed unused parseError parameter
         throw new Error('Invalid response from server. Please try again later.');
@@ -110,7 +111,7 @@ const Newsletter: React.FC = () => {
       setMessage('Thanks for subscribing! 🎉');
       setEmail('');
     } catch (error) {
-      console.error('Newsletter - Error:', error);
+      logger.error('Newsletter - Error:', error);
       setIsError(true);
       setMessage(error instanceof Error ? error.message : 'Failed to subscribe. Please try again.');
     } finally {
