@@ -46,22 +46,73 @@ const NewsletterButton = styled.button`
   }
 `;
 
-const Newsletter: React.FC = () => (
-  <S.Section id="newsletter">
-    <NewsletterCard>
-      <h2 style={{ fontSize: 18 }}>Ready to Glow?</h2>
-      <p>
-        Join our newsletter and be the first to know about new products, special promotions, and
-        beauty tips.
-      </p>
-      <NewsletterForm>
-        <NewsletterInput type="email" placeholder="Email address" />
-        <NewsletterButton type="submit">Subscribe</NewsletterButton>
-      </NewsletterForm>
-    </NewsletterCard>
-  </S.Section>
-);
+const Message = styled.div<{ isError?: boolean }>`
+  margin-top: 12px;
+  color: ${props => props.isError ? '#ff4d4d' : '#4caf50'};
+  font-size: 14px;
+`;
 
-;
+const Newsletter: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [message, setMessage] = useState('');
+  const [isError, setIsError] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsLoading(true);
+    setMessage('');
+    setIsError(false);
+
+    try {
+      const response = await fetch(`${process.env.API_URL}/api/newsletter/subscribe`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to subscribe');
+      }
+
+      setMessage('Thanks for subscribing! 🎉');
+      setEmail('');
+    } catch (error) {
+      setIsError(true);
+      setMessage(error instanceof Error ? error.message : 'Failed to subscribe. Please try again.');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  return (
+    <S.Section id="newsletter">
+      <NewsletterCard>
+        <h2 style={{ fontSize: 18 }}>Ready to Glow?</h2>
+        <p>
+          Join our newsletter and be the first to know about new products, special promotions, and
+          beauty tips.
+        </p>
+        <NewsletterForm onSubmit={handleSubmit}>
+          <NewsletterInput
+            type="email"
+            placeholder="Email address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <NewsletterButton type="submit" disabled={isLoading}>
+            {isLoading ? 'Subscribing...' : 'Subscribe'}
+          </NewsletterButton>
+        </NewsletterForm>
+        {message && <Message isError={isError}>{message}</Message>}
+      </NewsletterCard>
+    </S.Section>
+  );
+};
 
 export default Newsletter;
