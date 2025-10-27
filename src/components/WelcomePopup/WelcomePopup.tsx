@@ -47,11 +47,11 @@ const Input = styled.input`
   background: #222;
   color: #fff;
   font-size: 1rem;
-  
+
   &::placeholder {
     color: rgba(255, 255, 255, 0.5);
   }
-  
+
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.colors.accent};
@@ -63,8 +63,8 @@ const Button = styled.button<{ $isSuccess?: boolean }>`
   padding: 12px;
   border: none;
   border-radius: 8px;
-  background: ${props => props.$isSuccess ? '#4CAF50' : '#eaeaea'};
-  color: ${props => props.$isSuccess ? '#fff' : '#161616'};
+  background: ${(props) => (props.$isSuccess ? '#4CAF50' : '#eaeaea')};
+  color: ${(props) => (props.$isSuccess ? '#fff' : '#161616')};
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -169,15 +169,9 @@ const WelcomePopup: React.FC = () => {
         ) : (
           <>
             <Title>Thank You!</Title>
-            <Description>
-              Use this code at checkout to receive 15% off your purchase:
-            </Description>
+            <Description>Use this code at checkout to receive 15% off your purchase:</Description>
             <DiscountCode>WELCOME15</DiscountCode>
-            <Button 
-              $isSuccess 
-              onClick={() => setShowPopup(false)}
-              style={{ marginTop: '1.5rem' }}
-            >
+            <Button $isSuccess onClick={() => setShowPopup(false)} style={{ marginTop: '1.5rem' }}>
               Start Shopping
             </Button>
           </>

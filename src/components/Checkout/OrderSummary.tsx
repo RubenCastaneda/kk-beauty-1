@@ -145,7 +145,7 @@ const ApplyButton = styled.button`
 const DiscountMessage = styled.div<{ $isError?: boolean }>`
   margin-top: 0.5rem;
   font-size: 0.85rem;
-  color: ${props => props.$isError ? '#ff6b6b' : '#51cf66'};
+  color: ${(props) => (props.$isError ? '#ff6b6b' : '#51cf66')};
 `;
 
 const TotalSection = styled.div`
@@ -231,19 +231,19 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, total, setFinalTotal
   const [appliedDiscount, setAppliedDiscount] = React.useState<number>(0);
   const [discountMessage, setDiscountMessage] = React.useState<string>('');
   const [isError, setIsError] = React.useState(false);
-  
+
   const subtotal = total;
   const shipping = 0 as number; // Free shipping
-  
+
   // Calculate discount if code is applied
-  const discount = appliedDiscount > 0 ? (subtotal * appliedDiscount) : 0;
-  
+  const discount = appliedDiscount > 0 ? subtotal * appliedDiscount : 0;
+
   // Calculate tax after discount
   const taxableAmount = subtotal - discount;
   const tax = taxableAmount * 0.08; // 8% tax
-  
+
   const grandTotal = subtotal - discount + shipping + tax;
-  
+
   React.useEffect(() => {
     if (setFinalTotal) {
       setFinalTotal(grandTotal);
@@ -252,14 +252,14 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, total, setFinalTotal
 
   const handleApplyDiscount = () => {
     const code = discountCode.trim().toUpperCase();
-    
+
     if (code === 'WELCOME15') {
       if (appliedDiscount > 0) {
         setIsError(true);
         setDiscountMessage('A discount code has already been applied');
         return;
       }
-      
+
       setAppliedDiscount(0.15); // 15% discount
       setDiscountMessage('15% discount applied successfully!');
       setIsError(false);
@@ -308,11 +308,7 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, total, setFinalTotal
             Apply
           </ApplyButton>
         </div>
-        {discountMessage && (
-          <DiscountMessage $isError={isError}>
-            {discountMessage}
-          </DiscountMessage>
-        )}
+        {discountMessage && <DiscountMessage $isError={isError}>{discountMessage}</DiscountMessage>}
       </DiscountSection>
 
       <Divider />

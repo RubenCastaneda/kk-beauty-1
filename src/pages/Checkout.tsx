@@ -87,11 +87,7 @@ const Checkout: React.FC = () => {
       <StripeProvider>
         <CheckoutGrid>
           <CheckoutForm total={finalTotal || total} />
-          <OrderSummary 
-            items={cartItems} 
-            total={total} 
-            setFinalTotal={setFinalTotal}
-          />
+          <OrderSummary items={cartItems} total={total} setFinalTotal={setFinalTotal} />
         </CheckoutGrid>
       </StripeProvider>
     </CheckoutContainer>
