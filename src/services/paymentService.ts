@@ -106,7 +106,7 @@ export class PaymentService {
     logger.debug('URL:', `${this.baseUrl}/payment-success`);
     logger.debug('Payload:', { paymentIntentId, items, customer, total });
 
-    const response = await fetch(`${this.baseUrl}/payment-success`, {
+    const response = await fetch(`${this.baseUrl}/api/payment-success`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
