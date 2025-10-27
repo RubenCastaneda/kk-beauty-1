@@ -48,7 +48,7 @@ const NewsletterButton = styled.button`
 
 const Message = styled.div<{ isError?: boolean }>`
   margin-top: 12px;
-  color: ${props => props.isError ? '#ff4d4d' : '#4caf50'};
+  color: ${(props) => (props.isError ? '#ff4d4d' : '#4caf50')};
   font-size: 14px;
 `;
 
