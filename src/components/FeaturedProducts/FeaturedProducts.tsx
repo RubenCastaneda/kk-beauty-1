@@ -29,14 +29,6 @@ export const products: Product[] = [
       'Peptide enriched antioxidant serum fortified with Ameliox™ Complex to protect against environmental aggression while enhancing natural radiance.',
     price: '$30',
   },
-  {
-    id: 4,
-    name: 'Cascading AOX+ Enviro Serum',
-    image: '/images/product_pictures/Cascading AOX + Enviro Serum (black BG).jpg',
-    description:
-      'Peptide enriched antioxidant serum fortified with Ameliox™ Complex to protect against environmental aggression while enhancing natural radiance.',
-    price: '$0.50',
-  },
 ];
 
 const ProductsGrid = styled.div`
