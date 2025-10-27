@@ -63,11 +63,11 @@ export class PaymentService {
     customer?: CustomerInfo,
   ): Promise<{ client_secret: string }> {
     logger.debug('🔄 PaymentService: Creating payment intent...');
-    logger.debug('📍 URL:', `${this.baseUrl}/api/create-payment-intent`);
+    logger.debug('📍 URL:', `${this.baseUrl}/create-payment-intent`);
     logger.debug('💰 Amount:', amount, '→', Math.round(amount * 100), 'cents');
     logger.debug('📦 Payload:', { amount: Math.round(amount * 100), currency, items, customer });
 
-    const response = await fetch(`${this.baseUrl}/api/create-payment-intent`, {
+    const response = await fetch(`${this.baseUrl}/create-payment-intent`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -103,10 +103,10 @@ export class PaymentService {
     total: string,
   ): Promise<{ success: boolean; orderId: string; message: string }> {
     logger.debug('🔄 PaymentService: Sending request to backend...');
-    logger.debug('URL:', `${this.baseUrl}/api/payment-success`);
+    logger.debug('URL:', `${this.baseUrl}/payment-success`);
     logger.debug('Payload:', { paymentIntentId, items, customer, total });
 
-    const response = await fetch(`${this.baseUrl}/api/payment-success`, {
+    const response = await fetch(`${this.baseUrl}/payment-success`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -136,7 +136,7 @@ export class PaymentService {
   // Get payment status
   async getPaymentStatus(paymentIntentId: string): Promise<{ status: string; error?: string }> {
     try {
-      const response = await fetch(`${this.baseUrl}/api/payment-status/${paymentIntentId}`);
+      const response = await fetch(`${this.baseUrl}/payment-status/${paymentIntentId}`);
 
       if (!response.ok) {
         throw new Error('Failed to get payment status');
