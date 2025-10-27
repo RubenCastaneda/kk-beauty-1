@@ -65,18 +65,37 @@ const Newsletter: React.FC = () => {
     setIsError(false);
 
     try {
-      const response = await fetch(`${process.env.API_URL}/api/newsletter/subscribe`, {
+      // First, check if we have the API URL
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      if (!apiUrl) {
+        throw new Error('API URL is not configured. Please check your environment variables.');
+      }
+
+      const response = await fetch(`${apiUrl}/api/newsletter/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
+      }).catch((error) => {
+        // Handle network errors
+        throw new Error('Unable to connect to the server. Please check your internet connection.');
       });
 
-      const data = await response.json();
+      // Check if response exists before trying to parse JSON
+      if (!response) {
+        throw new Error('No response from server');
+      }
+
+      let data;
+      try {
+        data = await response.json();
+      } catch (parseError) {
+        throw new Error('Invalid response from server. Please try again later.');
+      }
 
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to subscribe');
+        throw new Error(data?.error || 'Failed to subscribe');
       }
 
       setMessage('Thanks for subscribing! 🎉');
