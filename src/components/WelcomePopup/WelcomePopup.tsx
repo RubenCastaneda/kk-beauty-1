@@ -130,7 +130,7 @@ const WelcomePopup: React.FC = () => {
 
     console.log('WelcomePopup - Attempting to subscribe with:', {
       email,
-      apiUrl: process.env.REACT_APP_API_URL
+      apiUrl: process.env.REACT_APP_API_URL,
     });
 
     if (!email) {
@@ -153,16 +153,16 @@ const WelcomePopup: React.FC = () => {
       }
 
       console.log('WelcomePopup - Making API request to:', `${apiUrl}/newsletter/subscribe`);
-      
+
       const response = await fetch(`${apiUrl}/newsletter/subscribe`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ 
+        body: JSON.stringify({
           email,
           source: 'welcome_popup',
-          discount_code: 'WELCOME15'
+          discount_code: 'WELCOME15',
         }),
       });
 

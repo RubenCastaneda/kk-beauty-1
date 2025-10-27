@@ -67,9 +67,9 @@ const Newsletter: React.FC = () => {
     try {
       console.log('Newsletter - Attempting to subscribe with:', {
         email,
-        apiUrl: process.env.REACT_APP_API_URL
+        apiUrl: process.env.REACT_APP_API_URL,
       });
-      
+
       // First, check if we have the API URL
       const apiUrl = process.env.REACT_APP_API_URL;
       if (!apiUrl) {
@@ -77,7 +77,7 @@ const Newsletter: React.FC = () => {
       }
 
       console.log('Newsletter - Making API request to:', `${apiUrl}/newsletter/subscribe`);
-      
+
       const response = await fetch(`${apiUrl}/newsletter/subscribe`, {
         method: 'POST',
         headers: {
