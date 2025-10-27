@@ -77,8 +77,8 @@ const Newsletter: React.FC = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({ email }),
-      }).catch((error) => {
-        // Handle network errors
+      }).catch(() => {
+        // Handle network errors without unused error parameter
         throw new Error('Unable to connect to the server. Please check your internet connection.');
       });
 
@@ -90,7 +90,8 @@ const Newsletter: React.FC = () => {
       let data;
       try {
         data = await response.json();
-      } catch (parseError) {
+      } catch {
+        // Removed unused parseError parameter
         throw new Error('Invalid response from server. Please try again later.');
       }
 
