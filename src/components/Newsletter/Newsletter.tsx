@@ -66,7 +66,7 @@ const Newsletter: React.FC = () => {
 
     try {
       // First, check if we have the API URL
-      const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+      const apiUrl = process.env.API_URL;
       if (!apiUrl) {
         throw new Error('API URL is not configured. Please check your environment variables.');
       }
