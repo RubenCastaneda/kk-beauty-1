@@ -44,8 +44,8 @@ export class PaymentService {
   private baseUrl: string;
 
   private constructor() {
-    // In production, this would be your backend API URL
-    this.baseUrl = process.env.REACT_APP_API_URL || 'http://localhost:3001/api';
+    // Temporary mock API URL
+    this.baseUrl = 'http://localhost:3001/api';
   }
 
   public static getInstance(): PaymentService {

@@ -59,6 +59,7 @@ const CheckoutGrid = styled.div`
 const Checkout: React.FC = () => {
   const { state } = useCart();
   const cartItems = state.items;
+  const [finalTotal, setFinalTotal] = React.useState<number>(0);
 
   const total = cartItems.reduce(
     (sum, item) => sum + parseFloat(item.price.replace('$', '')) * item.quantity,
@@ -85,8 +86,12 @@ const Checkout: React.FC = () => {
 
       <StripeProvider>
         <CheckoutGrid>
-          <CheckoutForm total={total} />
-          <OrderSummary items={cartItems} total={total} />
+          <CheckoutForm total={finalTotal || total} />
+          <OrderSummary 
+            items={cartItems} 
+            total={total} 
+            setFinalTotal={setFinalTotal}
+          />
         </CheckoutGrid>
       </StripeProvider>
     </CheckoutContainer>

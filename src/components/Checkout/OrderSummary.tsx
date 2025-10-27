@@ -103,6 +103,51 @@ const Divider = styled.hr`
   margin: 1.5rem 0;
 `;
 
+const DiscountSection = styled.div`
+  margin: 1rem 0;
+`;
+
+const DiscountInput = styled.input`
+  width: 70%;
+  padding: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.25rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  font-size: 0.9rem;
+  margin-right: 0.5rem;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+  }
+`;
+
+const ApplyButton = styled.button`
+  padding: 0.5rem 1rem;
+  background: #333;
+  border: none;
+  border-radius: 0.25rem;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+
+  &:hover {
+    background: #444;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+`;
+
+const DiscountMessage = styled.div<{ $isError?: boolean }>`
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: ${props => props.$isError ? '#ff6b6b' : '#51cf66'};
+`;
+
 const TotalSection = styled.div`
   display: flex;
   flex-direction: column;
@@ -178,13 +223,52 @@ interface CartItem {
 interface OrderSummaryProps {
   items: CartItem[];
   total: number;
+  setFinalTotal?: (total: number) => void;
 }
 
-const OrderSummary: React.FC<OrderSummaryProps> = ({ items, total }) => {
+const OrderSummary: React.FC<OrderSummaryProps> = ({ items, total, setFinalTotal }) => {
+  const [discountCode, setDiscountCode] = React.useState('');
+  const [appliedDiscount, setAppliedDiscount] = React.useState<number>(0);
+  const [discountMessage, setDiscountMessage] = React.useState<string>('');
+  const [isError, setIsError] = React.useState(false);
+  
   const subtotal = total;
   const shipping = 0 as number; // Free shipping
-  const tax = subtotal * 0.08; // 8% tax
-  const grandTotal = subtotal + shipping + tax;
+  
+  // Calculate discount if code is applied
+  const discount = appliedDiscount > 0 ? (subtotal * appliedDiscount) : 0;
+  
+  // Calculate tax after discount
+  const taxableAmount = subtotal - discount;
+  const tax = taxableAmount * 0.08; // 8% tax
+  
+  const grandTotal = subtotal - discount + shipping + tax;
+  
+  React.useEffect(() => {
+    if (setFinalTotal) {
+      setFinalTotal(grandTotal);
+    }
+  }, [grandTotal, setFinalTotal]);
+
+  const handleApplyDiscount = () => {
+    const code = discountCode.trim().toUpperCase();
+    
+    if (code === 'WELCOME15') {
+      if (appliedDiscount > 0) {
+        setIsError(true);
+        setDiscountMessage('A discount code has already been applied');
+        return;
+      }
+      
+      setAppliedDiscount(0.15); // 15% discount
+      setDiscountMessage('15% discount applied successfully!');
+      setIsError(false);
+    } else {
+      setIsError(true);
+      setDiscountMessage('Invalid discount code');
+      setAppliedDiscount(0);
+    }
+  };
 
   return (
     <SummaryContainer>
@@ -208,11 +292,42 @@ const OrderSummary: React.FC<OrderSummaryProps> = ({ items, total }) => {
 
       <Divider />
 
+      <DiscountSection>
+        <div style={{ display: 'flex', gap: '0.5rem' }}>
+          <DiscountInput
+            type="text"
+            placeholder="Enter discount code"
+            value={discountCode}
+            onChange={(e) => setDiscountCode(e.target.value)}
+            disabled={appliedDiscount > 0}
+          />
+          <ApplyButton
+            onClick={handleApplyDiscount}
+            disabled={!discountCode.trim() || appliedDiscount > 0}
+          >
+            Apply
+          </ApplyButton>
+        </div>
+        {discountMessage && (
+          <DiscountMessage $isError={isError}>
+            {discountMessage}
+          </DiscountMessage>
+        )}
+      </DiscountSection>
+
+      <Divider />
+
       <TotalSection>
         <TotalRow>
           <TotalLabel>Subtotal</TotalLabel>
           <TotalAmount>${subtotal.toFixed(2)}</TotalAmount>
         </TotalRow>
+        {discount > 0 && (
+          <TotalRow>
+            <TotalLabel>Discount (15%)</TotalLabel>
+            <TotalAmount style={{ color: '#51cf66' }}>-${discount.toFixed(2)}</TotalAmount>
+          </TotalRow>
+        )}
         <TotalRow>
           <TotalLabel>Shipping</TotalLabel>
           <TotalAmount>{shipping === 0 ? 'Free' : `$${shipping.toFixed(2)}`}</TotalAmount>

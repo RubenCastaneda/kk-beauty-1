@@ -195,6 +195,7 @@ const ProductModal: React.FC<ModalProps> = ({ product, onClose, isOpen }) => {
         quantity: 1,
       },
     });
+    onClose(); // Close the modal after adding to cart
   };
 
   return (

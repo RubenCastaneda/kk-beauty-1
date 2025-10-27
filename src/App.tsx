@@ -12,6 +12,7 @@ import Cart from './pages/Cart';
 import Checkout from './pages/Checkout';
 import ContactUs from './pages/ContactUs';
 import { CartProvider } from './context/CartContext';
+import WelcomePopup from './components/WelcomePopup/WelcomePopup';
 
 const GlobalStyle = createGlobalStyle`
   body {
@@ -44,6 +45,7 @@ const App: React.FC = () => (
     <CartProvider>
       <Router>
         <div style={{ minHeight: '100vh', background: theme.colors.background }}>
+          <WelcomePopup />
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
