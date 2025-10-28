@@ -5,12 +5,14 @@ class Logger {
   private isProduction = process.env.NODE_ENV === 'production';
 
   // eslint-disable-next-line no-console
+  /* eslint-disable no-console */
   private consoleMap = {
     debug: console.log,
     info: console.info,
     warn: console.warn,
     error: console.error,
   } as const;
+  /* eslint-enable no-console */
 
   private formatError(error: unknown): string {
     if (error instanceof Error) {
