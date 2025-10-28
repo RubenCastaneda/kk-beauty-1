@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import * as S from './Newsletter.styles';
-import { logger } from '../../utils/logger';
+import logger from '../../utils/logger';
 
 const NewsletterCard = styled.div`
   background: #161616;
