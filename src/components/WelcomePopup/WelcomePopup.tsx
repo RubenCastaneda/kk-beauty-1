@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { logger } from '../../utils/logger';
+import logger from '../../utils/logger';
 
 const Overlay = styled.div`
   position: fixed;
