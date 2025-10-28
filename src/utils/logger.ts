@@ -1,5 +1,5 @@
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
-type LogMessage = string | number | boolean | null | undefined | object;
+type LogMessage = string | number | boolean | null | undefined | Record<string, unknown> | unknown;
 
 class Logger {
   private isProduction = process.env.NODE_ENV === 'production';
@@ -12,6 +12,20 @@ class Logger {
     error: console.error,
   } as const;
 
+  private formatError(error: unknown): string {
+    if (error instanceof Error) {
+      return `${error.name}: ${error.message}${error.stack ? `\n${error.stack}` : ''}`;
+    }
+    return String(error);
+  }
+
+  private formatMessage(message: LogMessage): unknown {
+    if (message instanceof Error) {
+      return this.formatError(message);
+    }
+    return message;
+  }
+
   private log(level: LogLevel, ...messages: LogMessage[]) {
     if (this.isProduction && level === 'debug') {
       return; // Skip debug logs in production
@@ -19,9 +33,10 @@ class Logger {
 
     const timestamp = new Date().toISOString();
     const prefix = `[${timestamp}] [${level.toUpperCase()}]`;
+    const formattedMessages = messages.map((msg) => this.formatMessage(msg));
 
     // eslint-disable-next-line no-console
-    this.consoleMap[level](prefix, ...messages);
+    this.consoleMap[level](prefix, ...formattedMessages);
   }
 
   debug(...messages: LogMessage[]) {
