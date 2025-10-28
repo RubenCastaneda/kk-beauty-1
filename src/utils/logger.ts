@@ -1,9 +1,18 @@
 type LogLevel = 'debug' | 'info' | 'warn' | 'error';
+type LogMessage = string | number | boolean | null | undefined | object;
 
 class Logger {
   private isProduction = process.env.NODE_ENV === 'production';
 
-  private log(level: LogLevel, ...args: any[]) {
+  // eslint-disable-next-line no-console
+  private consoleMap = {
+    debug: console.log,
+    info: console.info,
+    warn: console.warn,
+    error: console.error,
+  } as const;
+
+  private log(level: LogLevel, ...messages: LogMessage[]) {
     if (this.isProduction && level === 'debug') {
       return; // Skip debug logs in production
     }
@@ -11,36 +20,24 @@ class Logger {
     const timestamp = new Date().toISOString();
     const prefix = `[${timestamp}] [${level.toUpperCase()}]`;
 
-    switch (level) {
-      case 'debug':
-        console.log(prefix, ...args);
-        break;
-      case 'info':
-        console.info(prefix, ...args);
-        break;
-      case 'warn':
-        console.warn(prefix, ...args);
-        break;
-      case 'error':
-        console.error(prefix, ...args);
-        break;
-    }
+    // eslint-disable-next-line no-console
+    this.consoleMap[level](prefix, ...messages);
   }
 
-  debug(...args: any[]) {
-    this.log('debug', ...args);
+  debug(...messages: LogMessage[]) {
+    this.log('debug', ...messages);
   }
 
-  info(...args: any[]) {
-    this.log('info', ...args);
+  info(...messages: LogMessage[]) {
+    this.log('info', ...messages);
   }
 
-  warn(...args: any[]) {
-    this.log('warn', ...args);
+  warn(...messages: LogMessage[]) {
+    this.log('warn', ...messages);
   }
 
-  error(...args: any[]) {
-    this.log('error', ...args);
+  error(...messages: LogMessage[]) {
+    this.log('error', ...messages);
   }
 }
 
