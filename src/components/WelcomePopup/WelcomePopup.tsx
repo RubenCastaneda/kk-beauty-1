@@ -25,6 +25,35 @@ const Content = styled.div`
   text-align: center;
   color: #fff;
   box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  position: relative;
+`;
+
+const CloseButton = styled.button`
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 24px;
+  height: 24px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+
+  &:hover {
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  &:focus {
+    outline: none;
+    color: rgba(255, 255, 255, 0.9);
+  }
 `;
 
 const Title = styled.h2`
@@ -199,6 +228,15 @@ const WelcomePopup: React.FC = () => {
   return (
     <Overlay>
       <Content>
+        <CloseButton
+          onClick={() => {
+            localStorage.setItem('hasSeenWelcomePopup', 'true');
+            setShowPopup(false);
+          }}
+          aria-label="Close popup"
+        >
+          ×
+        </CloseButton>
         {!isSubmitted ? (
           <>
             <Title>Welcome to KK Beauty Lab</Title>
